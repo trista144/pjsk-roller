@@ -1,8 +1,13 @@
-# PJSK 国服随机抽签｜今天，演奏什么？
+# PJSK 国服小工具｜今天，演奏什么？
 
-给《初音未来：缤纷舞台》国服玩家用的随机曲目抽签小工具。抽一首歌，再抽一个难度，给重复的演奏加一点未知。
+给《初音未来：缤纷舞台》国服玩家做的两个小工具，共用一套清新配色和曲库数据：
 
-**只需要上传 `index.html` 就能用。** 它是一个单文件网页，曲库、样式、脚本全部内嵌，不依赖服务器、字体 CDN 或外链图片，双击打开也能离线使用。
+| 页面 | 文件 | 玩法 |
+| --- | --- | --- |
+| 🎵 **演奏随机抽签** | `index.html` | 随机抽一首歌 + 一个难度，可限定难度 / 组合 / 等级 |
+| 🎧 **听歌识曲** | `quiz.html` | 随机切 5–10 秒试听，限时作答，记录可导出分享 |
+
+两个页面都有站内链接，互相跳转。**每个都是单文件网页**：曲库、样式、脚本全部内嵌，不依赖构建服务，GitHub Pages 上传即用。
 
 ---
 
@@ -13,38 +18,46 @@
 | 国服当前可游玩曲目 | **638 首** |
 | 全部可选谱面 | **3318 个** |
 | 带 APPEND 的曲目 | **128 首** |
+| 听歌识曲可用曲目（有公开试听） | **616 首** |
 | 曲库截止日期 | **2026-11-07** |
 
-- 数据来自社区维护的国服 Master DB：[Sekai-World/sekai-master-db-cn-diff](https://github.com/Sekai-World/sekai-master-db-cn-diff)。
-- 曲名同时保留**原文**与**国服中文名**，可在页面右上角切换「双语 / 中文 / 原文」。
-- 难度包含 EASY、NORMAL、HARD、EXPERT、MASTER、APPEND；APPEND 只在已收录该谱面的歌曲中出现。
-- 已排除尚未上线的未来曲目，以及国服限时活动结束后不可再游玩的 4 个限时谱面（初音未来激唱 FULL Ver. 与 3 个高难度串烧）。
-- 组合标签是多标签：一首 VOCALOID 翻唱可能同时属于「原曲分类」和「翻唱组合」，所以各分类数量相加会大于 638。
+- 曲库数据来自社区维护的国服 Master DB：[Sekai-World/sekai-master-db-cn-diff](https://github.com/Sekai-World/sekai-master-db-cn-diff)。
+- 曲名同时保留**原文**与**国服中文名**。
+- 难度包含 EASY、NORMAL、HARD、EXPERT、MASTER、APPEND。
+- 已排除尚未上线的未来曲目，以及国服限时活动结束后不可再游玩的 4 个限时谱面。
+- 组合标签是多标签：VOCALOID 翻唱可能同时属于「原曲分类」和「翻唱组合」，所以各分类数量相加会大于 638。
+- 试听音频来自游戏内 `short.ver` 片段（与 [Sekai Viewer](https://github.com/Sekai-World/sekai-viewer) 同源的公共资产）。国服独占曲目（4 首本地联动曲 + 「未来有你」参赛曲等 18 首）没有公开试听，因此**不进猜歌曲库**，但仍会出现在抽签里。
 
-## 功能
+## 一、演奏随机抽签（`index.html`）
 
-- 六档难度筛选，支持只抽 APPEND。
-- 组合 / 分类筛选：Leo/need、MORE MORE JUMP！、Vivid BAD SQUAD、Wonderlands×Showtime、25时，在Nightcord。、VOCALOID、其他 / 联动。
-- 等级范围筛选，可只抽 30 级以上或某个等级段。
-- 中文名 / 原文 / 双语显示。
-- 不重复抽签：本轮抽过的歌会从池中排除，可随时重置。
-- 最近抽签记录、复制抽签结果、空格键快捷抽签。
-- 响应式布局，手机浏览器可用；设置会保存在本机浏览器。
+- 按难度、组合、等级范围收窄曲池；每个分类旁会显示当前条件下的可选曲目数。
+- 曲名支持「双语 / 中文 / 原文」切换。
+- 不重复抽签、最近抽签记录、一键复制结果、空格键快捷抽签。
+- 抽签规则：先按筛选条件等概率抽歌，再从该曲可用且被选中的难度中等概率抽谱面。
 
-## 抽签规则
+## 二、听歌识曲（`quiz.html`）
 
-1. 先按当前筛选条件构建曲池，**每首歌等概率**抽 1 首。
-2. 再在这首歌的可用谱面中，按已选难度、等级范围**等概率**抽 1 个难度。
-3. 开启「不重复抽签」时，已抽过的歌曲不会再次出现，直到点「重置本轮」。
+- **片段长度** 5–10 秒可调（默认 8 秒），从整首 short.ver 里随机裁切，不一定切在副歌。
+- **思考时间** 30 / 60 / 90 / 120 秒或不限时。
+- **曲库范围** 与抽签同一套：组合 / 分类多选、按难度存在筛选。
+- **作答方式**：系统给出 1 个正确答案 + 7 个干扰项（优先同组合的歌），点选即可；候选中没有时，直接输入中文名或原名搜索。
+- **判定**：选中文名或原名都算对；答对 +1000 分并按剩余时间加最多 +400 速度分，答错 −100 分，放弃 0 分。
+- **不重复出题**：曲池里的歌都出过之后才重新洗牌。
+- **记录**：逐题记录（歌名 / 你的选择 / 用时 / 得分），以及得分、正确率、最长连击、平均用时。成绩与设置保存在本机浏览器，刷新不丢。
+- **导出分享**：文本（txt）、JSON、答卷图片（png，用 canvas 现场绘制），以及「生成分享链接」——把当前范围 / 片段长度 / 思考时间编码进网址，发给朋友就能玩同一套规则。
+- **极限模式**：盖上题号进度条，挑战感更强。
+- 快捷键：空格开始 / 立即作答 / 下一题，方向键选候选，Enter 确认。
+
+> 试听片段会在第一次播放时才从网上下载，需要联网；网络较慢时会显示「载入片段…」，稍等即可。
 
 ---
 
 ## 在本地打开
 
-1. 下载 `index.html`。
-2. 双击用浏览器打开即可。
+1. 下载 `index.html` 和 `quiz.html`（或整个压缩包解压）。
+2. 双击 `index.html`，两个页面之间照常通过站内链接跳转。
 
-不需要联网。若浏览器限制了本地文件的剪贴板权限，「复制结果」可能会提示失败，可以手动选中文字复制；部署到 GitHub Pages 后复制功能会正常工作。
+抽签页完全离线可用；猜歌页需要联网加载试听音频。若浏览器限制本地文件的剪贴板权限，「复制结果」「生成分享链接」可能提示失败，可手动选中文字复制；部署到 GitHub Pages 后一切正常。
 
 ---
 
@@ -55,7 +68,7 @@
 1. 登录 GitHub，点右上角 **+ → New repository**。
 2. 仓库名填 `pjsk-draw`（或任意名字），选择 **Public**，点 **Create repository**。
 3. 进入仓库，点 **Add file → Upload files**。
-4. 把 `index.html` 拖进去；`README.md` 可选，一并上传。
+4. 把 `index.html` 和 `quiz.html` 放进去（`README.md` 可选，一并上传）。
 5. 点 **Commit changes**。
 6. 打开仓库的 **Settings → Pages**。
 7. 在 **Build and deployment** 中：
@@ -67,16 +80,18 @@
 访问地址通常是：
 
 ```text
-https://<你的 GitHub 用户名>.github.io/pjsk-draw/
+https://<你的 GitHub 用户名>.github.io/pjsk-draw/          ← 抽签
+https://<你的 GitHub 用户名>.github.io/pjsk-draw/quiz.html ← 听歌识曲
 ```
 
-例如用户名为 `miku39`，仓库名为 `pjsk-draw`：
+例如用户名为 `miku39`、仓库名为 `pjsk-draw`：
 
 ```text
 https://miku39.github.io/pjsk-draw/
+https://miku39.github.io/pjsk-draw/quiz.html
 ```
 
-> 如果仓库名取成 `<你的用户名>.github.io`，访问地址会变成 `https://<你的用户名>.github.io/`。
+> 如果仓库名取成 `<你的用户名>.github.io`，访问地址会变成 `https://<你的用户名>.github.io/`，猜歌页则是 `https://<你的用户名>.github.io/quiz.html`。
 > 仓库必须是 Public；Private 仓库的 Pages 需要 GitHub 付费方案。
 
 ### 方法 B：命令行上传
@@ -85,8 +100,8 @@ https://miku39.github.io/pjsk-draw/
 
 ```bash
 git init
-git add index.html README.md
-git commit -m "feat: PJSK random draw"
+git add index.html quiz.html README.md
+git commit -m "feat: PJSK draw + guess the song"
 git branch -M main
 git remote add origin https://github.com/<用户名>/<仓库名>.git
 git push -u origin main
@@ -96,17 +111,18 @@ git push -u origin main
 
 ### 访问与分享
 
-- 直接打开上面的 `https://<用户名>.github.io/<仓库名>/`。
-- 手机上也可以用同一个网址；在浏览器菜单里选「添加到主屏幕」，用起来更像一个小应用。
-- 不要用 `raw.githubusercontent.com` 的链接直接访问 `index.html`：GitHub 会把它当纯文本返回，不会渲染成网页。要用 GitHub Pages 的地址。
+- 直接打开上面的两个网址即可；两个页面互相链接。
+- 手机上也能用：浏览器菜单里选「添加到主屏幕」，用起来更像一个小应用。
+- 猜歌页的「生成分享链接」会给出类似 `.../quiz.html#g=idol&g=vocaloid&clip=5&think=60` 的地址，朋友打开就是同一套规则。
+- 不要用 `raw.githubusercontent.com` 的链接直接访问：GitHub 会把它当纯文本返回，不会渲染成网页。要用 GitHub Pages 的地址。
 
 ### 更新页面
 
-修改 `index.html` 后重新上传 / commit 即可，GitHub Pages 会自动重新发布：
+改完重新上传 / commit 即可，GitHub Pages 会自动重新发布：
 
 ```bash
-git add index.html
-git commit -m "update draw page"
+git add index.html quiz.html
+git commit -m "update tools"
 git push
 ```
 
@@ -114,25 +130,27 @@ git push
 
 ### 国内访问慢怎么办？
 
-GitHub Pages 在国内偶尔会慢或连接不稳定。这个工具是纯静态单文件：
+GitHub Pages 在国内偶尔会慢或连接不稳定，而猜歌还需要加载试听音频：
 
-- 最稳妥：把 `index.html` 下载到本地，双击打开，完全离线可用。
-- 也可以把 `index.html` 上传到 Cloudflare Pages、Netlify、Vercel 等静态托管，访问会更快；无需改代码。
+- 抽签工具：把 `index.html` 下载到本地，双击打开，完全离线可用。
+- 猜歌工具：部署到 Cloudflare Pages、Netlify、Vercel 等静态托管访问会更快，无需改代码。
+- 试听音频本身来自公共 CDN（`storage.sekai.best`），与页面放在哪里无关。
 
 ---
 
 ## 更新曲库（可选，需要 Python）
 
-压缩包里附带了数据构建脚本和构建后的 `data/songs.json`，方便国服版本更新后重新生成：
+压缩包里带了数据构建脚本，国服版本更新后可以重新生成两个页面：
 
 ```text
-data/songs.json       构建后的精简曲库（随压缩包提供）
-src/                  页面模板、样式、脚本（随压缩包提供）
+data/                 从 CN Master DB 下载的原始 JSON
+data/songs.json       构建后的精简曲库（含难度、组合、试听变体）
+src/                  两个页面的模板、样式、脚本
 tools/build_data.py   过滤当前可用曲目，生成 data/songs.json
-tools/build_site.py   把 CSS/JS/曲库内嵌成单文件 index.html
+tools/build_site.py   把 CSS/JS/曲库内嵌成 index.html 与 quiz.html
 ```
 
-1. 从 [Sekai-World/sekai-master-db-cn-diff](https://github.com/Sekai-World/sekai-master-db-cn-diff) 下载最新的 `musics.json`、`musicDifficulties.json`、`musicTags.json`、`limitedTimeMusics.json`，放进 `data/`。
+1. 从 [Sekai-World/sekai-master-db-cn-diff](https://github.com/Sekai-World/sekai-master-db-cn-diff) 下载最新的 `musics.json`、`musicDifficulties.json`、`musicTags.json`、`musicVocals.json`、`limitedTimeMusics.json`，放进 `data/`。
 2. 运行：
 
 ```bash
@@ -140,14 +158,9 @@ python -X utf8 tools/build_data.py
 python tools/build_site.py
 ```
 
-3. 重新上传生成的 `index.html`。
+3. 重新上传生成的两个 HTML。
 
-`build_data.py` 会按运行当天的时间：
-- 跳过尚未上线的曲目；
-- 跳过已经结束的限时谱面；
-- 只保留当前可选曲目。
-
-如果只是普通使用，不需要执行这一步，下载 `index.html` 即可。
+`build_data.py` 会按运行当天的时间跳过未上线曲目、跳过已结束的限时谱面；`CN_EXCLUSIVE_IDS` 里的国服独占曲目会被标记为「猜歌不参与」。
 
 ---
 
@@ -155,41 +168,38 @@ python tools/build_site.py
 
 | 文件 | 作用 |
 | --- | --- |
-| `index.html` | **唯一需要上传的成品**，单文件网页 |
+| `index.html` | **演奏随机抽签**，单文件网页 |
+| `quiz.html` | **听歌识曲**，单文件网页 |
 | `README.md` | 本说明 |
-| `pjsk-draw.zip` | 便于下载/转发的打包文件：含成品、说明与可选构建源码 |
+| `pjsk-draw.zip` | 打包文件：两个成品 + 说明 + 可选构建源码 |
 
-`pjsk-draw.zip` 中除 `index.html` 和 `README.md` 外，还包含 `src/`、`tools/`、`data/songs.json`，供以后更新曲库使用。这些源码不影响部署；如果你只想上线，上传 `index.html` 就够了。
+两个页面都只需要各自的 HTML 就能运行；`src/`、`tools/`、`data/` 是维护用的源文件，不影响部署。
 
 ---
 
 ## 数据与版权
 
 - 本项目是非官方同人工具，与 SEGA、Colorful Palette、Crypton Future Media 及国服运营方无隶属关系。
-- 游戏曲名、角色、谱面数据等版权归原权利方所有。
-- 曲库数据来自 Sekai-World 社区维护的国服 Master DB；如果发现曲目缺失或中文名有误，通常是上游数据尚未更新，可以按上面的步骤重新构建。
-- 页面不收集任何个人信息；筛选设置、抽签记录只保存在你自己的浏览器 `localStorage` 中。
+- 游戏曲名、角色、谱面、试听音频等版权归原权利方所有；试听音频只引用公共资产 CDN，未重新分发音频文件。
+- 页面不收集任何个人信息；筛选设置、抽签 / 答题记录只保存在你自己的浏览器 `localStorage` 中。
 
 ## 常见问题
 
-**打开是空白页 / 按钮没反应？**  
-确认浏览器启用了 JavaScript，并且 `index.html` 没有被下载工具截断。换一个现代浏览器（Chrome、Edge、Safari、Firefox）再试。
+**猜歌页一直显示「载入片段…」？**  
+说明试听音频还没下载下来，通常是网络问题。稍等或刷新；也可以在网络更好的设备上玩。
 
-**GitHub Pages 显示 404？**  
-先确认仓库是 Public、Pages 的 Branch 选的是 `main`、目录是 `/ (root)`，并等待首次部署完成。地址末尾不要漏掉 `/`。
-
-**为什么曲目数量和别处不一样？**  
-这是“国服当前可游玩”的曲池，包含常驻曲目，排除未来曲目和已结束的限时谱面。曲库截止日期写在页面页脚。版本更新后可以用上面的脚本重建。
-
-**为什么一首歌会出现在多个组合里？**  
-组合标签按 Master DB 的多标签规则展示；VOCALOID 原曲与其翻唱组合可能同时出现，方便按不同维度筛选。
+**为什么有的歌猜歌抽不到？**  
+国服独占曲目（本地联动曲、部分参赛曲）没有公开试听，所以只出现在抽签里。页面右上的「首可猜」就是口径。
 
 **抽到重复的歌？**  
-检查「不重复抽签」是否开启；开启后如果本轮抽完，点「重置本轮」即可开始新一轮。
+抽签页检查「不重复抽签」是否开启；猜歌页出一轮后会重新洗牌，属正常现象。
 
-**APPEND 一直抽不到？**  
-APPEND 只存在于 128 首曲目中；确认难度筛选里 APPEND 处于选中状态，且等级范围覆盖它的等级。
+**为什么一首歌会出现在多个组合里？**  
+组合标签按 Master DB 的多标签规则展示，方便按不同维度筛选。
+
+**导出图片失败？**  
+换新版 Chrome / Edge / Safari 再试；也可以先导出文本或 JSON。
 
 ---
 
-祝你今天也能抽到想打的歌。♪
+祝你抽到想打的歌，也祝你把每一段前奏都认出来。♪
