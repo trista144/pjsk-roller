@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>mirror probe</title>
+<style>body{font:13px/1.6 system-ui;background:#0f172a;color:#e2e8f0;padding:16px}
+pre{white-space:pre-wrap;background:#1e293b;padding:12px;border-radius:10px}</style>
+</head>
+<body><pre id="out">probing mirrors…</pre>
+<script>
+const out = (m) => { document.getElementById('out').textContent += '\n' + m; };
+const CANDS = [
+  'https://cdn.jsdelivr.net/gh/Sekai-World/sekai-viewer@dev/README.md',
+  'https://raw.githubusercontent.com/Sekai-World/sekai-viewer/dev/README.md',
+  'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://storage.sekai.best/sekai-jp-assets/music/short/0001_01/0001_01_short.mp3'),
+  'https://corsproxy.io/?url=' + encodeURIComponent('https://storage.sekai.best/sekai-jp-assets/music/short/0001_01/0001_01_short.mp3'),
+  'https://images.weserv.nl/?url=storage.sekai.best/sekai-jp-assets/music/short/0001_01/0001_01_short.mp3',
+  'https://wsrv.nl/?url=storage.sekai.best/sekai-jp-assets/music/short/0001_01/0001_01_short.mp3',
+];
+(async () => {
+  out('origin ' + location.origin);
+  for (const u of CANDS) {
+    try {
+      const r = await fetch(u, { method: 'GET' });
+      out('fetch ' + u.slice(0, 60) + ' -> ' + r.status + ' type=' + r.headers.get('content-type') + ' len=' + r.headers.get('content-length') + ' acao=' + (r.headers.get('access-control-allow-origin') || 'none'));
+      if ((r.headers.get('content-type') || '').includes('audio')) {
+        const b = await r.blob();
+        out('   blob size ' + b.size);
+        const a = new Audio(); a.src = URL.createObjectURL(b);
+        await new Promise((res) => { a.onloadedmetadata = () => { out('   blob audio duration ' + a.duration.toFixed(1)); res(); }; a.onerror = () => { out('   blob audio error'); res(); }; setTimeout(res, 4000); });
+      }
+    } catch (e) {
+      out('fetch ' + u.slice(0, 60) + ' -> ERR ' + e.message);
+    }
+  }
+  // audio element direct on proxy url
+  for (const u of CANDS.slice(2, 5)) {
+    await new Promise((res) => {
+      const a = new Audio();
+      const t0 = performance.now();
+      let done = false;
+      const f = (m) => { if (done) return; done = true; out('audio ' + u.slice(0, 45) + ' -> ' + m + ' (' + Math.round(performance.now() - t0) + 'ms)'); res(); };
+      a.onloadedmetadata = () => f('loaded ' + a.duration.toFixed(1) + 's');
+      a.onerror = () => f('ERROR code=' + (a.error && a.error.code));
+      setTimeout(() => f('TIMEOUT'), 10000);
+      a.src = u; a.load();
+    });
+  }
+  out('DONE');
+})();
+</script>
+</body></html>
