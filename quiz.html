@@ -2800,6 +2800,40 @@ input[type="range"] {
   color: #9aafb2;
 }
 
+
+.audio-diag {
+  margin-top: 10px;
+}
+
+.audio-diag-btn {
+  padding: 7px 12px;
+  border: 1px solid #bfe6df;
+  border-radius: 9px;
+  color: var(--teal-deep);
+  background: #f0fbf8;
+  font-size: 10.5px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.audio-diag-btn:hover {
+  border-color: #8fd9cd;
+  background: #e7f8f4;
+}
+
+.audio-diag-out {
+  margin: 9px 0 0;
+  padding: 10px 11px;
+  border-radius: 9px;
+  background: #f5fafa;
+  color: #4c6669;
+  font: 10px/1.65 ui-monospace, "Cascadia Code", Consolas, monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 220px;
+  overflow: auto;
+}
+
   </style>
 </head>
 <body>
@@ -2974,6 +3008,10 @@ input[type="range"] {
                 <li><b>把页面下载到本地</b>双击打开，实测可以直接播放。</li>
               </ol>
               <p class="audio-help-note">音频拿不到时页面会自动切到「无音频出题模式」，不会影响猜歌、计分和记录。</p>
+              <div class="audio-diag">
+                <button type="button" class="audio-diag-btn" id="audioDiagBtn">运行音频自检</button>
+                <pre class="audio-diag-out" id="audioDiagOut" hidden></pre>
+              </div>
             </div>
           </details>
         </div>
@@ -3239,7 +3277,10 @@ input[type="range"] {
   // short.ver 片段从头播放一部分；素材里的前奏通常比较安静，跳过一点更容易听出旋律。
   const CLIP_START_MARGIN = 3;
   const CLIP_END_MARGIN = 12;
-  const DEFAULT_AUDIO_BASE = "https://pjsk-playbox.pages.dev/quiz?audio=https://pjsk-audio.1394562462.workers.dev/music/short/";
+  const REMOTE_AUDIO_BASE = "https://storage.sekai.best/sekai-jp-assets/music/short/";
+  // 默认走同域名下的 /audio/（由仓库根目录的 _worker.js 转发）。
+  // 同域请求不受来源站白名单影响，也不用连 workers.dev，国内可直连。
+  const DEFAULT_AUDIO_BASE = "/audio/";
   const AUDIO_BASE_KEY = "pjsk-quiz-audio-base";
   // 音频源可以在网址里指定，支持逗号分隔多个（从左到右依次尝试）：
   //   ?audio=/pjskaudio/,https://storage.sekai.best/sekai-jp-assets/music/short/
@@ -3266,9 +3307,9 @@ input[type="range"] {
         const list = saved.split(",").map(normalizeBase).filter(Boolean);
         if (list.length) return list;
       }
-      return [DEFAULT_AUDIO_BASE];
+      return [DEFAULT_AUDIO_BASE, REMOTE_AUDIO_BASE];
     } catch {
-      return [DEFAULT_AUDIO_BASE];
+      return [DEFAULT_AUDIO_BASE, REMOTE_AUDIO_BASE];
     }
   })();
   const AUDIO_BASE = AUDIO_SOURCES[0];
@@ -3493,9 +3534,9 @@ let state = defaultState();
     for (const base of AUDIO_SOURCES) {
       for (const name of song.av || []) all.push(buildUrl(base, name));
     }
-    if (!AUDIO_SOURCES.includes(DEFAULT_AUDIO_BASE)) {
-      // 自定义反代失败时，仍把源站放最后兜底。
-      for (const name of song.av || []) all.push(buildUrl(DEFAULT_AUDIO_BASE, name));
+    if (!AUDIO_SOURCES.includes(REMOTE_AUDIO_BASE)) {
+      // 同域或自定义反代失败时，仍把源站放最后兜底（国内通常连不上，只做最后尝试）。
+      for (const name of song.av || []) all.push(buildUrl(REMOTE_AUDIO_BASE, name));
     }
     return [...new Set(all.filter(Boolean))];
   }
@@ -3597,8 +3638,8 @@ let state = defaultState();
       const sources = clipsFor(song);
       const attempt = () => {
         if (source >= sources.length) {
-          // 源站能应答但内容不可用 vs 一路都没应答，提示不同。
-          finish({ ok: false, error: true, reachable: sawSource });
+          // 记录最后失败的那一路，用来区分"连不上"和"连上了但内容不对"。
+          finish({ ok: false, error: true, reachable: sawSource, lastUrl: sources[sources.length - 1] });
           return;
         }
         const url = sources[source];
@@ -3950,8 +3991,9 @@ let state = defaultState();
       els.startBtnLabel.textContent = "重新开始";
       round = null;
       if (!loaded.reachable) {
-        // 所有音频地址都没应答：换歌也没用，直接切到"无音频备用模式"，让游戏能继续玩。
-        enterFallbackMode();
+        // 所有音频地址都没应答：先探测一次，判断是"网络连不上"还是"来源站拒绝"。
+        const verdict = await diagnoseAudio();
+        enterFallbackMode(verdict);
         beginFallbackRound(song, clip);
         return;
       }
@@ -3968,15 +4010,43 @@ let state = defaultState();
   }
 
   /* ---- 无音频备用模式：音频站按来源站拦截，浏览器拿不到音频时 ---- */
-  function enterFallbackMode() {
-    ui.fallback = true;
-    document.body.classList.add("quiz-no-audio");
-    toast("检测到试听音频被拦截，已切换为「无音频出题」模式；点条幅可看解决办法", 5000);
-    showFallbackBanner();
+  // 探测一次，判定失败原因：网络不通 / 被来源站拒绝 / 其他
+  async function diagnoseAudio() {
+    const probeUrl = buildUrl(AUDIO_SOURCES[0], "0001_01");
+    const started = performance.now();
+    try {
+      const response = await fetch(probeUrl, { method: "GET", cache: "no-store" });
+      const ms = Math.round(performance.now() - started);
+      if (response.ok || response.status === 206) {
+        return { kind: "ok", ms };
+      }
+      // 能拿到 HTTP 状态码 → 网络是通的，问题在服务端
+      return { kind: "server", status: response.status, ms };
+    } catch (error) {
+      const ms = Math.round(performance.now() - started);
+      const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+      // 规则：请求压根没拿到响应（TypeError / 超时）都算"网络层失败"
+      return { kind: offline ? "offline" : "network", ms, message: error && error.message };
+    }
   }
 
-  function showFallbackBanner() {
-    if (document.getElementById("audioFallbackBar")) return;
+  function enterFallbackMode(verdict) {
+    ui.fallback = true;
+    document.body.classList.add("quiz-no-audio");
+    const reason = verdict && verdict.kind;
+    if (reason === "network" || reason === "offline") {
+      toast("试听音频连不上（网络或 CDN 可达性问题），已切换为「无音频出题」模式", 5000);
+    } else if (reason === "server") {
+      toast("试听音频被服务端拒绝，已切换为「无音频出题」模式；点条幅可看解决办法", 5000);
+    } else {
+      toast("试听音频未能加载，已切换为「无音频出题」模式；点条幅可看解决办法", 5000);
+    }
+    showFallbackBanner(verdict);
+  }
+
+  function showFallbackBanner(verdict) {
+    const existing = document.getElementById("audioFallbackBar");
+    if (existing) existing.remove();
     const bar = document.createElement("div");
     bar.id = "audioFallbackBar";
     bar.className = "audio-fallback-bar";
@@ -3988,8 +4058,14 @@ let state = defaultState();
     const title = document.createElement("strong");
     title.textContent = "无音频出题模式";
     const desc = document.createElement("span");
-    desc.textContent =
-      "音频服务按来源站拦截了浏览器请求（本地打开或同源时可以播放）。点这里看解决办法。";
+    const kind = verdict && verdict.kind;
+    if (kind === "network" || kind === "offline") {
+      desc.textContent = "浏览器连不上音频地址（网络 / CDN 可达性）。点这里看解决办法。";
+    } else if (kind === "server") {
+      desc.textContent = `音频服务回应了 ${verdict.status}，拒绝了这次请求。点这里看解决办法。`;
+    } else {
+      desc.textContent = "音频加载失败。点这里看解决办法。";
+    }
     text.append(title, desc);
     const close = document.createElement("button");
     close.type = "button";
@@ -4170,6 +4246,22 @@ let state = defaultState();
   }
 
   // 把输入当作"我的答案"：先尝试模糊命中正确答案，其次找高分候选。
+  function resolvePicked(text) {
+    const typed = String(text || "").trim();
+    if (!typed) return null;
+    const exact = matchTyped(typed);
+    if (exact) return exact;
+    if (FUZZY) {
+      // 输入形如 "中文名 / 原名"，取其中一段看看是否是某首歌。
+      const parts = typed.split(/[\/／|｜]/).map((part) => part.trim()).filter(Boolean);
+      for (const part of parts) {
+        const hit = matchTyped(part);
+        if (hit) return hit;
+      }
+    }
+    return null;
+  }
+
   function matchTyped(text) {
     const q = String(text || "").trim().toLowerCase();
     if (!q) return null;
@@ -4385,8 +4477,16 @@ let state = defaultState();
     els.guessEcho.hidden = true;
     audio.pause();
     const elapsed = Math.max(0.2, (Date.now() - round.answerStart) / 1000);
-    const mode = guessSong ? 1 : -1;
-    const judged = mode === 1 ? judgeGuess(guessSong, typedText) : { ok: false, how: "none" };
+    const typedClean = String(typedText || "").trim();
+    // 有输入就算作答（哪怕没匹配到候选），只有真正空着提交才是"放弃"。
+    const hasAnswer = Boolean(guessSong) || typedClean.length > 0;
+    const mode = hasAnswer ? 1 : -1;
+    let judged = mode === 1 ? judgeGuess(guessSong, typedClean) : { ok: false, how: "none" };
+    if (mode === 1 && !judged.ok && FUZZY && typedClean) {
+      // 兜底：用户敲的字本身足够接近答案，就按模糊匹配通过处理。
+      const direct = FUZZY.judge({ i: -1, c: typedClean, t: typedClean }, round.song, answerNames);
+      if (direct.ok) judged = direct;
+    }
     const correct = judged.ok;
     const limit = state.settings.think || 999;
     const speedBonus = correct && limit > 0 ? Math.round(400 * clamp(1 - elapsed / limit, 0, 1)) : 0;
@@ -4395,8 +4495,8 @@ let state = defaultState();
     state.answers.push({
       i: round.song.i,
       m: mode,
-      g: mode === 1 ? guessSong.i : null,
-      v: mode === 1 && typedText ? String(typedText).slice(0, 60) : null,
+      g: mode === 1 && guessSong ? guessSong.i : null,
+      v: mode === 1 && typedClean ? typedClean.slice(0, 60) : null,
       h: mode === 1 ? judged.how : null,
       s: judged.score || null,
       t: Math.round(elapsed * 10) / 10,
@@ -4429,9 +4529,11 @@ let state = defaultState();
       const fuzzyFine = judged.how && judged.how !== "exact";
       if (fuzzyFine) els.revealNote.classList.add("is-fuzzy");
       const tail = fuzzyFine
-        ? `模糊匹配通过（相似度 ${judged.score || "很高"}%）`
+        ? `模糊匹配通过${judged.score ? `（相似度 ${judged.score}%）` : ""}`
         : "完全命中";
-      els.revealNote.textContent = `用时 ${elapsed.toFixed(1)} 秒 · +${pts} 分 · ${tail}`;
+      const shown = state.answers[state.answers.length - 1].v;
+      const typedTail = shown ? ` · 你输入的是「${shown}」` : "";
+      els.revealNote.textContent = `用时 ${elapsed.toFixed(1)} 秒 · +${pts} 分 · ${tail}${typedTail}`;
     } else if (mode === 1) {
       els.revealBadge.classList.add("is-wrong");
       els.revealBadge.textContent = "猜错了";
@@ -4855,9 +4957,19 @@ let state = defaultState();
     els.submitBtn.addEventListener("click", () => {
       if (!round) return;
       const typed = els.answerInput.value.trim();
-      // 面板浮在上方挡着按钮时，点击穿透也要能直接提交；提交前先收起面板。
-      const pick = round.selected || fuzzyList[ui.selected >= 0 ? ui.selected : 0] || null;
-      if (pick || typed) submitAnswer(pick ? pick.song : null, typed);
+      // 以输入框里的内容为准重新解析：点按钮会让输入框失焦、电压候选列表被收起，
+      // 不能依赖模糊列表的选中项。
+      const pick =
+        resolvePicked(typed) ||
+        round.selected ||
+        fuzzyList[ui.selected >= 0 ? ui.selected : 0] ||
+        null;
+      if (pick) {
+        submitAnswer(pick, typed);
+      } else if (typed) {
+        // 没有定位到歌曲时把原文交给模糊匹配判定，而不是当成"放弃"。
+        submitAnswer(null, typed);
+      }
     });
     els.skipBtn.addEventListener("click", () => submitAnswer(null));
     els.nextBtn.addEventListener("click", nextRound);
@@ -4966,6 +5078,34 @@ let state = defaultState();
       saveState();
       toast("已恢复默认设置");
     });
+    const diagBtn = document.getElementById("audioDiagBtn");
+    if (diagBtn) {
+      diagBtn.addEventListener("click", async () => {
+        const out = document.getElementById("audioDiagOut");
+        out.hidden = false;
+        out.textContent = "检测中…";
+        const lines = [];
+        lines.push(`页面地址：${location.origin}${location.pathname}`);
+        lines.push(`在线状态：${navigator.onLine ? "online" : "offline"}`);
+        for (const base of AUDIO_SOURCES) {
+          const url = buildUrl(base, "0001_01");
+          const t0 = performance.now();
+          try {
+            const r = await fetch(url, { method: "GET", cache: "no-store" });
+            const ms = Math.round(performance.now() - t0);
+            lines.push(`✅ ${url}\n   HTTP ${r.status} · ${ms}ms · ${r.headers.get("Content-Type") || "?"}`);
+          } catch (error) {
+            const ms = Math.round(performance.now() - t0);
+            lines.push(`❌ ${url}\n   ${error.name}: ${error.message} · ${ms}ms`);
+          }
+        }
+        const verdict = lines.some((line) => line.startsWith("✅"))
+          ? "至少一个音频源可用，若仍无声请检查设备音量或浏览器自动播放限制。"
+          : "所有音频源都不可用：说明是网络 / CDN 可达性问题，不是代码问题。";
+        lines.push("", verdict);
+        out.textContent = lines.join("\n");
+      });
+    }
     els.changeSettings.addEventListener("click", () => {
       buildCarousel();
       round = null;
