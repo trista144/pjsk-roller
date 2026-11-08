@@ -2821,6 +2821,18 @@ input[type="range"] {
   background: #e7f8f4;
 }
 
+.audio-reset-btn {
+  margin-left: 6px;
+  border-color: #e3d3f2;
+  color: #6f57a8;
+  background: #f9f5fe;
+}
+
+.audio-reset-btn:hover {
+  border-color: #cbb4e8;
+  background: #f2ebfd;
+}
+
 .audio-diag-out {
   margin: 9px 0 0;
   padding: 10px 11px;
@@ -3010,6 +3022,7 @@ input[type="range"] {
               <p class="audio-help-note">音频拿不到时页面会自动切到「无音频出题模式」，不会影响猜歌、计分和记录。</p>
               <div class="audio-diag">
                 <button type="button" class="audio-diag-btn" id="audioDiagBtn">运行音频自检</button>
+                <button type="button" class="audio-diag-btn audio-reset-btn" id="audioResetBtn">重置音频设置</button>
                 <pre class="audio-diag-out" id="audioDiagOut" hidden></pre>
               </div>
             </div>
@@ -3292,27 +3305,35 @@ input[type="range"] {
   }
 
   const AUDIO_SOURCES = (() => {
+    // 同域 /audio/ 永远排第一：它不受来源站白名单影响，也不依赖任何外部域名。
+    // 用户之前用 ?audio= 存下的地址只作为"额外候选"排在后面，不能压掉默认值。
+    const list = [DEFAULT_AUDIO_BASE];
+    const add = (raw) => {
+      const base = normalizeBase(raw);
+      if (base && !list.includes(base)) list.push(base);
+    };
     try {
       const param = new URLSearchParams(window.location.search).get("audio");
       if (param) {
-        const list = param
-          .split(",")
-          .map(normalizeBase)
-          .filter(Boolean);
-        window.localStorage.setItem(AUDIO_BASE_KEY, list.join(","));
-        return list.length ? list : [DEFAULT_AUDIO_BASE];
+        param.split(",").forEach(add);
+        window.localStorage.setItem(AUDIO_BASE_KEY, list.slice(1).join(","));
+      } else {
+        const saved = window.localStorage.getItem(AUDIO_BASE_KEY);
+        if (saved) saved.split(",").forEach(add);
       }
-      const saved = window.localStorage.getItem(AUDIO_BASE_KEY);
-      if (saved) {
-        const list = saved.split(",").map(normalizeBase).filter(Boolean);
-        if (list.length) return list;
-      }
-      return [DEFAULT_AUDIO_BASE, REMOTE_AUDIO_BASE];
     } catch {
-      return [DEFAULT_AUDIO_BASE, REMOTE_AUDIO_BASE];
+      /* 隐私模式下 localStorage 可能不可用，忽略即可 */
     }
+    add(REMOTE_AUDIO_BASE);
+    return list;
   })();
   const AUDIO_BASE = AUDIO_SOURCES[0];
+  // 供"音频自检"和排查使用：暴露当前实际使用的音频源顺序。
+  try {
+    window.__PJSK_AUDIO = { sources: AUDIO_SOURCES.slice(), base: AUDIO_BASE };
+  } catch {
+    /* ignore */
+  }
   const STORAGE_KEY = "pjsk-quiz-v1";
 
   /* ============ DOM ============ */
@@ -3534,10 +3555,7 @@ let state = defaultState();
     for (const base of AUDIO_SOURCES) {
       for (const name of song.av || []) all.push(buildUrl(base, name));
     }
-    if (!AUDIO_SOURCES.includes(REMOTE_AUDIO_BASE)) {
-      // 同域或自定义反代失败时，仍把源站放最后兜底（国内通常连不上，只做最后尝试）。
-      for (const name of song.av || []) all.push(buildUrl(REMOTE_AUDIO_BASE, name));
-    }
+    // 源站已在 AUDIO_SOURCES 末尾，这里无需重复追加。
     return [...new Set(all.filter(Boolean))];
   }
 
@@ -3669,7 +3687,7 @@ let state = defaultState();
         timer = window.setTimeout(() => {
           source += 1;
           attempt();
-        }, 4000);
+        }, 9000);
         audio.src = url;
         audio.load();
         audio.onloadedmetadata = () => {
@@ -4131,10 +4149,22 @@ let state = defaultState();
     playClip(round.song);
     ui.startedAt = Date.now();
     updatePlayTimer();
+    startPlayWatchdog(round.clip);
+  }
+
+  // 兜底：无论音频是否真的在走（自动播放被拦、解码失败、后台节流），
+  // 到时间都必须进入作答，绝不能让用户卡在"片段播放中"。
+  function startPlayWatchdog(clip) {
+    window.clearTimeout(ui.playdog);
+    const limit = (clip + 2.5) * 1000;
+    ui.playdog = window.setTimeout(() => {
+      if (ui.phase === "playing") endSegment();
+    }, limit);
   }
 
   function endSegment() {
     if (ui.phase !== "playing") return;
+    window.clearTimeout(ui.playdog);
     audio.pause();
     els.speakerPlay.classList.remove("is-playing");
     els.stopBtn.querySelector("span:last-child").textContent = "立即作答";
@@ -4556,6 +4586,7 @@ let state = defaultState();
   }
 
   function nextRound() {
+    window.clearTimeout(ui.playdog);
     audio.pause();
     round = null;
     setIntro();
@@ -5104,6 +5135,22 @@ let state = defaultState();
           : "所有音频源都不可用：说明是网络 / CDN 可达性问题，不是代码问题。";
         lines.push("", verdict);
         out.textContent = lines.join("\n");
+      });
+    }
+    const resetAudio = document.getElementById("audioResetBtn");
+    if (resetAudio) {
+      resetAudio.addEventListener("click", () => {
+        try {
+          window.localStorage.removeItem(AUDIO_BASE_KEY);
+        } catch {
+          /* ignore */
+        }
+        const out = document.getElementById("audioDiagOut");
+        if (out) {
+          out.hidden = false;
+          out.textContent = "已清除保存的音频地址。刷新页面后会自动使用同域 /audio/。";
+        }
+        toast("已重置音频设置，刷新后生效", 3000);
       });
     }
     els.changeSettings.addEventListener("click", () => {
