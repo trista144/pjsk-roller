@@ -7,7 +7,10 @@
 | 🎵 **演奏随机抽签** | `index.html` | 随机抽一首歌 + 一个难度，可限定难度 / 组合 / 等级 |
 | 🎧 **听歌识曲** | `quiz.html` | 随机切 5–10 秒试听，限时作答，记录可导出分享 |
 
-两个页面都有站内链接，互相跳转。**每个都是单文件网页**：曲库、样式、脚本全部内嵌，不依赖构建服务，GitHub Pages 上传即用。
+两个页面都有站内链接，互相跳转。**每个都是单文件网页**：曲库、样式、脚本全部内嵌，不依赖构建服务。
+
+线上部署：GitHub 仓库存源码 → Cloudflare Pages 自动构建发布 → 访问 <https://pjsk-playbox.pages.dev/>。
+根目录的 `_worker.js` 负责把音频和封面转发到站内同域路径（原因见下面「音频与封面是怎么来的」）。
 
 ---
 
@@ -33,6 +36,7 @@
 - 按难度、组合、等级范围收窄曲池；每个分类旁会显示当前条件下的可选曲目数。
 - 曲名支持「双语 / 中文 / 原文」切换。
 - 不重复抽签、最近抽签记录、一键复制结果、空格键快捷抽签。
+- 抽到后显示该曲**封面**，便于在游戏内快速识别。
 - 抽签规则：先按筛选条件等概率抽歌，再从该曲可用且被选中的难度中等概率抽谱面。
 
 ## 二、听歌识曲（`quiz.html`）
@@ -44,6 +48,7 @@
 - **模糊匹配判定**：不必一字不差。系统会把你的输入和中文名 / 原名 / 各版本命名一起比对，忽略空格、大小写、全半角、标点、括号内容、`feat.` / `-reloaded-` 之类的后缀，汉字/假名近似、错字漏字也能认；命中后提示「模糊匹配通过（相似度 xx%）」。答对 +1000 分并按剩余时间加最多 +400 速度分，答错 −100 分，放弃 0 分。
 - **边打边猜**：输入时下方实时给出「模糊匹配 · 最接近的曲目」，回车直接提交当前输入交给模糊判定，方向键选择候选。
 - **不重复出题**：曲池里的歌都出过之后才重新洗牌。
+- **曲目封面**：作答结束揭晓答案时显示该曲封面；抽签页抽到后也会显示，方便在游戏内快速找到。
 - **记录**：逐题记录（歌名 / 你的选择 / 用时 / 得分），以及得分、正确率、最长连击、平均用时。成绩与设置保存在本机浏览器，刷新不丢。
 - **导出分享**：文本（txt）、JSON、答卷图片（png，用 canvas 现场绘制），以及「生成分享链接」——把当前范围 / 片段长度 / 思考时间编码进网址，发给朋友就能玩同一套规则。
 - **极限模式**：盖上题号进度条，挑战感更强。
@@ -51,12 +56,61 @@
 
 > 试听片段在第一次播放时下载，需要联网；网络较慢时会显示「载入片段…」。页面会顺手预取下一条候选，从第二题起基本都是秒开。
 
-### 如果试听加载不出来（很重要）
+### 音频与封面是怎么来的（重要）
 
-试听音频托管在 `storage.sekai.best`，它会**按来源站拦截浏览器请求**。实测结论：
+试听音频和曲目封面都存在 Cloudflare 之外的公共资产站 `storage.sekai.best`，**该站按来源站拦截浏览器请求**：
 
-| 打开方式 | 能否播放 |
+| 来源 | 结果 |
 | --- | --- |
+| 本机双击打开（`file://`） | ✅ 可用 |
+| `*.github.io` | ❌ 被拒 |
+| `*.pages.dev` | ❌ 被拒 |
+| `*.workers.dev`（中国大陆） | ❌ 连不上 |
+
+所以本站不直接引用它，而是在仓库根目录放一个 **`_worker.js`**（Cloudflare Pages 的 Advanced Mode），让**自己的域名**代为取数据：
+
+```text
+浏览器 →  https://pjsk-playbox.pages.dev/audio/jacket…   （同域，不跨域）
+                    ↓  _worker.js 在边缘节点转发
+                  storage.sekai.best/…
+```
+
+这样浏览器永远只连 `pjsk-playbox.pages.dev` 一个域名，国内**无需代理**即可播放音频、显示封面。
+
+### `_worker.js` 路由
+
+| 本站路径 | 上游 |
+| --- | --- |
+| `/audio/<变体>/<变体>_short.mp3` | `storage.sekai.best/sekai-jp-assets/music/short/…` |
+| `/image/jacket_s_<编号>/…webp` | `storage.sekai.best/sekai-jp-assets/music/jacket/…` |
+| 其他 | 正常返回静态文件（`index.html` / `quiz.html`） |
+
+转发时会带上 `Referer: https://sekai.best/`，否则上游会拒绝；图片响应加了 `Cache-Control: max-age=604800, immutable`，封面不会变，长缓存能省掉大量请求。
+
+改动 `_worker.js` 后同样只要 commit 到 `main`，Cloudflare 会自动重新部署。
+
+### 音频设置的优先级
+
+页面里的音频源顺序是：
+
+```text
+1. /audio/                        ← 同域，永远排第一，不受任何残留设置影响
+2. localStorage 里存的 ?audio= 值  ← 只作为额外候选
+3. storage.sekai.best 源站         ← 最后兜底
+```
+
+> 曾经有个坑：用户用 `?audio=<某个地址>` 打开过后，这个地址被存进 `localStorage`（键 `pjsk-quiz-audio-base`），旧版本会让它**压掉默认值**，导致"明明是好的却一直加载失败"。现在同域 `/audio/` 强制排第一，并在设置面板提供 **「重置音频设置」** 按钮。
+
+### 排查方法
+
+设置面板里 **「试听打不开？点这里看解决办法」** 内有 **「运行音频自检」**，会逐个列出音频源的 HTTP 状态码与耗时：
+
+- 全部 `TypeError: Failed to fetch` → 网络 / CDN 可达性问题
+- 某个源返回 4xx/5xx → 上游拒绝，检查 `_worker.js`
+
+音频彻底失败时会自动进入 **「无音频出题模式」**，照常出题、计分、记录，不会卡住。
+
+--- | --- |
 | 本机双击 HTML（`file://`） | ✅ 可以 |
 | `localhost` / 自己的域名 | ✅ 可以 |
 | GitHub Pages（`*.github.io`） | ❌ 被拒 |
@@ -86,84 +140,54 @@
 1. 下载 `index.html` 和 `quiz.html`（或整个压缩包解压）。
 2. 双击 `index.html`，两个页面之间照常通过站内链接跳转。
 
-抽签页完全离线可用；猜歌页需要联网加载试听音频。若浏览器限制本地文件的剪贴板权限，「复制结果」「生成分享链接」可能提示失败，可手动选中文字复制；部署到 GitHub Pages 后一切正常。
+抽签页完全离线可用；猜歌页需要联网加载试听音频。
+
+> 本地双击打开（`file://`）时，音频和封面可以直接从源站加载，实测可用；若浏览器限制本地文件的剪贴板权限，「复制结果」「生成分享链接」可能提示失败，可手动选中文字复制。部署到线上后一切正常。
 
 ---
 
-## 上传到 GitHub Pages（推荐）
+## 部署（Cloudflare Pages + GitHub）
 
-### 方法 A：网页上传（不需要装 Git）
+线上地址：<https://pjsk-playbox.pages.dev/>（抽签）/ <https://pjsk-playbox.pages.dev/quiz.html>（听歌识曲）
 
-1. 登录 GitHub，点右上角 **+ → New repository**。
-2. 仓库名填 `pjsk-draw`（或任意名字），选择 **Public**，点 **Create repository**。
-3. 进入仓库，点 **Add file → Upload files**。
-4. 把 `index.html` 和 `quiz.html` 放进去（`README.md` 可选，一并上传）。
-5. 点 **Commit changes**。
-6. 打开仓库的 **Settings → Pages**。
-7. 在 **Build and deployment** 中：
-   - **Source** 选 `Deploy from a branch`
-   - **Branch** 选 `main`，目录选 `/ (root)`
-   - 点 **Save**
-8. 等待 1–3 分钟，刷新 Settings → Pages，顶部会出现访问地址。
+**不要在 GitHub Pages 上部署这个项目**：`storage.sekai.best` 会拒绝 `*.github.io` 的请求，结果是音频和封面全部加载失败。Cloudflare Pages 的 Advanced Mode（`_worker.js`）才能把资源转成同域请求。
 
-访问地址通常是：
+### 首次配置
 
-```text
-https://<你的 GitHub 用户名>.github.io/pjsk-draw/          ← 抽签
-https://<你的 GitHub 用户名>.github.io/pjsk-draw/quiz.html ← 听歌识曲
-```
+1. 在 Cloudflare 后台 **Workers & Pages → Create → Pages → Connect to Git**，授权并选中本仓库。
+2. 构建设置**全部留空**（这是纯静态成品，不需要构建）：
 
-例如用户名为 `miku39`、仓库名为 `pjsk-draw`：
+   | 字段 | 值 |
+   | --- | --- |
+   | Framework preset | None |
+   | Build command | 空 |
+   | Build output directory | 空 |
+   | Root directory | 空 |
 
-```text
-https://miku39.github.io/pjsk-draw/
-https://miku39.github.io/pjsk-draw/quiz.html
-```
+3. 点 **Save and Deploy**，几十秒后即可访问。
+4. 仓库根目录**必须**有 `_worker.js`，Cloudflare 会据此自动启用 Advanced Mode（不需要在后台开任何开关）。
 
-> 如果仓库名取成 `<你的用户名>.github.io`，访问地址会变成 `https://<你的用户名>.github.io/`，猜歌页则是 `https://<你的用户名>.github.io/quiz.html`。
-> 仓库必须是 Public；Private 仓库的 Pages 需要 GitHub 付费方案。
+### 日常更新
 
-### 方法 B：命令行上传
-
-在本目录执行（把 `<用户名>` 和 `<仓库名>` 换成你的）：
+只需要在 GitHub 上改文件并 commit 到 `main`，Cloudflare 约 1 分钟自动重新部署，**地址不变，已分享出去的链接无需更换**：
 
 ```bash
-git init
-git add index.html quiz.html README.md
-git commit -m "feat: PJSK draw + guess the song"
-git branch -M main
-git remote add origin https://github.com/<用户名>/<仓库名>.git
-git push -u origin main
-```
-
-然后按方法 A 的第 6–8 步开启 GitHub Pages。
-
-### 访问与分享
-
-- 直接打开上面的两个网址即可；两个页面互相链接。
-- 手机上也能用：浏览器菜单里选「添加到主屏幕」，用起来更像一个小应用。
-- 猜歌页的「生成分享链接」会给出类似 `.../quiz.html#g=idol&g=vocaloid&clip=5&think=60` 的地址，朋友打开就是同一套规则。
-- 不要用 `raw.githubusercontent.com` 的链接直接访问：GitHub 会把它当纯文本返回，不会渲染成网页。要用 GitHub Pages 的地址。
-
-### 更新页面
-
-改完重新上传 / commit 即可，GitHub Pages 会自动重新发布：
-
-```bash
-git add index.html quiz.html
+git add index.html quiz.html _worker.js
 git commit -m "update tools"
 git push
 ```
 
-如果打开还是旧版，等 1–2 分钟并强制刷新（Windows：`Ctrl + F5`；手机：清缓存或换隐私窗口）。
+如果打开还是旧版，等 1–2 分钟强制刷新（Windows：`Ctrl + F5`；手机：清缓存或用隐私窗口）。
 
-### 国内访问慢怎么办？
+### 访问与分享
 
-GitHub Pages 在国内偶尔会慢或连接不稳定，而猜歌还需要加载试听音频：
+- 手机上建议「添加到主屏幕」，用起来更像小应用。
+- 猜歌页的「生成分享链接」会给出类似 `.../quiz.html#g=idol&g=vocaloid&clip=5&think=60` 的地址，朋友打开就是同一套规则。
+- 不要用 `raw.githubusercontent.com` 的链接访问：GitHub 会按纯文本返回，不会渲染成网页。
 
-- 抽签工具：把 `index.html` 下载到本地，双击打开，完全离线可用。
-- 猜歌工具：部署到 Cloudflare Pages、Netlify、Vercel 等静态托管访问会更快，无需改代码。
-- 试听音频本身来自公共 CDN（`storage.sekai.best`），与页面放在哪里无关。
+### 国内访问
+
+页面本身走 `pages.dev`，国内可正常访问；音频与封面经由同域 `/audio/`、`/image/` 转发，**不需要代理**。唯一需要注意的是 **不要用 `*.workers.dev` 作为音频源**，该域名在国内经常无法直连。
 
 ---
 
@@ -189,7 +213,7 @@ python -X utf8 tools/build_data.py
 python tools/build_site.py
 ```
 
-3. 重新上传生成的两个 HTML。
+3. commit 生成的两个 HTML（Cloudflare 会自动重新部署）。
 
 `build_data.py` 会按运行当天的时间跳过未上线曲目、跳过已结束的限时谱面；`CN_EXCLUSIVE_IDS` 里的国服独占曲目会被标记为「猜歌不参与」。
 
@@ -201,8 +225,9 @@ python tools/build_site.py
 | --- | --- |
 | `index.html` | **演奏随机抽签**，单文件网页 |
 | `quiz.html` | **听歌识曲**，单文件网页 |
+| `_worker.js` | 音频 / 封面同域转发（Cloudflare Pages Advanced Mode）|
 | `README.md` | 本说明 |
-| `pjsk-draw.zip` | 打包文件：两个成品 + 说明 + 可选构建源码 |
+| `pjsk-draw.zip` | 打包文件：两个成品 + `_worker.js` + 说明 + 可选构建源码 |
 
 两个页面都只需要各自的 HTML 就能运行；`src/`、`tools/`、`data/` 是维护用的源文件，不影响部署。
 
@@ -217,7 +242,7 @@ python tools/build_site.py
 ## 常见问题
 
 **猜歌页出现了「无音频出题模式」条幅？**  
-说明音频站拦截了当前域名的请求（`github.io`、`pages.dev` 都会）。游戏本身照常能玩；想要声音就按上面「如果试听加载不出来」搭反代并带 `?audio=`，或把页面下载到本地打开。
+说明音频没能经由同域 `/audio/` 取到。先在设置面板点「运行音频自检」，再到「音频与封面是怎么来的」章节按诊断结果处理。降级模式下游戏本身照常能玩。
 
 **猜歌页一直显示「载入片段…」？**  
 说明试听音频还没下载下来，等几秒或刷新；页面下一题开始会预取缓存。
@@ -230,6 +255,9 @@ python tools/build_site.py
 
 **为什么一首歌会出现在多个组合里？**  
 组合标签按 Master DB 的多标签规则展示，方便按不同维度筛选。
+
+**为什么有的歌没有封面？**  
+少数曲目（如国服独占曲）在上游没有公开封面图，此时会回退成原来的渐变底色，不影响使用。
 
 **导出图片失败？**  
 换新版 Chrome / Edge / Safari 再试；也可以先导出文本或 JSON。

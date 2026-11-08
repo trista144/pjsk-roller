@@ -1758,6 +1758,30 @@ dialog::backdrop {
   }
 }
 
+
+/* ---------- 曲目封面 ---------- */
+.cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.cover.has-img .cover-note {
+  opacity: 0;
+}
+
+.cover-img[hidden] {
+  display: none;
+}
+
+/* 封面就位后，APPEND 角标仍浮在上层 */
+.cover.has-img .cover-append {
+  z-index: 2;
+}
+
 /* ============ PJSK 听歌识曲 · 追加样式 ============ */
 .quiz-mark {
   background:
@@ -2940,7 +2964,8 @@ input[type="range"] {
           </div>
           <div class="result-inner">
             <div class="cover" id="cover" aria-hidden="true">
-              <span class="cover-note">♪</span>
+              <img class="cover-img" id="coverImg" alt="" hidden>
+              <span class="cover-note" id="coverNote">♪</span>
               <span class="cover-append" id="coverAppend" hidden>APPEND</span>
             </div>
             <div class="result-copy">
@@ -3375,6 +3400,8 @@ input[type="range"] {
     revealFragment: $("revealFragment"),
     cover: $("cover"),
     coverAppend: $("coverAppend"),
+    coverImg: $("coverImg"),
+    coverNote: $("coverNote"),
     songTitle: $("songTitle"),
     songOriginal: $("songOriginal"),
     resultTags: $("resultTags"),
@@ -4032,8 +4059,18 @@ let state = defaultState();
   async function diagnoseAudio() {
     const probeUrl = buildUrl(AUDIO_SOURCES[0], "0001_01");
     const started = performance.now();
+    // 探测本身必须有超时：否则网络挂起时会把"进入作答"拖很久。
+    const controller = typeof AbortController === "function" ? new AbortController() : null;
+    const abortTimer = controller
+      ? window.setTimeout(() => controller.abort(), 6000)
+      : 0;
     try {
-      const response = await fetch(probeUrl, { method: "GET", cache: "no-store" });
+      const response = await fetch(probeUrl, {
+        method: "GET",
+        cache: "no-store",
+        ...(controller ? { signal: controller.signal } : {}),
+      });
+      window.clearTimeout(abortTimer);
       const ms = Math.round(performance.now() - started);
       if (response.ok || response.status === 206) {
         return { kind: "ok", ms };
@@ -4041,6 +4078,7 @@ let state = defaultState();
       // 能拿到 HTTP 状态码 → 网络是通的，问题在服务端
       return { kind: "server", status: response.status, ms };
     } catch (error) {
+      window.clearTimeout(abortTimer);
       const ms = Math.round(performance.now() - started);
       const offline = typeof navigator !== "undefined" && navigator.onLine === false;
       // 规则：请求压根没拿到响应（TypeError / 超时）都算"网络层失败"
@@ -4510,24 +4548,25 @@ let state = defaultState();
     const typedClean = String(typedText || "").trim();
     // 有输入就算作答（哪怕没匹配到候选），只有真正空着提交才是"放弃"。
     const hasAnswer = Boolean(guessSong) || typedClean.length > 0;
-    const mode = hasAnswer ? 1 : -1;
-    let judged = mode === 1 ? judgeGuess(guessSong, typedClean) : { ok: false, how: "none" };
-    if (mode === 1 && !judged.ok && FUZZY && typedClean) {
+    let judged = hasAnswer ? judgeGuess(guessSong, typedClean) : { ok: false, how: "none" };
+    if (hasAnswer && !judged.ok && FUZZY && typedClean) {
       // 兜底：用户敲的字本身足够接近答案，就按模糊匹配通过处理。
       const direct = FUZZY.judge({ i: -1, c: typedClean, t: typedClean }, round.song, answerNames);
       if (direct.ok) judged = direct;
     }
     const correct = judged.ok;
+    // m 的含义：1 = 猜对，0 = 猜错，-1 = 放弃。三者互斥，记录和统计都按它来显示。
+    const mode = !hasAnswer ? -1 : correct ? 1 : 0;
     const limit = state.settings.think || 999;
     const speedBonus = correct && limit > 0 ? Math.round(400 * clamp(1 - elapsed / limit, 0, 1)) : 0;
-    const pts = correct ? 1000 + speedBonus : mode === 1 ? -100 : 0;
+    const pts = correct ? 1000 + speedBonus : hasAnswer ? -100 : 0;
 
     state.answers.push({
       i: round.song.i,
       m: mode,
-      g: mode === 1 && guessSong ? guessSong.i : null,
-      v: mode === 1 && typedClean ? typedClean.slice(0, 60) : null,
-      h: mode === 1 ? judged.how : null,
+      g: hasAnswer && guessSong ? guessSong.i : null,
+      v: hasAnswer && typedClean ? typedClean.slice(0, 60) : null,
+      h: hasAnswer ? judged.how : null,
       s: judged.score || null,
       t: Math.round(elapsed * 10) / 10,
       pts,
@@ -4543,10 +4582,45 @@ let state = defaultState();
     reveal(correct, mode, elapsed, pts, judged);
   }
 
+
+  /* ============ 曲目封面 ============ */
+  // 封面走同域 /image/（由 _worker.js 转发），避免来源站拦截。
+  function coverUrl(song) {
+    const id = String(song.i).padStart(3, "0");
+    const name = `jacket_s_${id}`;
+    return `/image/${name}/${name}.webp`;
+  }
+
+  // 有封面就显示，加载失败就退回原来的渐变底，不出现裂图。
+  function applyCover(song) {
+    const img = els.coverImg;
+    const note = els.coverNote;
+    if (!img || !song) return;
+    img.hidden = true;
+    els.cover.classList.remove("has-img");
+    if (note) note.hidden = false;
+    img.onload = () => {
+      img.hidden = false;
+      els.cover.classList.add("has-img");
+      if (note) note.hidden = true;
+    };
+    img.onerror = () => {
+      img.hidden = true;
+      els.cover.classList.remove("has-img");
+      if (note) note.hidden = false;
+    };
+    img.alt = `${song.c} 封面`;
+    // 不能用 loading="lazy"：img 初始是 hidden，懒加载不会启动，onload 永远不触发。
+    img.loading = "eager";
+    img.decoding = "async";
+    img.src = coverUrl(song);
+  }
+
   function reveal(correct, mode, elapsed, pts, judged = { how: "none" }) {
     ui.phase = "reveal";
     showOnly("reveal");
     if (round.song.d.append) els.coverAppend.hidden = false;
+    applyCover(round.song);
     const showFragment = !state.settings.hard && !ui.fallback && !round.fallback && !!round.location;
     fillSong(round.song, showFragment ? `片段位置 ${round.location}` : "");
 
@@ -4564,7 +4638,7 @@ let state = defaultState();
       const shown = state.answers[state.answers.length - 1].v;
       const typedTail = shown ? ` · 你输入的是「${shown}」` : "";
       els.revealNote.textContent = `用时 ${elapsed.toFixed(1)} 秒 · +${pts} 分 · ${tail}${typedTail}`;
-    } else if (mode === 1) {
+    } else if (mode === 0) {
       els.revealBadge.classList.add("is-wrong");
       els.revealBadge.textContent = "猜错了";
       const answer = state.answers[state.answers.length - 1];

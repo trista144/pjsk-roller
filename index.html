@@ -1758,6 +1758,30 @@ dialog::backdrop {
   }
 }
 
+
+/* ---------- 曲目封面 ---------- */
+.cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.cover.has-img .cover-note {
+  opacity: 0;
+}
+
+.cover-img[hidden] {
+  display: none;
+}
+
+/* 封面就位后，APPEND 角标仍浮在上层 */
+.cover.has-img .cover-append {
+  z-index: 2;
+}
+
   </style>
 </head>
 <body>
@@ -1813,7 +1837,8 @@ dialog::backdrop {
           <div class="result-content" id="resultContent" hidden>
             <div class="result-inner">
               <div class="cover" id="cover" aria-hidden="true">
-                <span class="cover-note">♪</span>
+                <img class="cover-img" id="coverImg" alt="" hidden>
+                <span class="cover-note" id="coverNote">♪</span>
                 <span class="cover-append" id="coverAppend" hidden>APPEND</span>
               </div>
               <div class="result-copy">
@@ -2060,6 +2085,8 @@ dialog::backdrop {
     resultContent: $("resultContent"),
     cover: $("cover"),
     coverAppend: $("coverAppend"),
+    coverImg: $("coverImg"),
+    coverNote: $("coverNote"),
     resultNo: $("resultNo"),
     resultDate: $("resultDate"),
     songTitle: $("songTitle"),
@@ -2486,6 +2513,41 @@ dialog::backdrop {
     els.cover.style.setProperty("--cover-a", colors[0]);
     els.cover.style.setProperty("--cover-b", colors[1]);
     els.coverAppend.hidden = item.diff !== "append";
+    applyCover(item);
+  }
+
+
+  /* ============ 曲目封面 ============ */
+  // 封面走同域 /image/（由 _worker.js 转发），避免来源站拦截。
+  function coverUrl(song) {
+    const id = String(song.i).padStart(3, "0");
+    const name = `jacket_s_${id}`;
+    return `/image/${name}/${name}.webp`;
+  }
+
+  // 有封面就显示，加载失败就退回原来的渐变底，不出现裂图。
+  function applyCover(song) {
+    const img = els.coverImg;
+    const note = els.coverNote;
+    if (!img || !song) return;
+    img.hidden = true;
+    els.cover.classList.remove("has-img");
+    if (note) note.hidden = false;
+    img.onload = () => {
+      img.hidden = false;
+      els.cover.classList.add("has-img");
+      if (note) note.hidden = true;
+    };
+    img.onerror = () => {
+      img.hidden = true;
+      els.cover.classList.remove("has-img");
+      if (note) note.hidden = false;
+    };
+    img.alt = `${song.c} 封面`;
+    // 不能用 loading="lazy"：img 初始是 hidden，懒加载不会启动，onload 永远不触发。
+    img.loading = "eager";
+    img.decoding = "async";
+    img.src = coverUrl(song);
   }
 
   function showResult(item, { animate = true } = {}) {

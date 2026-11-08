@@ -11,6 +11,10 @@
 const AUDIO_HOST = 'https://storage.sekai.best/sekai-jp-assets/music/short';
 const AUDIO_PREFIX = '/audio/';
 
+// 曲子封面（方图）：/image/jacket_s_001/jacket_s_001.webp
+const IMAGE_HOST = 'https://storage.sekai.best/sekai-jp-assets/music/jacket';
+const IMAGE_PREFIX = '/image/';
+
 function audioResponse(status, message) {
   return new Response(message, {
     status,
@@ -63,12 +67,53 @@ async function handleAudio(request, url) {
   return new Response(upstream.body, { status: upstream.status, headers });
 }
 
+async function handleImage(request, url) {
+  const rest = url.pathname.slice(IMAGE_PREFIX.length);
+  // 只允许 jacket 目录下的图片文件
+  if (!/^[A-Za-z0-9_]+\/[A-Za-z0-9_]+\.(webp|png|jpg|jpeg)$/.test(rest)) {
+    return new Response('bad image path', { status: 400 });
+  }
+
+  const target = `${IMAGE_HOST}/${rest}`;
+  let upstream;
+  try {
+    upstream = await fetch(target, {
+      headers: { Referer: 'https://sekai.best/', Origin: 'https://sekai.best' },
+    });
+  } catch (error) {
+    return new Response(`upstream fetch failed: ${error && error.message}`, {
+      status: 502,
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    });
+  }
+
+  if (!upstream.ok) {
+    return new Response(`upstream status ${upstream.status}`, {
+      status: upstream.status,
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    });
+  }
+
+  const headers = new Headers();
+  headers.set('Content-Type', upstream.headers.get('Content-Type') || 'image/webp');
+  // 封面不会变，长缓存能省掉大量请求
+  headers.set('Cache-Control', 'public, max-age=604800, immutable');
+  headers.set('Access-Control-Allow-Origin', '*');
+  const length = upstream.headers.get('Content-Length');
+  if (length) headers.set('Content-Length', length);
+
+  return new Response(upstream.body, { status: upstream.status, headers });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
     if (url.pathname.startsWith(AUDIO_PREFIX)) {
       return handleAudio(request, url);
+    }
+    if (url.pathname.startsWith(IMAGE_PREFIX)) {
+      return handleImage(request, url);
     }
 
     // 静态资源交给 Pages
