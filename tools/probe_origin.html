@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>origin probe</title>
+<style>body{font:13px/1.6 system-ui;background:#0f172a;color:#e2e8f0;padding:16px}
+pre{white-space:pre-wrap;background:#1e293b;padding:12px;border-radius:10px}</style>
+</head>
+<body><pre id="out">click 开始播放 inside the real page…</pre>
+<iframe id="f" src="/quiz.html" style="width:1200px;height:900px;border:1px solid #444"></iframe>
+<script>
+const out = (m) => { document.getElementById('out').textContent += '\n' + m; };
+const f = document.getElementById('f');
+f.addEventListener('load', () => {
+  setTimeout(() => {
+    const d = f.contentDocument, w = f.contentWindow;
+    const a = d.getElementById('audio');
+    a.addEventListener('error', () => out('audio error code=' + (a.error && a.error.code) + ' msg=' + (a.error && a.error.message)));
+    out('audio crossOrigin attr=' + JSON.stringify(a.getAttribute('crossorigin')));
+    out('page origin=' + w.location.origin);
+    d.getElementById('startBtn').click();
+    let n = 0;
+    const t = setInterval(() => {
+      n += 1;
+      out('t=' + n + 's src=' + (a.currentSrc || a.src).split('/').pop() + ' readyState=' + a.readyState + ' networkState=' + a.networkState + ' label=' + d.getElementById('startBtnLabel').textContent);
+      if (!d.getElementById('quizPlay').hidden || n > 12) {
+        clearInterval(t);
+        out('phase: play visible=' + !d.getElementById('quizPlay').hidden + ' answer visible=' + !d.getElementById('quizAnswer').hidden);
+        out('DONE');
+      }
+    }, 1000);
+  }, 1500);
+});
+</script>
+</body></html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4fbfa">
+  <meta name="description" content="初音未来：缤纷舞台国服听歌识曲小游戏 — 随机切 5~10 秒试听片段，限时作答，支持自定义曲库范围、答题记录与结果导出。">
+  <title>听歌识曲｜今天，演奏什么？· PJSK 国服</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%238f72d6'/%3E%3Cpath d='M25 40a8 8 0 1 1 6-14.5' stroke='white' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='25' cy='42' r='6' fill='white'/%3E%3Cpath d='M42 22v18' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='42' r='6' fill='white'/%3E%3C/svg%3E">
+  <style>
+/*__CSS__*/
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div class="brand">
+        <div class="brand-mark quiz-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3.2 12h2.1l1.5-4.2 2.1 8.6 1.7-6.1 1.4 4.4 1.3-2.7h2.1" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16.6 17.4V7.6l4.2-1v8.4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="15.1" cy="17.4" r="1.5" fill="currentColor"/>
+            <circle cx="19.3" cy="15" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <p class="kicker">SEKAI GUESS THE SONG · CN</p>
+          <h1>听歌识曲</h1>
+          <p class="lede">随机切一段 5–10 秒的国服曲库试听，听完限时作答。猜对连击，记录可以导出分享。</p>
+        </div>
+      </div>
+      <div class="lib-badge" aria-label="猜歌曲库规模">
+        <strong id="heroSongCount">616</strong><span>首可猜</span>
+        <i aria-hidden="true"></i>
+        <strong id="heroRoundCount">0</strong><span>本轮得分</span>
+      </div>
+    </header>
+
+    <main class="layout quiz-layout">
+      <section class="card stage quiz-stage" id="quizStage" aria-labelledby="quizStageTitle">
+        <div class="stage-top">
+          <span class="stage-label" id="quizStageTitle">NOW GUESSING</span>
+          <div class="quiz-meta">
+            <span class="round-pill" id="roundPill">第 0 题</span>
+            <span class="streak-pill" id="streakPill" hidden>连击 0</span>
+          </div>
+        </div>
+
+        <!-- 准备 / 暂停 -->
+        <div class="quiz-intro" id="quizIntro">
+          <div class="speaker" aria-hidden="true" id="speakerArt">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M11 5 6.5 9H3v6h3.5L11 19V5z" fill="currentColor"/><path d="M15 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h2 class="intro-title" id="introTitle">准备好了吗？</h2>
+          <p class="intro-sub" id="introSub">点「开始播放」，片段会随机裁切，听完后限时作答。</p>
+          <button type="button" class="draw-btn quiz-start" id="startBtn">
+            <span class="btn-icon" aria-hidden="true">✦</span><span id="startBtnLabel">开始播放</span>
+          </button>
+          <p class="draw-hint" id="introHint">按空格键也可以开始。</p>
+        </div>
+
+        <!-- 播放中 -->
+        <div class="quiz-play" id="quizPlay" hidden>
+          <div class="speaker is-playing" id="speakerPlay" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M11 5 6.5 9H3v6h3.5L11 19V5z" fill="currentColor"/><path d="M15 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <p class="play-caption">片段播放中…</p>
+          <div class="wave" id="wave" aria-hidden="true"></div>
+          <p class="play-timer" id="playTimer">0.0 / 8.0 s</p>
+          <button type="button" class="draw-btn ghost-draw" id="stopBtn"><span class="btn-icon" aria-hidden="true">■</span><span>立即作答</span></button>
+        </div>
+
+        <!-- 作答 -->
+        <div class="quiz-answer" id="quizAnswer" hidden>
+          <div class="timer-row">
+            <span class="timer-label">思考时间</span>
+            <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
+            <span class="timer-num" id="timerNum">30s</span>
+          </div>
+          <div class="answer-search">
+            <input type="search" id="answerInput" autocomplete="off" spellcheck="false" placeholder="输入歌名搜索（中文名 / 原名）" aria-label="选择答案">
+            <div class="suggest" id="suggest" hidden></div>
+            <div class="guess-echo" id="guessEcho" hidden></div>
+            <div class="fuzzy-box" id="fuzzyBox" hidden></div>
+          </div>
+          <div class="answer-meta">
+            <span id="pickInfo">候选里没有？直接输入歌名搜索</span>
+            <div class="answer-actions">
+              <button type="button" class="ghost-btn" id="skipBtn">放弃这题</button>
+              <button type="button" class="draw-btn submit-btn" id="submitBtn" disabled><span class="btn-icon" aria-hidden="true">✓</span><span>确认答案</span></button>
+            </div>
+          </div>
+          <p class="draw-hint" id="answerHint">打错字、拼错、只用一两个关键字也可以：输入后按 Enter 直接提交，系统会帮你模糊匹配。方向键选候选，Esc 收起。</p>
+        </div>
+
+        <!-- 揭晓 -->
+        <div class="quiz-reveal" id="quizReveal" hidden>
+          <div class="reveal-head">
+            <span class="reveal-badge" id="revealBadge">猜对了</span>
+            <span class="reveal-note" id="revealNote"></span>
+          </div>
+          <div class="result-inner">
+            <div class="cover" id="cover" aria-hidden="true">
+              <img class="cover-img" id="coverImg" alt="" hidden>
+              <span class="cover-note" id="coverNote">♪</span>
+              <span class="cover-append" id="coverAppend" hidden>APPEND</span>
+            </div>
+            <div class="result-copy">
+              <div class="result-kicker">
+                <span id="revealDate">2026-11-07</span>
+                <span class="dot-sep" aria-hidden="true"></span>
+                <span id="revealFragment" hidden>片段 12.0 – 19.0 s</span>
+              </div>
+              <h2 class="song-title" id="songTitle">曲名</h2>
+              <p class="song-original" id="songOriginal"></p>
+              <div class="result-tags" id="resultTags"></div>
+            </div>
+          </div>
+          <div class="reveal-actions">
+            <button type="button" class="draw-btn next-btn" id="nextBtn"><span class="btn-icon" aria-hidden="true">✦</span><span>下一题</span><span class="key" aria-hidden="true">SPACE</span></button>
+            <button type="button" class="mini-action" id="replayBtn">重听这一段</button>
+          </div>
+        </div>
+
+        <div class="actions-row quiz-underline" id="quizUnderline" hidden>
+          <label class="switch">
+            <input type="checkbox" id="hardcore">
+            <span class="switch-track" aria-hidden="true"></span>
+            <span>极限模式（一次机会 · 不显示进度）</span>
+          </label>
+          <button type="button" class="ghost-btn" id="stopGame">结束本轮</button>
+        </div>
+      </section>
+
+      <aside class="card filters" aria-labelledby="quizFiltersTitle">
+        <div class="filters-head">
+          <div>
+            <h2 id="quizFiltersTitle">游戏设置</h2>
+            <p>曲库范围、片段长度与思考时间。</p>
+          </div>
+          <button type="button" class="reset-link" id="resetAll">恢复默认</button>
+        </div>
+
+        <div class="filter-group">
+          <div class="label-row"><h3>组合 / 分类</h3><span id="groupHint">可多选 · 标签有交叉</span></div>
+          <div class="chips" id="groupChips" role="group" aria-label="组合筛选"></div>
+        </div>
+
+        <div class="filter-group">
+          <div class="label-row"><h3>难度存在</h3><span>含该难度的歌曲</span></div>
+          <div class="chips" id="difficultyChips" role="group" aria-label="难度筛选"></div>
+        </div>
+
+        <div class="filter-group">
+          <div class="label-row"><h3>片段长度</h3><span id="clipValue">8 秒</span></div>
+          <input type="range" id="clipRange" min="5" max="10" value="8" step="1" aria-label="片段长度">
+          <p class="range-note">静止时随机裁切，不一定是副歌。</p>
+        </div>
+
+        <div class="filter-group">
+          <div class="label-row"><h3>思考时间</h3><span id="thinkValue">30 秒</span></div>
+          <div class="chips think-chips" id="thinkChips" role="group" aria-label="思考时间"></div>
+        </div>
+
+        <div class="pool-box">
+          <div class="pool-label">CURRENT POOL</div>
+          <div class="pool-line">
+            <span class="pool-count" id="poolCount">616</span>
+            <span class="pool-unit">首可猜</span>
+            <span class="pool-slash">/</span>
+            <span class="pool-count pool-chart" id="playedCount">0</span>
+            <span class="pool-unit">首已出题</span>
+          </div>
+          <p class="pool-sub" id="poolSub">猜歌可用 616 首 · 国服独占曲目暂无公开试听</p>
+          <button type="button" class="view-pool" id="changeSettings">应用新设置 <span aria-hidden="true">→</span></button>
+          <details class="audio-help" id="audioHelp">
+            <summary id="openAudioHelp">试听打不开？点这里看解决办法</summary>
+            <div class="audio-help-body">
+              <p>试听音频托管在 <code>storage.sekai.best</code>，它会按来源站拦截浏览器请求：<b>本地打开、同名来源</b>能播，<code>github.io</code> / <code>pages.dev</code> 这类公开托管常被拒绝。</p>
+              <ol>
+                <li><b>自己搭个反代</b>（Cloudflare Worker / 自己的服务器），把请求转发到 <code>https://storage.sekai.best/sekai-jp-assets/music/short/</code>，然后在本页网址加上 <code>?audio=你的反代地址</code>。多个地址用英文逗号分隔，会按顺序尝试。</li>
+                <li><b>把页面下载到本地</b>双击打开，实测可以直接播放。</li>
+              </ol>
+              <p class="audio-help-note">音频拿不到时页面会自动切到「无音频出题模式」，不会影响猜歌、计分和记录。</p>
+              <div class="audio-diag">
+                <button type="button" class="audio-diag-btn" id="audioDiagBtn">运行音频自检</button>
+                <button type="button" class="audio-diag-btn audio-reset-btn" id="audioResetBtn">重置音频设置</button>
+                <pre class="audio-diag-out" id="audioDiagOut" hidden></pre>
+              </div>
+            </div>
+          </details>
+        </div>
+        <p class="note">题目随机来自国服曲库，试听片段随机裁切自游戏内 short.ver 音频。<b>答案可以选中文名或原名</b>，候选中找不到时可直接搜索。</p>
+      </aside>
+    </main>
+
+    <section class="card stats-card" aria-labelledby="statsTitle">
+      <div class="stats-head">
+        <div>
+          <h2 id="statsTitle">本轮答卷</h2>
+          <p id="statsMeta">还没有开始</p>
+        </div>
+        <div class="stats-actions">
+          <button type="button" class="ghost-btn" data-export="text">导出文本</button>
+          <button type="button" class="ghost-btn" data-export="json">导出 JSON</button>
+          <button type="button" class="ghost-btn" data-export="image">导出图片</button>
+          <button type="button" class="mini-action" id="shareBtn">生成分享链接</button>
+          <button type="button" class="mini-action new-run-btn" id="newRunBtn">重新开始新一轮</button>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat"><strong id="statAnswered">0</strong><span>已作答</span></div>
+        <div class="stat"><strong id="statCorrect">0</strong><span>猜对</span></div>
+        <div class="stat"><strong id="statRate">—</strong><span>正确率</span></div>
+        <div class="stat"><strong id="statStreak">0</strong><span>最长连击</span></div>
+        <div class="stat"><strong id="statAvg">—</strong><span>平均用时</span></div>
+        <div class="stat"><strong id="statScore">0</strong><span>得分</span></div>
+      </div>
+      <div class="rounds" id="rounds"></div>
+      <canvas id="shareCanvas" width="1080" height="1500" hidden></canvas>
+    </section>
+
+    <footer class="footer">
+      <span>非官方同人工具 · 仅供娱乐 · 曲库截至 <span id="dataDate">2026-11-07</span></span>
+      <a class="sibling-link" href="index.html"><span class="sibling-icon" aria-hidden="true">♥</span><span>回到演奏随机抽签</span><span aria-hidden="true">→</span></a>
+      <span class="footer-mark"><i aria-hidden="true"></i> AUDIO &amp; DATA BY <a href="https://github.com/Sekai-World/sekai-viewer" target="_blank" rel="noreferrer">SEKAI-VIEWER</a> / <a href="https://github.com/Sekai-World/sekai-master-db-cn-diff" target="_blank" rel="noreferrer">SEKAI-WORLD</a> · ALIAS BY <a href="https://pjsk.moe/zh-cn/" target="_blank" rel="noreferrer">PJSK.MOE</a></span>
+    </footer>
+  </div>
+
+  <audio id="audio" preload="auto" crossorigin="anonymous"></audio>
+  <div id="shareCard" class="share-card" hidden aria-hidden="true"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <p id="liveSummary" class="sr-only" aria-live="polite"></p>
+
+  <script type="application/json" id="libraryData">__LIBRARY_JSON__</script>
+  <script type="application/json" id="titlePairs">__TITLE_PAIRS__</script>
+  <script type="application/json" id="titleAliases">__TITLE_ALIASES__</script>
+  <script>
+/*__JS__*/
+  </script>
+</body>
+</html>

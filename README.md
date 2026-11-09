@@ -89,27 +89,45 @@
 
 改动 `_worker.js` 后同样只要 commit 到 `main`，Cloudflare 会自动重新部署。
 
-### 社区别名（`src/quiz-aliases.txt`）
+### 社区别名（自动抓取 + 手工补充）
 
-有些叫法无法从曲库数据推导出来，例如：
+猜歌支持社区惯用叫法，例如：
 
-- 国服中文名是英文、社区却用中文直译/谐音称呼（`CYBER PUNK DEAD BOY` 常被叫「赛博」）
-- 用「角色简称 + 序号」代称活动原创曲（`CYBER PUNK DEAD BOY` 也被叫「类四」）
+| 官方曲名 | 可接受的输入 |
+| --- | --- |
+| `CYBER PUNK DEAD BOY` | 赛博 / 赛博朋克 / 类四 / 类4 / rui4 / cdb / 死男孩 … |
+| `Supernova` | sn / 遥4 / hrk4 / 超新星 / 超级华为 … |
+| `火花 -Reloaded-` | 火花 / relo / hibana / hbn / 狙击 … |
 
-这类叫法维护在 `src/quiz-aliases.txt`，一行一首歌、用 `|` 分隔：
+别名来自 **[pjsk.moe](https://pjsk.moe/zh-cn/) 的歌曲别称**（后端为 Team-Haruki 的 alias API，由社区用户上传维护），页面底部已标注来源。
 
-```text
-# 歌曲ID|别名1|别名2|...
-452|赛博|赛博朋克|赛博朋克死男孩|类四|deadboy
+数据分两层：
+
+| 文件 | 说明 |
+| --- | --- |
+| `src/quiz-aliases.generated.txt` | **自动生成，勿手改**。由 `tools/build_aliases.py` 从快照转换而来 |
+| `src/quiz-aliases.txt` | **手写补充/修正**，优先级更高，格式 `歌曲ID\|别名1\|别名2` |
+| `data/music_aliases.json` | 别名原始快照（`generated_at` 见文件头） |
+
+重新生成：
+
+```bash
+python -X utf8 tools/build_aliases.py   # 快照 → src/quiz-aliases.generated.txt
+python tools/build_site.py              # 内嵌进 quiz.html
 ```
 
-改完运行 `python tools/build_site.py` 重新生成 HTML 即可。
+想更新别名快照，重新下载 <https://moe.exmeaning.com/data/music_alias/music_aliases.json> 覆盖 `data/music_aliases.json` 即可。
 
-**不需要写进别名表的**：中文名、日文原名、去掉 `-Reloaded-` / `feat.` 后的写法、英文名连写（`Dead Boy` → `deadboy`）、全半角差异、错别字，这些都会被自动处理。
+生成时有几道过滤，避免体积和误判：
 
-> 「角色 + 箱曲序号」目前只能逐个登记为别名。因为 Master DB 里没有"每期活动的主角角色"这一信息，无法自动算出某个角色是第几首，`类四` 这类编号只能人工维护。
+- 只保留本曲库存在的歌曲（当前覆盖 612/638 首，约 1.2 万条别名）
+- 丢掉清洗后不足 2 字、纯 1–2 位数字、超长整句梗（> 24 字）
+- 丢掉「恰好等于另一首歌正式曲名」的别名，避免张冠李戴
+- 同一首歌内去重
 
-### 模糊匹配是怎么判定的
+> 「角色 + 箱曲序号」不需要额外推导：`类四`、`rui4`、`遥4`、`hrk4` 这类编号本来就收录在别名库里。
+
+### 模糊匹配是怎么判定的### 模糊匹配是怎么判定的
 
 按顺序尝试，任意一层通过即算答对：
 
@@ -260,6 +278,10 @@ python tools/build_site.py
 | `quiz.html` | **听歌识曲**，单文件网页 |
 | `_worker.js` | 音频 / 封面同域转发（Cloudflare Pages Advanced Mode）|
 | `README.md` | 本说明 |
+| `src/quiz-aliases.txt` | 手写别名补充（优先级高）|
+| `src/quiz-aliases.generated.txt` | 自动生成的别名表，勿手改 |
+| `tools/build_aliases.py` | 把 `data/music_aliases.json` 转成别名表 |
+| `data/music_aliases.json` | 别名原始快照（来源 pjsk.moe / Team-Haruki）|
 | `pjsk-draw.zip` | 打包文件：两个成品 + `_worker.js` + 说明 + 可选构建源码 |
 
 两个页面都只需要各自的 HTML 就能运行；`src/`、`tools/`、`data/` 是维护用的源文件，不影响部署。

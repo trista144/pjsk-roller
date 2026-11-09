@@ -1,0 +1,44 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>cdn probe</title>
+<style>body{font:13px/1.6 system-ui;background:#0f172a;color:#e2e8f0;padding:16px}
+pre{white-space:pre-wrap;background:#1e293b;padding:12px;border-radius:10px}</style>
+</head>
+<body><pre id="out">probing from GitHub Pages origin…</pre>
+<script>
+const out = (m) => { document.getElementById('out').textContent += '\n' + m; };
+const BASE = 'https://storage.sekai.best/sekai-jp-assets/music/short/';
+const IDS = ['0001_01', '0019_02', 'se_0601_01', 'vs_0726_01', 'se_0723_01'];
+(async () => {
+  out('origin: ' + location.origin);
+  for (const id of IDS) {
+    const url = BASE + id + '/' + id + '_short.mp3';
+    try {
+      const r = await fetch(url, { method: 'GET', headers: { Range: 'bytes=0-1' } });
+      out('fetch(ranged) ' + id + ' -> ' + r.status + ' type=' + r.headers.get('content-type'));
+    } catch (e) {
+      out('fetch(ranged) ' + id + ' -> ERR ' + e.message);
+    }
+    try {
+      const r2 = await fetch(url);
+      out('fetch(full) ' + id + ' -> ' + r2.status);
+    } catch (e) {
+      out('fetch(full) ' + id + ' -> ERR ' + e.message);
+    }
+  }
+  // audio element test without crossOrigin
+  for (const id of ['0001_01', '0019_02']) {
+    await new Promise((resolve) => {
+      const a = new Audio();
+      const t0 = performance.now();
+      const done = (m) => { out('audio(no-cors) ' + id + ' ' + m + ' (' + Math.round(performance.now() - t0) + 'ms)'); resolve(); };
+      a.onloadedmetadata = () => done('loaded duration=' + a.duration.toFixed(1));
+      a.onerror = () => done('error code=' + (a.error && a.error.code));
+      setTimeout(() => done('timeout'), 8000);
+      a.src = BASE + id + '/' + id + '_short.mp3';
+      a.load();
+    });
+  }
+  out('DONE');
+})();
+</script>
+</body></html>

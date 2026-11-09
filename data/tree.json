@@ -1,0 +1,3511 @@
+{
+  "sha": "e147c2dc2d41cbdb52d82cb8b3d9e7ab04df62c5",
+  "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/trees/e147c2dc2d41cbdb52d82cb8b3d9e7ab04df62c5",
+  "tree": [
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44e66d4f37d785fddc5db47fd46670e821549294",
+      "size": 63,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/44e66d4f37d785fddc5db47fd46670e821549294"
+    },
+    {
+      "path": "actionSetLotteryConditions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13fa314d18c8987f3a02a7eb32358afeba672b75",
+      "size": 5502,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/13fa314d18c8987f3a02a7eb32358afeba672b75"
+    },
+    {
+      "path": "actionSets.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3259d2a119db82f3380d252d4aeb96af4e2391be",
+      "size": 933110,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3259d2a119db82f3380d252d4aeb96af4e2391be"
+    },
+    {
+      "path": "adRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca821f8850eb06249b5e01e9575761f22b69c615",
+      "size": 1139,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ca821f8850eb06249b5e01e9575761f22b69c615"
+    },
+    {
+      "path": "another3dmvCutIns.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea6eadd57dca82faa2292ae84e24e070629b3491",
+      "size": 4288,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ea6eadd57dca82faa2292ae84e24e070629b3491"
+    },
+    {
+      "path": "appeals.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f8c84c2aad9ad3c3be2dd117193490ae831465e",
+      "size": 59295,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0f8c84c2aad9ad3c3be2dd117193490ae831465e"
+    },
+    {
+      "path": "aprilFoolReviews.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46eff9dd7483347400998dfba8a09411dad4caf5",
+      "size": 306,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/46eff9dd7483347400998dfba8a09411dad4caf5"
+    },
+    {
+      "path": "areaItemLevels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6732f18baa789cc00087ed8dbb2c7f4100eb2499",
+      "size": 484747,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6732f18baa789cc00087ed8dbb2c7f4100eb2499"
+    },
+    {
+      "path": "areaItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6eb98ba7bc56cdcc54b682c9ba040815b4dc586c",
+      "size": 7934,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6eb98ba7bc56cdcc54b682c9ba040815b4dc586c"
+    },
+    {
+      "path": "areaPlaylists.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92982e1c1d66417655a64196e9d9b2ca004b468e",
+      "size": 2304,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/92982e1c1d66417655a64196e9d9b2ca004b468e"
+    },
+    {
+      "path": "areaSpiritWorldTrees.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1865266be1106685f61e25dcc4a4e4a008c9656b",
+      "size": 33137,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/1865266be1106685f61e25dcc4a4e4a008c9656b"
+    },
+    {
+      "path": "areas.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3587da0b58dde7c77f4ee6d7649fc2fd8cbc0ce",
+      "size": 9388,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a3587da0b58dde7c77f4ee6d7649fc2fd8cbc0ce"
+    },
+    {
+      "path": "avatarAccessories.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6d2f36729bdb783a8d7e2c7cf6a8978d0df9796",
+      "size": 12906,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f6d2f36729bdb783a8d7e2c7cf6a8978d0df9796"
+    },
+    {
+      "path": "avatarCoordinates.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4fc3c85dce7be7ad7875cf2af6bb97ed84cf9efe",
+      "size": 30932,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4fc3c85dce7be7ad7875cf2af6bb97ed84cf9efe"
+    },
+    {
+      "path": "avatarCostumes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d56ef6d74e523d979689fd0720f44cbf90eab7f1",
+      "size": 18677,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d56ef6d74e523d979689fd0720f44cbf90eab7f1"
+    },
+    {
+      "path": "avatarMotions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa411d74b05ec94e0e87a5c163fec3d7542dbeb7",
+      "size": 5850,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/fa411d74b05ec94e0e87a5c163fec3d7542dbeb7"
+    },
+    {
+      "path": "avatarSkinColors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5cad6faf2896c7f78464ba1fd550fd5cf7b64c06",
+      "size": 1220,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5cad6faf2896c7f78464ba1fd550fd5cf7b64c06"
+    },
+    {
+      "path": "backgroundMusics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fa07105183d22b2619ba3ee7bba141a9a47662f",
+      "size": 4436,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0fa07105183d22b2619ba3ee7bba141a9a47662f"
+    },
+    {
+      "path": "beginnerLoginBonusSummaries.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2accc0219c43586f8645715ae4b30675422927c1",
+      "size": 65,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2accc0219c43586f8645715ae4b30675422927c1"
+    },
+    {
+      "path": "beginnerLoginBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7581ce215a4a7af9ed9388073b9d940b466c631",
+      "size": 2831,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f7581ce215a4a7af9ed9388073b9d940b466c631"
+    },
+    {
+      "path": "beginnerMissionV2s.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "beginnerMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "billingProducts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47f0bac30075417d2da9125f89adda2b2d7c3ef2",
+      "size": 82017,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/47f0bac30075417d2da9125f89adda2b2d7c3ef2"
+    },
+    {
+      "path": "billingShopItemExchangeCosts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a70aad9eccd52e22b4756e59403ae635312d99db",
+      "size": 50368,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a70aad9eccd52e22b4756e59403ae635312d99db"
+    },
+    {
+      "path": "billingShopItemGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6dc8f1053ece2d695834c26a5dac71075bd1693",
+      "size": 10661,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c6dc8f1053ece2d695834c26a5dac71075bd1693"
+    },
+    {
+      "path": "billingShopItemRandomBoxGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8f7ceb1f63633c7c49aec17369585614486833d",
+      "size": 1008,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a8f7ceb1f63633c7c49aec17369585614486833d"
+    },
+    {
+      "path": "billingShopItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd3feadc0c109a46654257306c7f2cfd9cb198ba",
+      "size": 291421,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/cd3feadc0c109a46654257306c7f2cfd9cb198ba"
+    },
+    {
+      "path": "billingShopTabChildren.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f1d40d288d214c1c36ba97d1f4b2a29253a2b26",
+      "size": 1794,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7f1d40d288d214c1c36ba97d1f4b2a29253a2b26"
+    },
+    {
+      "path": "billingShopTabParents.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "befc2409ea4241133980ff8a8c3947f3bd28bd79",
+      "size": 320,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/befc2409ea4241133980ff8a8c3947f3bd28bd79"
+    },
+    {
+      "path": "birthdayParties.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad86638568898497257ea5aa7d4943158dbe8a7a",
+      "size": 5493,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ad86638568898497257ea5aa7d4943158dbe8a7a"
+    },
+    {
+      "path": "birthdayPartyDeliveryPointBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbd70f6ebb8df08457036b2c5984dd484ffc9351",
+      "size": 6278,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/bbd70f6ebb8df08457036b2c5984dd484ffc9351"
+    },
+    {
+      "path": "birthdayPartyDeliveryRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c86721a0edd6cad4237f305c157b852451e92c6",
+      "size": 1319,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7c86721a0edd6cad4237f305c157b852451e92c6"
+    },
+    {
+      "path": "birthdayPartyDeliveryTotalRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86cfef5d88d69082fe5c5f9630385a4d772a64f7",
+      "size": 68495,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/86cfef5d88d69082fe5c5f9630385a4d772a64f7"
+    },
+    {
+      "path": "birthdayPartyMysekaiFixtures.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e57a756ea2e6aa8814ef5f50be5b5d677632604",
+      "size": 6848,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9e57a756ea2e6aa8814ef5f50be5b5d677632604"
+    },
+    {
+      "path": "birthdayPartyMysekaiSiteHarvestFixtureRepeatRefreshes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c86721a0edd6cad4237f305c157b852451e92c6",
+      "size": 1319,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7c86721a0edd6cad4237f305c157b852451e92c6"
+    },
+    {
+      "path": "birthdayPartyScenarios.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "753bed016d6b4bb854dc4646d0e2fa6773df5a14",
+      "size": 4961,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/753bed016d6b4bb854dc4646d0e2fa6773df5a14"
+    },
+    {
+      "path": "bonds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3760a227875242808e6a40022846176a9829bde6",
+      "size": 82106,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3760a227875242808e6a40022846176a9829bde6"
+    },
+    {
+      "path": "bondsHonorWords.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ad27f74568711e737e2492576fddbee8eb52b1d",
+      "size": 334110,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4ad27f74568711e737e2492576fddbee8eb52b1d"
+    },
+    {
+      "path": "bondsHonors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a11c097f2730db80ca34f930840b79763261dabb",
+      "size": 1844117,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a11c097f2730db80ca34f930840b79763261dabb"
+    },
+    {
+      "path": "bondsLive2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90daad86af06166891dea1f80aa78aa4ab25367b",
+      "size": 49538,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/90daad86af06166891dea1f80aa78aa4ab25367b"
+    },
+    {
+      "path": "bondsRankUpLive2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71ed1a4dc98fbc15d8bd91ae79acb4651374cd24",
+      "size": 36443,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/71ed1a4dc98fbc15d8bd91ae79acb4651374cd24"
+    },
+    {
+      "path": "bondsRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "531e448d8cc377bf006ff657ae5509fef055b7ac",
+      "size": 5196251,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/531e448d8cc377bf006ff657ae5509fef055b7ac"
+    },
+    {
+      "path": "bonusEvents.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d50d0bf33ece08669c05e04c1a054f33965d6b6b",
+      "size": 3712,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d50d0bf33ece08669c05e04c1a054f33965d6b6b"
+    },
+    {
+      "path": "boostItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23c6e38b9021e273c976f92d5b72da05ef9b8fd2",
+      "size": 12414,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/23c6e38b9021e273c976f92d5b72da05ef9b8fd2"
+    },
+    {
+      "path": "boostPresentCosts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3ed7a89e394608d8e01740a7bf73ee337771385",
+      "size": 169,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e3ed7a89e394608d8e01740a7bf73ee337771385"
+    },
+    {
+      "path": "boostPresents.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe3e5bd14df4b30ddab54676275d3066a56374ab",
+      "size": 457,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/fe3e5bd14df4b30ddab54676275d3066a56374ab"
+    },
+    {
+      "path": "boosts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64f06075dfa30a9392187bc67ae50d40dc1d7e44",
+      "size": 1304,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/64f06075dfa30a9392187bc67ae50d40dc1d7e44"
+    },
+    {
+      "path": "cardCostume3ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14543b0a5b92b19bb2f8c2b157fd0cf5ae3b0825",
+      "size": 185018,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/14543b0a5b92b19bb2f8c2b157fd0cf5ae3b0825"
+    },
+    {
+      "path": "cardEpisodes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5e182eac2f177bbca6d918004455b1831741c7d",
+      "size": 1245519,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c5e182eac2f177bbca6d918004455b1831741c7d"
+    },
+    {
+      "path": "cardExchangeResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ffd880283f04e17a0596e9875534ca808d71151",
+      "size": 329,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6ffd880283f04e17a0596e9875534ca808d71151"
+    },
+    {
+      "path": "cardExtras.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b061ec4ed4101bc655f8d65c37ec3f42aa7c2b1",
+      "size": 987,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/1b061ec4ed4101bc655f8d65c37ec3f42aa7c2b1"
+    },
+    {
+      "path": "cardMysekaiCanvasBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "474bd8859def342c76b32990661fd3533a0bdcae",
+      "size": 719,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/474bd8859def342c76b32990661fd3533a0bdcae"
+    },
+    {
+      "path": "cardRarities.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32a470505f44f074be22c3e206c982c611d3cb6f",
+      "size": 575,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/32a470505f44f074be22c3e206c982c611d3cb6f"
+    },
+    {
+      "path": "cardSkillCosts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f82ce0edef48df6bac43d301eda0cc1b7708ee24",
+      "size": 5456,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f82ce0edef48df6bac43d301eda0cc1b7708ee24"
+    },
+    {
+      "path": "cardSupplies.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a57474048c42bb060a915914770754c88cb406d0",
+      "size": 716,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a57474048c42bb060a915914770754c88cb406d0"
+    },
+    {
+      "path": "cardSupplyGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d15c4576d110212784cc93abebf863c0b6216566",
+      "size": 374,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d15c4576d110212784cc93abebf863c0b6216566"
+    },
+    {
+      "path": "cards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba6817aa51ebf740350525dc1089976b5edbf365",
+      "size": 4452495,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ba6817aa51ebf740350525dc1089976b5edbf365"
+    },
+    {
+      "path": "challengeLiveCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a30509192615e835477e3d1bf6ddbec42f34d47",
+      "size": 3052,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7a30509192615e835477e3d1bf6ddbec42f34d47"
+    },
+    {
+      "path": "challengeLiveDecks.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6231dbcd95408d6c8b18b78d49dde2cc7bf93de6",
+      "size": 6622,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6231dbcd95408d6c8b18b78d49dde2cc7bf93de6"
+    },
+    {
+      "path": "challengeLiveHighScoreRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93047dc8e1921e284f74a41d5cc2756f31a66e17",
+      "size": 302448,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/93047dc8e1921e284f74a41d5cc2756f31a66e17"
+    },
+    {
+      "path": "challengeLivePlayDayRewardPeriods.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25d018381e3fc47d3f538dfe5525d69eccb4202c",
+      "size": 5254,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/25d018381e3fc47d3f538dfe5525d69eccb4202c"
+    },
+    {
+      "path": "challengeLiveStageExs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "855eae736ecf9798cb104acdf7c982215a14c981",
+      "size": 2801,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/855eae736ecf9798cb104acdf7c982215a14c981"
+    },
+    {
+      "path": "challengeLiveStages.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "116d3e3452adeb15950747b85c0a3a0a8af461f2",
+      "size": 326980,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/116d3e3452adeb15950747b85c0a3a0a8af461f2"
+    },
+    {
+      "path": "challengeLives.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21f260f6aec9922bd0334e4c0c647a666bc6cb50",
+      "size": 183,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/21f260f6aec9922bd0334e4c0c647a666bc6cb50"
+    },
+    {
+      "path": "channelFuncs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87e2df5a3293c41f48b8eda7f71002d49175093c",
+      "size": 986,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/87e2df5a3293c41f48b8eda7f71002d49175093c"
+    },
+    {
+      "path": "character2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d45bf6fb01cbc45dd1578bb4efc9f187094b7013",
+      "size": 110999,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d45bf6fb01cbc45dd1578bb4efc9f187094b7013"
+    },
+    {
+      "path": "character3ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ad3e2bfbcbedd58a5ee21413af99f0f4b4ea772",
+      "size": 526306,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6ad3e2bfbcbedd58a5ee21413af99f0f4b4ea772"
+    },
+    {
+      "path": "characterArchiveMysekaiCharacterTalkGroupTags.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "characterArchiveMysekaiCharacterTalkGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c02d0e6c65415d18f4ce8f3897fd18b841d0d5e",
+      "size": 509456,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3c02d0e6c65415d18f4ce8f3897fd18b841d0d5e"
+    },
+    {
+      "path": "characterArchiveVoiceTags.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c93829bc93fef857f65f4206d7cb98d30f543a2",
+      "size": 653,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/1c93829bc93fef857f65f4206d7cb98d30f543a2"
+    },
+    {
+      "path": "characterArchiveVoices.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "125284f7480fc9a7dddb8141ed0a616507ff87c8",
+      "size": 3663043,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/125284f7480fc9a7dddb8141ed0a616507ff87c8"
+    },
+    {
+      "path": "characterMissionV2AreaItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd0f5ed87d075253e80a824561f5bb299b65950e",
+      "size": 6710,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/dd0f5ed87d075253e80a824561f5bb299b65950e"
+    },
+    {
+      "path": "characterMissionV2ExJsons.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b33226dbb89d99b2d4d5db1be8e3f2db9b32bee",
+      "size": 288,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6b33226dbb89d99b2d4d5db1be8e3f2db9b32bee"
+    },
+    {
+      "path": "characterMissionV2ParameterGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47602043784531fc9ebbd901392e370aedfd4446",
+      "size": 112082,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/47602043784531fc9ebbd901392e370aedfd4446"
+    },
+    {
+      "path": "characterMissionV2s.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b92aa91be17006c323d5f43b848c9cd63007b982",
+      "size": 167291,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b92aa91be17006c323d5f43b848c9cd63007b982"
+    },
+    {
+      "path": "characterProfiles.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea28f0ccdc7d0ba1849c1d493cd630af91ae4179",
+      "size": 17098,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ea28f0ccdc7d0ba1849c1d493cd630af91ae4179"
+    },
+    {
+      "path": "characterRanks.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2158957728e5de1c92cdfb92fe6f56f50f11edd",
+      "size": 1164857,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d2158957728e5de1c92cdfb92fe6f56f50f11edd"
+    },
+    {
+      "path": "cheerfulCarnivalCharacterPartyNames.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc780743372a3e241626cad63c56adcc0786940e",
+      "size": 22211,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/cc780743372a3e241626cad63c56adcc0786940e"
+    },
+    {
+      "path": "cheerfulCarnivalLiveTeamPointBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad2e6e94dcfb5ca80b171fe7d77e9dbea3883864",
+      "size": 155,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ad2e6e94dcfb5ca80b171fe7d77e9dbea3883864"
+    },
+    {
+      "path": "cheerfulCarnivalPartyNames.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23b4cf9f9a79abac50b137453175af334d93b70c",
+      "size": 537402,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/23b4cf9f9a79abac50b137453175af334d93b70c"
+    },
+    {
+      "path": "cheerfulCarnivalResultRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccd6587426ace511289e00523013e8b354bd13f7",
+      "size": 40553,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ccd6587426ace511289e00523013e8b354bd13f7"
+    },
+    {
+      "path": "cheerfulCarnivalSummaries.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7de1e3be6827e0fa493047625ac79898ed11f0d5",
+      "size": 6945,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7de1e3be6827e0fa493047625ac79898ed11f0d5"
+    },
+    {
+      "path": "cheerfulCarnivalTeams.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b527abb59b59545fd874428e008c119b656fa9c",
+      "size": 8200,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2b527abb59b59545fd874428e008c119b656fa9c"
+    },
+    {
+      "path": "clientConfigs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2c41d9ed2c571dbc82853b6014c3a29af7bacf2",
+      "size": 11627,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a2c41d9ed2c571dbc82853b6014c3a29af7bacf2"
+    },
+    {
+      "path": "collaborationModes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3234ba67bf4c560e7d157580c228490760110a12",
+      "size": 60,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3234ba67bf4c560e7d157580c228490760110a12"
+    },
+    {
+      "path": "collectionShopTabs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6031fce1312f856c12d8651159a1c75bac646d64",
+      "size": 123,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6031fce1312f856c12d8651159a1c75bac646d64"
+    },
+    {
+      "path": "colorfulPassV2s.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a0a46a9dfbd154fd140b171b43e52ecbcaaa422",
+      "size": 1289,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/8a0a46a9dfbd154fd140b171b43e52ecbcaaa422"
+    },
+    {
+      "path": "colorfulPasses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a7037e2f7733094e6111ca69693c04eb70cbe42",
+      "size": 235,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3a7037e2f7733094e6111ca69693c04eb70cbe42"
+    },
+    {
+      "path": "compactBondsRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c21b8009c2a80ce4f00c2984c7a263647d6b92dc",
+      "size": 2484900,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c21b8009c2a80ce4f00c2984c7a263647d6b92dc"
+    },
+    {
+      "path": "compactCostume3dModelAvailablePatterns.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d06f638f1125693737e3788c0f19e2f248ce2278",
+      "size": 12314143,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d06f638f1125693737e3788c0f19e2f248ce2278"
+    },
+    {
+      "path": "compactCostume3dModels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68a43aeb17145f163fbe752f00c3f15379d67aeb",
+      "size": 13246130,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/68a43aeb17145f163fbe752f00c3f15379d67aeb"
+    },
+    {
+      "path": "compactCostume3dShopItemCosts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c83e3fe6e92727d945760b4ee8b70721884c8066",
+      "size": 2895103,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c83e3fe6e92727d945760b4ee8b70721884c8066"
+    },
+    {
+      "path": "compactCostume3dShopItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f90681705137933e8505dfe0bac8e0bb9116df3b",
+      "size": 5025138,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f90681705137933e8505dfe0bac8e0bb9116df3b"
+    },
+    {
+      "path": "compactCostume3ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b637eb3f4dcb9e7cb81bafa95db6f161b08c3313",
+      "size": 21013299,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b637eb3f4dcb9e7cb81bafa95db6f161b08c3313"
+    },
+    {
+      "path": "compactIngameCutinCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "903d146ba229b88eabfa8674f118ef32b0ac0baa",
+      "size": 2547815,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/903d146ba229b88eabfa8674f118ef32b0ac0baa"
+    },
+    {
+      "path": "compactResourceBoxDetails.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30b643f0bc927e00721ffc96b7f76e17a97e5da0",
+      "size": 7050996,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/30b643f0bc927e00721ffc96b7f76e17a97e5da0"
+    },
+    {
+      "path": "compactResourceBoxes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfc00a84d94e8ba6108839e560e78b73ce18b2de",
+      "size": 1964833,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/dfc00a84d94e8ba6108839e560e78b73ce18b2de"
+    },
+    {
+      "path": "compactSystemLive2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24cfbd52c70a02c1d7d2d074173b7c9947014885",
+      "size": 1894516,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/24cfbd52c70a02c1d7d2d074173b7c9947014885"
+    },
+    {
+      "path": "costume2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d4388c606e1978e1c0dd9a2af4d7655e3351ae5",
+      "size": 110744,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9d4388c606e1978e1c0dd9a2af4d7655e3351ae5"
+    },
+    {
+      "path": "costume3dColors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae18d75dd148ab1056d4ebf186923da520d4b16d",
+      "size": 201,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ae18d75dd148ab1056d4ebf186923da520d4b16d"
+    },
+    {
+      "path": "costume3dFittings.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd3e6f94ed739c775cbb185ddbce2eb878aa6e46",
+      "size": 21965,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/bd3e6f94ed739c775cbb185ddbce2eb878aa6e46"
+    },
+    {
+      "path": "costume3dGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2e07b36a8a51fe0610f61b650996f697cb13704",
+      "size": 4203822,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b2e07b36a8a51fe0610f61b650996f697cb13704"
+    },
+    {
+      "path": "costume3dModelAvailablePatterns.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "332711c00225051a9b399aac08f860f6a15b706c",
+      "size": 31195722,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/332711c00225051a9b399aac08f860f6a15b706c"
+    },
+    {
+      "path": "costume3dModelDefaultHairs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17ea2030aafba330f447cd8ccab2dfa3bd2683c7",
+      "size": 7434856,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/17ea2030aafba330f447cd8ccab2dfa3bd2683c7"
+    },
+    {
+      "path": "costume3dModelNotAvailablePatterns.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3eeac0161e5d54770942755f134df309eed0b78f",
+      "size": 2479472,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3eeac0161e5d54770942755f134df309eed0b78f"
+    },
+    {
+      "path": "costume3dModels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cae44778b57ffefd2fba3636b5ec2f4345d8c6d2",
+      "size": 38005355,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/cae44778b57ffefd2fba3636b5ec2f4345d8c6d2"
+    },
+    {
+      "path": "costume3dShopItemCosts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80e6d6c4e1f8830b78a5df4b80898ffc9e942e3a",
+      "size": 10255010,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/80e6d6c4e1f8830b78a5df4b80898ffc9e942e3a"
+    },
+    {
+      "path": "costume3dShopItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32154a4c73ac15d9ef3dc592899df290fc106b51",
+      "size": 9932474,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/32154a4c73ac15d9ef3dc592899df290fc106b51"
+    },
+    {
+      "path": "costume3ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a8d24cfb3abad95f0cb2d88b9ba871e7dde2dc3",
+      "size": 15845313,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5a8d24cfb3abad95f0cb2d88b9ba871e7dde2dc3"
+    },
+    {
+      "path": "customProfileCollectionResourceUnits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a183a45567daf93f7b30f9221775b91090e6e609",
+      "size": 81650,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a183a45567daf93f7b30f9221775b91090e6e609"
+    },
+    {
+      "path": "customProfileCollectionResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "420d18ad7d1ebd57660fdc214ac2e4d45fbf24a5",
+      "size": 423899,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/420d18ad7d1ebd57660fdc214ac2e4d45fbf24a5"
+    },
+    {
+      "path": "customProfileEtcResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dccc47c914fbb18cc51005e8a0397b479ec2b576",
+      "size": 2039,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/dccc47c914fbb18cc51005e8a0397b479ec2b576"
+    },
+    {
+      "path": "customProfileGachaShops.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5f57817a48046f812b60c1ccdb423c52864124b",
+      "size": 12352,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d5f57817a48046f812b60c1ccdb423c52864124b"
+    },
+    {
+      "path": "customProfileGachaTabs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ebf840cfd311717af4bc5df4cb662d58cac39e4",
+      "size": 1524,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2ebf840cfd311717af4bc5df4cb662d58cac39e4"
+    },
+    {
+      "path": "customProfileGachas.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b29ec1f9494d45f735b82a0c66cdf45752c1b3f",
+      "size": 195961,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7b29ec1f9494d45f735b82a0c66cdf45752c1b3f"
+    },
+    {
+      "path": "customProfileGeneralBackgroundResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "574a77e40df416df61168891aef52e0c96e5f3cf",
+      "size": 2764,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/574a77e40df416df61168891aef52e0c96e5f3cf"
+    },
+    {
+      "path": "customProfileMemberResourceExcludeCards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "customProfileMemberStandingPictureResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af9ceb9465d13496ab0d86c5ba4124d02169e571",
+      "size": 23621,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/af9ceb9465d13496ab0d86c5ba4124d02169e571"
+    },
+    {
+      "path": "customProfilePlayerInfoResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7cb748f726aa3aafc48afb03798a165f72f0ed57",
+      "size": 3604,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7cb748f726aa3aafc48afb03798a165f72f0ed57"
+    },
+    {
+      "path": "customProfileShapeResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9775c1e832b7ff1c827ab49ac0704b3b7d49561f",
+      "size": 1522,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9775c1e832b7ff1c827ab49ac0704b3b7d49561f"
+    },
+    {
+      "path": "customProfileStoryBackgroundResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42acbc29191969ac163a700db86caaa514f2e603",
+      "size": 4779,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/42acbc29191969ac163a700db86caaa514f2e603"
+    },
+    {
+      "path": "customProfileTextColors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "677228bc439d77d4980040624990d2235ca76f40",
+      "size": 2129,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/677228bc439d77d4980040624990d2235ca76f40"
+    },
+    {
+      "path": "customProfileTextFonts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0c997d10e689304825a1ec02a2a51b9512b731e",
+      "size": 253,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e0c997d10e689304825a1ec02a2a51b9512b731e"
+    },
+    {
+      "path": "episodeBackgroundMusics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72258739833ddbcae18533cb4731522be6877546",
+      "size": 13531,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/72258739833ddbcae18533cb4731522be6877546"
+    },
+    {
+      "path": "episodeCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e708c13858794db8de3cc1bbb626bf50142c79c6",
+      "size": 1121012,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e708c13858794db8de3cc1bbb626bf50142c79c6"
+    },
+    {
+      "path": "episodeMusicVideoCostumes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6117979b66bdb4cf5b50da6520c1749fb24978be",
+      "size": 868,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6117979b66bdb4cf5b50da6520c1749fb24978be"
+    },
+    {
+      "path": "eventBreakTimeMysekaiStaminas.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23eb55a92af840c7323de5df279eb5c4e64cf8eb",
+      "size": 1955,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/23eb55a92af840c7323de5df279eb5c4e64cf8eb"
+    },
+    {
+      "path": "eventBreakTimes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6f411d6e0c73232a2c294b567fc20e5a7597fcc",
+      "size": 606,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f6f411d6e0c73232a2c294b567fc20e5a7597fcc"
+    },
+    {
+      "path": "eventCardBonusLimits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97238bdda73e733cc7e3183a50770cd993c3bc65",
+      "size": 70,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/97238bdda73e733cc7e3183a50770cd993c3bc65"
+    },
+    {
+      "path": "eventCards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce99c369ac9cfbced8ae3a051ea2dd4978ce9a2d",
+      "size": 132739,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ce99c369ac9cfbced8ae3a051ea2dd4978ce9a2d"
+    },
+    {
+      "path": "eventDeckBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b58dfb50c00b39dfe820fec7e772dcc953860bd9",
+      "size": 343074,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b58dfb50c00b39dfe820fec7e772dcc953860bd9"
+    },
+    {
+      "path": "eventExchangeSummaries.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73989be8b4897e109548b34d061a7ede18546fdb",
+      "size": 961679,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/73989be8b4897e109548b34d061a7ede18546fdb"
+    },
+    {
+      "path": "eventHonorBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56e5aac56b66509494740a75668413f5b66e3bf2",
+      "size": 18248,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/56e5aac56b66509494740a75668413f5b66e3bf2"
+    },
+    {
+      "path": "eventItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "227df9327d0a8ee9c9e326317f51232891fd103c",
+      "size": 27309,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/227df9327d0a8ee9c9e326317f51232891fd103c"
+    },
+    {
+      "path": "eventMissionSelectableRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f550fb930ee5502a3953a59397dbfc6c628c9dca",
+      "size": 3321,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f550fb930ee5502a3953a59397dbfc6c628c9dca"
+    },
+    {
+      "path": "eventMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6cf912777a218a6a26a80ca675d9ec588eaf71e5",
+      "size": 184275,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6cf912777a218a6a26a80ca675d9ec588eaf71e5"
+    },
+    {
+      "path": "eventMusics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ce17caa274282eff7f37bbc1cd2946cf1523c62",
+      "size": 11116,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3ce17caa274282eff7f37bbc1cd2946cf1523c62"
+    },
+    {
+      "path": "eventMysekaiFixtureGameCharacterPerformanceBonusLimits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0784f6365c15f4692e2eaf6177e7ea72c2b85438",
+      "size": 69,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0784f6365c15f4692e2eaf6177e7ea72c2b85438"
+    },
+    {
+      "path": "eventRarityBonusRates.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ed60df6f123e690ac26314661b8bebf98e2ac32",
+      "size": 3176,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/8ed60df6f123e690ac26314661b8bebf98e2ac32"
+    },
+    {
+      "path": "eventSkillScoreUpLimits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "eventStories.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e55a001f4ed1f0bf2661ca435d0c90c71f781aa8",
+      "size": 655272,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e55a001f4ed1f0bf2661ca435d0c90c71f781aa8"
+    },
+    {
+      "path": "eventStoryUnits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e037f2ba1ebd83382edcda81e316cb34d9177ebb",
+      "size": 51406,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e037f2ba1ebd83382edcda81e316cb34d9177ebb"
+    },
+    {
+      "path": "eventTotalPowerLimits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "events.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "700e45ef1969f2fef04c8f6371c4927fe16b91a7",
+      "size": 1477479,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/700e45ef1969f2fef04c8f6371c4927fe16b91a7"
+    },
+    {
+      "path": "facilities.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f28f3707f5b098f3f6ea5d27f5429ec79ac1deb3",
+      "size": 312,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f28f3707f5b098f3f6ea5d27f5429ec79ac1deb3"
+    },
+    {
+      "path": "friendInvitationCampaigns.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfd5091e132dcffbf4f51dec501c4e30f7d37d34",
+      "size": 21507,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/bfd5091e132dcffbf4f51dec501c4e30f7d37d34"
+    },
+    {
+      "path": "gachaBonusItemReceivableRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6854c06756fa0823c353a2abc3bc780fad33dd69",
+      "size": 20030,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6854c06756fa0823c353a2abc3bc780fad33dd69"
+    },
+    {
+      "path": "gachaBonusRewardItemGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "gachaCeilExchangeSummaries.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36d651a65f790b3bb7d40521e70c5584dc2d537f",
+      "size": 777437,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/36d651a65f790b3bb7d40521e70c5584dc2d537f"
+    },
+    {
+      "path": "gachaCeilItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bae0718794b33943cf612495cd38d5a591f4e57",
+      "size": 71457,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9bae0718794b33943cf612495cd38d5a591f4e57"
+    },
+    {
+      "path": "gachaExtras.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34d6a540f42845b02d5ca292d3f1248b4a499150",
+      "size": 9244,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/34d6a540f42845b02d5ca292d3f1248b4a499150"
+    },
+    {
+      "path": "gachaFreebieGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44d2b08aaa9a1b0e14dfd5f7bc2dff7399dbd68c",
+      "size": 12907,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/44d2b08aaa9a1b0e14dfd5f7bc2dff7399dbd68c"
+    },
+    {
+      "path": "gachaTabs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "305ebffc2acb75dc9abe9414c012797331e6aed8",
+      "size": 1131,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/305ebffc2acb75dc9abe9414c012797331e6aed8"
+    },
+    {
+      "path": "gachaTickets.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "367630fcf659d79c8c5455506000abc9eda6e730",
+      "size": 7632,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/367630fcf659d79c8c5455506000abc9eda6e730"
+    },
+    {
+      "path": "gachas.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b664326734a27dfbf7160bbad9a74da59f59f27",
+      "size": 4025781,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4b664326734a27dfbf7160bbad9a74da59f59f27"
+    },
+    {
+      "path": "gameCharacterUnit3dMotions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd0115839407bd1f43fb9930179301439cf12681",
+      "size": 3766,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/bd0115839407bd1f43fb9930179301439cf12681"
+    },
+    {
+      "path": "gameCharacterUnits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8cff1c7b87555fc720bfe05fa45418b80d75062d",
+      "size": 11838,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/8cff1c7b87555fc720bfe05fa45418b80d75062d"
+    },
+    {
+      "path": "gameCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "487295704ccb2948eb058654a761f060f9196da2",
+      "size": 8928,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/487295704ccb2948eb058654a761f060f9196da2"
+    },
+    {
+      "path": "giftGachaExchanges.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e959410c586808cbb559d13e02dfb6dd645d5a7f",
+      "size": 5278,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e959410c586808cbb559d13e02dfb6dd645d5a7f"
+    },
+    {
+      "path": "guides.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "homeExchangeButtons.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a06cbc4ebc0e3b374839e526c771aea1ebe354a0",
+      "size": 901,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a06cbc4ebc0e3b374839e526c771aea1ebe354a0"
+    },
+    {
+      "path": "honorGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a7ca2500066e76e45243635235010738e7285eb",
+      "size": 132880,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7a7ca2500066e76e45243635235010738e7285eb"
+    },
+    {
+      "path": "honorMissionTypeOrders.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ea7710e181663684a52debb506e6b23a6a1cd79",
+      "size": 5117,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6ea7710e181663684a52debb506e6b23a6a1cd79"
+    },
+    {
+      "path": "honorMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f810187131aa25c6c1c7231b574f2dce0c9485e3",
+      "size": 308512,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f810187131aa25c6c1c7231b574f2dce0c9485e3"
+    },
+    {
+      "path": "honors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5eceb5622bf2396fbd20b0030d1d93984df8c4ec",
+      "size": 3153263,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5eceb5622bf2396fbd20b0030d1d93984df8c4ec"
+    },
+    {
+      "path": "ingameCombos.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe3d7f6fc355a1ae46336c51225fc3684fecf04e",
+      "size": 781,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/fe3d7f6fc355a1ae46336c51225fc3684fecf04e"
+    },
+    {
+      "path": "ingameCutinCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76ec101f1de2c722bfb7aceb647020185851a377",
+      "size": 6621559,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/76ec101f1de2c722bfb7aceb647020185851a377"
+    },
+    {
+      "path": "ingameCutins.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "248a47efe4b8c22d77527f520e83e002f3c413df",
+      "size": 322,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/248a47efe4b8c22d77527f520e83e002f3c413df"
+    },
+    {
+      "path": "ingameJudgeFrames.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25460c817a373f17b5896e28b7f8bf765931cf71",
+      "size": 5230,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/25460c817a373f17b5896e28b7f8bf765931cf71"
+    },
+    {
+      "path": "ingameNoteJudgeTechnicalScores.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31751541289c9563355b0eece16c59212b3aafcb",
+      "size": 1089,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/31751541289c9563355b0eece16c59212b3aafcb"
+    },
+    {
+      "path": "ingameNoteJudges.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66bfb8091532fb96d2b79f31561b580fc27f9c14",
+      "size": 642,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/66bfb8091532fb96d2b79f31561b580fc27f9c14"
+    },
+    {
+      "path": "ingameNotes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90c7dd6fb2aecada9c2b90a1fa52b525af932ffe",
+      "size": 1995,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/90c7dd6fb2aecada9c2b90a1fa52b525af932ffe"
+    },
+    {
+      "path": "ingamePlayLevels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a154a740f051aa46156b0a18d154a4831728bfe5",
+      "size": 1153,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a154a740f051aa46156b0a18d154a4831728bfe5"
+    },
+    {
+      "path": "jewelBehaviors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6157eb5407fab0f219af3f6c461691b74085df55",
+      "size": 120,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6157eb5407fab0f219af3f6c461691b74085df55"
+    },
+    {
+      "path": "jewelShowDialogues.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b0f0c75e871c078c9c2c3dbd94cda32e5d4e629",
+      "size": 19345,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5b0f0c75e871c078c9c2c3dbd94cda32e5d4e629"
+    },
+    {
+      "path": "levels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0c12c407a7cca140009d4045835c077ca902d92",
+      "size": 88094,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d0c12c407a7cca140009d4045835c077ca902d92"
+    },
+    {
+      "path": "limitMissionGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d04731df7b242a51a7702c01b9572ef3b889c00",
+      "size": 3608,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5d04731df7b242a51a7702c01b9572ef3b889c00"
+    },
+    {
+      "path": "limitMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "093018d3ced095ed44c53b1d7dca06ca215889c2",
+      "size": 29850,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/093018d3ced095ed44c53b1d7dca06ca215889c2"
+    },
+    {
+      "path": "limitedLoginBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d55713ee1e162ccca1aecd08611046744cf3fb3",
+      "size": 94335,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/8d55713ee1e162ccca1aecd08611046744cf3fb3"
+    },
+    {
+      "path": "limitedTimeMusics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b871cc4c328bc0182123201d019f91c54a3dbd4e",
+      "size": 785,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b871cc4c328bc0182123201d019f91c54a3dbd4e"
+    },
+    {
+      "path": "limitedTitleScreens.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "liveClearVoices.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cefa3f2e14affb3c734f1dca5e9bb826e7854cbf",
+      "size": 115090,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/cefa3f2e14affb3c734f1dca5e9bb826e7854cbf"
+    },
+    {
+      "path": "liveMissionPasses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e80437e52fd0412574996224fc9fb594e48696d3",
+      "size": 6304,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e80437e52fd0412574996224fc9fb594e48696d3"
+    },
+    {
+      "path": "liveMissionPeriods.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92a9f6798f22ef94f0f3769e35698d85380dac07",
+      "size": 3206,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/92a9f6798f22ef94f0f3769e35698d85380dac07"
+    },
+    {
+      "path": "liveMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "024d516875529907be205f946c2bf1e88e94db5b",
+      "size": 1346374,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/024d516875529907be205f946c2bf1e88e94db5b"
+    },
+    {
+      "path": "loginBonusLive2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "300be91ac780c6cacab4af05e1a80f4a78676341",
+      "size": 102034,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/300be91ac780c6cacab4af05e1a80f4a78676341"
+    },
+    {
+      "path": "loginBonusV2s.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "566407837b6fcbace90d25d9c1e9e57fc3a5ada6",
+      "size": 1968,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/566407837b6fcbace90d25d9c1e9e57fc3a5ada6"
+    },
+    {
+      "path": "loginBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2320d19c7e13b2c17f8ea44ec07965359de2b0b6",
+      "size": 422,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2320d19c7e13b2c17f8ea44ec07965359de2b0b6"
+    },
+    {
+      "path": "masterLessonRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43a32c37025c2839024dfccdce32987586e46130",
+      "size": 193080,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/43a32c37025c2839024dfccdce32987586e46130"
+    },
+    {
+      "path": "masterLessons.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0872b3f5c2fc6b4a4a153eaa29c21f391a9ff658",
+      "size": 178909,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0872b3f5c2fc6b4a4a153eaa29c21f391a9ff658"
+    },
+    {
+      "path": "materialAutoExchangeMusicVocals.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "materialExchangeSummaries.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75c9834dfca0835992d8fd107c1f7e277e80be2a",
+      "size": 1802951,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/75c9834dfca0835992d8fd107c1f7e277e80be2a"
+    },
+    {
+      "path": "materials.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e46ff0be5fc062195867ca81614c9ea8ffdcfcf",
+      "size": 73661,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4e46ff0be5fc062195867ca81614c9ea8ffdcfcf"
+    },
+    {
+      "path": "multiLiveLobbies.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e956a7275941137ed936804daa3402f893b893e",
+      "size": 990,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/1e956a7275941137ed936804daa3402f893b893e"
+    },
+    {
+      "path": "musicAchievements.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ae199e9a3fce224c4cc8be024928614d55ad3dc",
+      "size": 4360,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/8ae199e9a3fce224c4cc8be024928614d55ad3dc"
+    },
+    {
+      "path": "musicArtists.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "711b88e611cf3ab657449dc7b42408b9bc462672",
+      "size": 32650,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/711b88e611cf3ab657449dc7b42408b9bc462672"
+    },
+    {
+      "path": "musicAssetVariants.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "926c6cff6e7430c17d6a027166a56ab2616e7eb0",
+      "size": 5814,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/926c6cff6e7430c17d6a027166a56ab2616e7eb0"
+    },
+    {
+      "path": "musicCollaborations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5246f87e1517d48d215197c1a255e34b254eb785",
+      "size": 1536,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5246f87e1517d48d215197c1a255e34b254eb785"
+    },
+    {
+      "path": "musicDifficulties.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3854fcd0ed5f4e88eddd27ec4fe80728e131ebc4",
+      "size": 424252,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3854fcd0ed5f4e88eddd27ec4fe80728e131ebc4"
+    },
+    {
+      "path": "musicNewlyWrittenInstrumentals.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "musicOriginals.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "musicSoundTrackCategories.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f30d015b38706e60c8c8d4123aa8e61dff8c4b4",
+      "size": 1477,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4f30d015b38706e60c8c8d4123aa8e61dff8c4b4"
+    },
+    {
+      "path": "musicSoundTracks.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b55d4697c51dcef1c6f8a113cbd2479de69c905",
+      "size": 53837,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/1b55d4697c51dcef1c6f8a113cbd2479de69c905"
+    },
+    {
+      "path": "musicTags.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e9a99e99b46d7fec4f09d36bb1a9d15f5b88c87",
+      "size": 83745,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2e9a99e99b46d7fec4f09d36bb1a9d15f5b88c87"
+    },
+    {
+      "path": "musicVideoCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0a177f2cf962b72340141e70e1d01eeff0c1d67",
+      "size": 116431,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e0a177f2cf962b72340141e70e1d01eeff0c1d67"
+    },
+    {
+      "path": "musicVocals.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9be8e8058df75f8549907de358925660df0ad0f1",
+      "size": 1082699,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9be8e8058df75f8549907de358925660df0ad0f1"
+    },
+    {
+      "path": "musics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd978c67ca6e18501a5268e076544a118a8c0701",
+      "size": 545996,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/bd978c67ca6e18501a5268e076544a118a8c0701"
+    },
+    {
+      "path": "mysekaiBlueprintMysekaiCanvasRelations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b311d30126030718b015f4265b0561945516feb",
+      "size": 3215,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0b311d30126030718b015f4265b0561945516feb"
+    },
+    {
+      "path": "mysekaiBlueprintMysekaiMaterialCosts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21430ffbdd27cc35239ae6c713d66d947e8eb64e",
+      "size": 393467,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/21430ffbdd27cc35239ae6c713d66d947e8eb64e"
+    },
+    {
+      "path": "mysekaiBlueprintShops.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ccb2b2353b9af84cd48101b533f094b2ce0fb8d",
+      "size": 237,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2ccb2b2353b9af84cd48101b533f094b2ce0fb8d"
+    },
+    {
+      "path": "mysekaiBlueprintTerms.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9100e02d744916fedd32e26def428c52c48eb9c9",
+      "size": 7763,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9100e02d744916fedd32e26def428c52c48eb9c9"
+    },
+    {
+      "path": "mysekaiBlueprints.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9d17313cc0623b8a0193c9da16ecb1c073e3c4a",
+      "size": 224069,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b9d17313cc0623b8a0193c9da16ecb1c073e3c4a"
+    },
+    {
+      "path": "mysekaiCharacterTalkActionPoints.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f1799853906669a632d2480693c047b82084d2d",
+      "size": 22259,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2f1799853906669a632d2480693c047b82084d2d"
+    },
+    {
+      "path": "mysekaiCharacterTalkConditionGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90327e9bb4af8fe4c678935940409cff0a24e0fe",
+      "size": 85735,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/90327e9bb4af8fe4c678935940409cff0a24e0fe"
+    },
+    {
+      "path": "mysekaiCharacterTalkConditions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a96a674adf3e0ceef64b690973069191d1bea997",
+      "size": 125471,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a96a674adf3e0ceef64b690973069191d1bea997"
+    },
+    {
+      "path": "mysekaiCharacterTalkFixtureCommonMysekaiFixtureGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5bb58b0d4d6b1e9b2fec7b5487ba219d78ed15ad",
+      "size": 344122,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5bb58b0d4d6b1e9b2fec7b5487ba219d78ed15ad"
+    },
+    {
+      "path": "mysekaiCharacterTalkFixtureCommonTweetGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e19e1a8e03e3c6c1a79e446d82afd288e65b314c",
+      "size": 19634,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e19e1a8e03e3c6c1a79e446d82afd288e65b314c"
+    },
+    {
+      "path": "mysekaiCharacterTalkFixtureCommons.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d110a2892a332bfdd4a0236dbdf5de40e39da070",
+      "size": 13979,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d110a2892a332bfdd4a0236dbdf5de40e39da070"
+    },
+    {
+      "path": "mysekaiCharacterTalkFixtureTimelines.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "745cc0eb925e4510d081fbf661c8f0995848973d",
+      "size": 43753,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/745cc0eb925e4510d081fbf661c8f0995848973d"
+    },
+    {
+      "path": "mysekaiCharacterTalkFixtureTogetherCommunications.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2160b0dfdb477c222790bc74df621ae01f4c53cf",
+      "size": 336,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2160b0dfdb477c222790bc74df621ae01f4c53cf"
+    },
+    {
+      "path": "mysekaiCharacterTalkMotions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7381bc4412c0f8cd4a44eb08cb82fb4ec662610c",
+      "size": 9977,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7381bc4412c0f8cd4a44eb08cb82fb4ec662610c"
+    },
+    {
+      "path": "mysekaiCharacterTalkNoTalkMysekaiFixtureActions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "403a24e074fd406202525828cfd497c52bae3658",
+      "size": 181649,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/403a24e074fd406202525828cfd497c52bae3658"
+    },
+    {
+      "path": "mysekaiCharacterTalkPreActions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c3b9c0e35cbdde4d6c0d903f173fa78ef6c7c51",
+      "size": 765037,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/8c3b9c0e35cbdde4d6c0d903f173fa78ef6c7c51"
+    },
+    {
+      "path": "mysekaiCharacterTalkSoloActions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d4fde33a17516bc06f249b1b863b91770ca8799",
+      "size": 2765,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3d4fde33a17516bc06f249b1b863b91770ca8799"
+    },
+    {
+      "path": "mysekaiCharacterTalkSomeCharacterTalks.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4552c3e41e65f5463307e6a84d13c07cfa644c94",
+      "size": 49406,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4552c3e41e65f5463307e6a84d13c07cfa644c94"
+    },
+    {
+      "path": "mysekaiCharacterTalkTerms.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d747a857ac8adaea4e0dd58bdfe87fa1baad55aa",
+      "size": 53,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d747a857ac8adaea4e0dd58bdfe87fa1baad55aa"
+    },
+    {
+      "path": "mysekaiCharacterTalkTogetherCommunications.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f97687b011697feb470fd99f2f1db24940103e05",
+      "size": 2495,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f97687b011697feb470fd99f2f1db24940103e05"
+    },
+    {
+      "path": "mysekaiCharacterTalkTweetAfterEditHousingLayouts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac1336f7d13bbf1eb82ef6b8980cf1498a6bfba1",
+      "size": 12044,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ac1336f7d13bbf1eb82ef6b8980cf1498a6bfba1"
+    },
+    {
+      "path": "mysekaiCharacterTalkTweetGreetingConditions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b3e19c16149b796ed11afc3bc0ca862a3c70735",
+      "size": 1195,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4b3e19c16149b796ed11afc3bc0ca862a3c70735"
+    },
+    {
+      "path": "mysekaiCharacterTalkTweetGreetings.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f07aff1dc34444f48460fc5cfbbb2f34667c63cc",
+      "size": 24374,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f07aff1dc34444f48460fc5cfbbb2f34667c63cc"
+    },
+    {
+      "path": "mysekaiCharacterTalkTweetHousingRoomSiteEntries.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2b7d50ba2ccf1921533fa044b32d448a177c31a",
+      "size": 7193,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d2b7d50ba2ccf1921533fa044b32d448a177c31a"
+    },
+    {
+      "path": "mysekaiCharacterTalkTweetWithoutRelatedTalks.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5be23f478112e25517d549b491dfbcf6febc1fc1",
+      "size": 61628,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5be23f478112e25517d549b491dfbcf6febc1fc1"
+    },
+    {
+      "path": "mysekaiCharacterTalkTweets.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3b863e463a3f4dd7d5b7a845bd1e5ff7eca3af5",
+      "size": 1409237,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b3b863e463a3f4dd7d5b7a845bd1e5ff7eca3af5"
+    },
+    {
+      "path": "mysekaiCharacterTalks.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26359339608865eb317d84bf42f2e5d3e2637186",
+      "size": 2519409,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/26359339608865eb317d84bf42f2e5d3e2637186"
+    },
+    {
+      "path": "mysekaiColorfulPass.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "989b0ec748cb576dce6294a09ec7cd53921d7451",
+      "size": 140,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/989b0ec748cb576dce6294a09ec7cd53921d7451"
+    },
+    {
+      "path": "mysekaiConvertFixtureLevelReleases.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92c7b029f50781b37baf4a51c83dc0cbf3e88aa8",
+      "size": 129,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/92c7b029f50781b37baf4a51c83dc0cbf3e88aa8"
+    },
+    {
+      "path": "mysekaiConvertFixtureLevels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "833d7398b79b1903ec8d75b8a92215632af73558",
+      "size": 113,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/833d7398b79b1903ec8d75b8a92215632af73558"
+    },
+    {
+      "path": "mysekaiConvertFixtureSlot.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c55b7d526c9a3189b069a0bc322b743e84efaeb",
+      "size": 110,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6c55b7d526c9a3189b069a0bc322b743e84efaeb"
+    },
+    {
+      "path": "mysekaiConvertItemObtainMysekaiBlueprintChoices.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d4332c7123226aa46efe10a8ec3ea69d4349d3b",
+      "size": 459,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7d4332c7123226aa46efe10a8ec3ea69d4349d3b"
+    },
+    {
+      "path": "mysekaiConvertItemObtainMysekaiBlueprints.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88dca33c6c955457ecca3672ce1c79c087df5bbf",
+      "size": 344,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/88dca33c6c955457ecca3672ce1c79c087df5bbf"
+    },
+    {
+      "path": "mysekaiConvertItemObtainMysekaiMusicRecords.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62c3f37bd51ca675a02bf93a29a421002580abf2",
+      "size": 240,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/62c3f37bd51ca675a02bf93a29a421002580abf2"
+    },
+    {
+      "path": "mysekaiConvertItemTabs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dcfdb6b92786b7630dc8f130d53a7dd993103e6",
+      "size": 759,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/8dcfdb6b92786b7630dc8f130d53a7dd993103e6"
+    },
+    {
+      "path": "mysekaiConvertItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d0da90d1569f58509edc1ef6d8206a768af07da",
+      "size": 14940,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2d0da90d1569f58509edc1ef6d8206a768af07da"
+    },
+    {
+      "path": "mysekaiCustomFixtures.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c60126ae9eb20a33adb9aa6b36cb3881f43ad928",
+      "size": 22724,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c60126ae9eb20a33adb9aa6b36cb3881f43ad928"
+    },
+    {
+      "path": "mysekaiCutScenes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08f0850eeebb368f8364a3149820bc9d5a8b9f03",
+      "size": 16595,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/08f0850eeebb368f8364a3149820bc9d5a8b9f03"
+    },
+    {
+      "path": "mysekaiFixtureCharacter2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "891da19b602d6cb3eb18eaa5f68250d1b4cc7b96",
+      "size": 310,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/891da19b602d6cb3eb18eaa5f68250d1b4cc7b96"
+    },
+    {
+      "path": "mysekaiFixtureDisassembleResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3611d33acb583911650e4953d9b942158ee639ed",
+      "size": 5618,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3611d33acb583911650e4953d9b942158ee639ed"
+    },
+    {
+      "path": "mysekaiFixtureFootsteps.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b7f57ab0dc3cdb3c134f55a8c9f84c02179f2b3",
+      "size": 474,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5b7f57ab0dc3cdb3c134f55a8c9f84c02179f2b3"
+    },
+    {
+      "path": "mysekaiFixtureGameCharacterGroupPerformanceBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4d465c8ad4403be2da97c784c20420f9271fcf8",
+      "size": 6848,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c4d465c8ad4403be2da97c784c20420f9271fcf8"
+    },
+    {
+      "path": "mysekaiFixtureGameCharacterGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0faae7273c825bf7a6d02029fc4a67765d08ef1",
+      "size": 5261,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d0faae7273c825bf7a6d02029fc4a67765d08ef1"
+    },
+    {
+      "path": "mysekaiFixtureGameCharacterPerformanceBonusLimit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e1e887e08339c1bb5c8ce99257d78a725d5eaf7",
+      "size": 38,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4e1e887e08339c1bb5c8ce99257d78a725d5eaf7"
+    },
+    {
+      "path": "mysekaiFixtureIdleTimelines.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8024eea7ca2fcb989cffaf6b7976a1f6b8d93ad",
+      "size": 4845,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f8024eea7ca2fcb989cffaf6b7976a1f6b8d93ad"
+    },
+    {
+      "path": "mysekaiFixtureLabels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8de9b5f4ace968e86a0039213ec5f50be4ad0af3",
+      "size": 233,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/8de9b5f4ace968e86a0039213ec5f50be4ad0af3"
+    },
+    {
+      "path": "mysekaiFixtureMainGenres.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f6e07ac73a53170dbc10adada42fc95a7c11861",
+      "size": 4447,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6f6e07ac73a53170dbc10adada42fc95a7c11861"
+    },
+    {
+      "path": "mysekaiFixtureMysekaiFixtureLabelRelations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0da43138067738e9a160705989304d9c25a4df5d",
+      "size": 248,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0da43138067738e9a160705989304d9c25a4df5d"
+    },
+    {
+      "path": "mysekaiFixtureOnlyDisassembleMaterials.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a905a5aa983af608a9502ce9cd749875745b2cb",
+      "size": 4279,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6a905a5aa983af608a9502ce9cd749875745b2cb"
+    },
+    {
+      "path": "mysekaiFixturePlants.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0f7cd733aeb1cfb17e62d99b4db73f04e259f6d",
+      "size": 2159,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c0f7cd733aeb1cfb17e62d99b4db73f04e259f6d"
+    },
+    {
+      "path": "mysekaiFixturePlayerTimelines.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9351a8a7c720729ef88daf660aaa845ccbb01cf7",
+      "size": 19887,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9351a8a7c720729ef88daf660aaa845ccbb01cf7"
+    },
+    {
+      "path": "mysekaiFixturePossessions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "631d9c992361731fe5353c2079ad26ec714c3e77",
+      "size": 665,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/631d9c992361731fe5353c2079ad26ec714c3e77"
+    },
+    {
+      "path": "mysekaiFixturePutLimitLevels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ef920d750650b406d50a7f550b242f0679dc4f5",
+      "size": 1928,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0ef920d750650b406d50a7f550b242f0679dc4f5"
+    },
+    {
+      "path": "mysekaiFixturePutSounds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f9577cee6d08af4c058e0f91e496f4e4c9bce71",
+      "size": 1063,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6f9577cee6d08af4c058e0f91e496f4e4c9bce71"
+    },
+    {
+      "path": "mysekaiFixtureSubGenres.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07b8e99dfa5e1327f460fb0414df0baf2c40804c",
+      "size": 4343,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/07b8e99dfa5e1327f460fb0414df0baf2c40804c"
+    },
+    {
+      "path": "mysekaiFixtureTabViews.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3881d6a5beee4f193bc344378ac4a1beea6f3c5",
+      "size": 22714,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a3881d6a5beee4f193bc344378ac4a1beea6f3c5"
+    },
+    {
+      "path": "mysekaiFixtureTags.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35a6f556ebf09a2f560b0a25c03e48f29e43bf46",
+      "size": 218388,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/35a6f556ebf09a2f560b0a25c03e48f29e43bf46"
+    },
+    {
+      "path": "mysekaiFixtures.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3426f6dff6fe08af74b909e2ec164670e3eabbe3",
+      "size": 1269650,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3426f6dff6fe08af74b909e2ec164670e3eabbe3"
+    },
+    {
+      "path": "mysekaiGameCharacterUnitGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d545686b2c4d5fb3d7ab096d0739ee03adb27f0",
+      "size": 490071,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9d545686b2c4d5fb3d7ab096d0739ee03adb27f0"
+    },
+    {
+      "path": "mysekaiGateCharacterLotteries.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2d35a7fdf16b42d809d24dd80dfd254faa20b6c",
+      "size": 3374,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c2d35a7fdf16b42d809d24dd80dfd254faa20b6c"
+    },
+    {
+      "path": "mysekaiGateCharacterVisitCountRates.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c870ae188881a6f22707e7fade463711e7b71214",
+      "size": 8409,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c870ae188881a6f22707e7fade463711e7b71214"
+    },
+    {
+      "path": "mysekaiGateCommonSkins.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e15fc5b6ceff48283a8cb6edb39bf4cc9735a6f2",
+      "size": 302,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e15fc5b6ceff48283a8cb6edb39bf4cc9735a6f2"
+    },
+    {
+      "path": "mysekaiGateLevels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3301bd09d56a5b00eee46fbcc57f14c2831fce4f",
+      "size": 38257,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3301bd09d56a5b00eee46fbcc57f14c2831fce4f"
+    },
+    {
+      "path": "mysekaiGateMaterialGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff632d3bef043d46888a7987559e1fe613cc6d77",
+      "size": 92276,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ff632d3bef043d46888a7987559e1fe613cc6d77"
+    },
+    {
+      "path": "mysekaiGateRefreshSchedules.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4bf593097c28374bc6e0574ee3365ac4e1e88e6d",
+      "size": 199,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4bf593097c28374bc6e0574ee3365ac4e1e88e6d"
+    },
+    {
+      "path": "mysekaiGateSkins.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56e1e42492b2363bcd99e56141eea37926ea9906",
+      "size": 1133,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/56e1e42492b2363bcd99e56141eea37926ea9906"
+    },
+    {
+      "path": "mysekaiGateUnitSkins.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98cc7caff18a21fa9dac89b6919fc024e5703bde",
+      "size": 792,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/98cc7caff18a21fa9dac89b6919fc024e5703bde"
+    },
+    {
+      "path": "mysekaiGates.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "323d4a96a59c7bd414876e6c4d2a4a9ecdb429f6",
+      "size": 723,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/323d4a96a59c7bd414876e6c4d2a4a9ecdb429f6"
+    },
+    {
+      "path": "mysekaiHousingCompetitionLotteryHours.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0069bd95a6c64723cb3c2ec459184da23625a8f",
+      "size": 75,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e0069bd95a6c64723cb3c2ec459184da23625a8f"
+    },
+    {
+      "path": "mysekaiHousingCompetitions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fc8d2642647803b98e788d1cd3008c3709b5ef0",
+      "size": 10612,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2fc8d2642647803b98e788d1cd3008c3709b5ef0"
+    },
+    {
+      "path": "mysekaiHousingExhibitions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86f04bd57cb29fccfcedd1924289f0147fe97df8",
+      "size": 567,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/86f04bd57cb29fccfcedd1924289f0147fe97df8"
+    },
+    {
+      "path": "mysekaiItemTabs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc5a954be0cc3cf8e4da93ba49ceb8fd9f8c571f",
+      "size": 108,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/fc5a954be0cc3cf8e4da93ba49ceb8fd9f8c571f"
+    },
+    {
+      "path": "mysekaiItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30105f44e017ac8a34c587a0c76deae98649afa2",
+      "size": 1540,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/30105f44e017ac8a34c587a0c76deae98649afa2"
+    },
+    {
+      "path": "mysekaiLimitedBlueprints.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "mysekaiLiveMissionRewardGameCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31d8a451d4cbd09066c10cb69a0dee0abb8448c6",
+      "size": 22145,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/31d8a451d4cbd09066c10cb69a0dee0abb8448c6"
+    },
+    {
+      "path": "mysekaiLiveMissionRewardMysekaiFixtures.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc535bd368fb9e6f287b6da5af61b4b34fc8b9a4",
+      "size": 22592,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/bc535bd368fb9e6f287b6da5af61b4b34fc8b9a4"
+    },
+    {
+      "path": "mysekaiMaterialGameCharacterRelations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fedbd7794ca850d773819e836d3ce2bf9cefea5",
+      "size": 2480,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6fedbd7794ca850d773819e836d3ce2bf9cefea5"
+    },
+    {
+      "path": "mysekaiMaterialPossessions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56f2da79443bfc23c4a78be41c10f1185b5ee145",
+      "size": 743,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/56f2da79443bfc23c4a78be41c10f1185b5ee145"
+    },
+    {
+      "path": "mysekaiMaterialTabs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79470678f6b13aa4020fed6a4695f4c6ef67133b",
+      "size": 605,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/79470678f6b13aa4020fed6a4695f4c6ef67133b"
+    },
+    {
+      "path": "mysekaiMaterials.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c066ec7ec3fddabe6337e12c62142f8478c9c4b8",
+      "size": 33055,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c066ec7ec3fddabe6337e12c62142f8478c9c4b8"
+    },
+    {
+      "path": "mysekaiMissionMysekaiFixtureGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27c2a3f7804ed21b20e59acc026301260e7e6332",
+      "size": 546,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/27c2a3f7804ed21b20e59acc026301260e7e6332"
+    },
+    {
+      "path": "mysekaiMissionPasses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "807b0f5e45b9b00965506b0762edddfec04021fd",
+      "size": 2503,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/807b0f5e45b9b00965506b0762edddfec04021fd"
+    },
+    {
+      "path": "mysekaiMusicRecordCategories.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56ddaedfe15fadb4ea27922b268fb4567107a482",
+      "size": 1019,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/56ddaedfe15fadb4ea27922b268fb4567107a482"
+    },
+    {
+      "path": "mysekaiMusicRecords.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "baa2c87ab6280da79b0da03df1515d3b004f5b02",
+      "size": 71920,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/baa2c87ab6280da79b0da03df1515d3b004f5b02"
+    },
+    {
+      "path": "mysekaiNormalMissionRewardMysekaiRankObtainedExps.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9652da38f2248c31b8f596424535f3b6faa2442",
+      "size": 45,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c9652da38f2248c31b8f596424535f3b6faa2442"
+    },
+    {
+      "path": "mysekaiNormalMissionRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e0aa4365ca8ae22d8b6408e2c01bc39943a0566",
+      "size": 44275,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6e0aa4365ca8ae22d8b6408e2c01bc39943a0566"
+    },
+    {
+      "path": "mysekaiNormalMissionSheets.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d9bce904353768339f8b72d60b8177bbc34ffa4",
+      "size": 5923,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/8d9bce904353768339f8b72d60b8177bbc34ffa4"
+    },
+    {
+      "path": "mysekaiNormalMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ae241cf79d2c2ae30a8de4c4543f07a8548d434",
+      "size": 62677,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9ae241cf79d2c2ae30a8de4c4543f07a8548d434"
+    },
+    {
+      "path": "mysekaiPhenomenaBackgroundColors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba1535aaa2f5df6dea907c71dd8dfe9f0e4f5007",
+      "size": 907,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ba1535aaa2f5df6dea907c71dd8dfe9f0e4f5007"
+    },
+    {
+      "path": "mysekaiPhenomenaBgms.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5a72ef2d0aefc5d77b754e1e477634a85c8b3e9",
+      "size": 898,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f5a72ef2d0aefc5d77b754e1e477634a85c8b3e9"
+    },
+    {
+      "path": "mysekaiPhenomenaGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10503716a880f5bd223cc416e593fcde9ddf5059",
+      "size": 953,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/10503716a880f5bd223cc416e593fcde9ddf5059"
+    },
+    {
+      "path": "mysekaiPhenomenaTimePeriodTypeIntValues.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9db87b19c691064de92b9e2a729a6141a04babcc",
+      "size": 210,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9db87b19c691064de92b9e2a729a6141a04babcc"
+    },
+    {
+      "path": "mysekaiPhenomenas.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "702ec56dee10fafbf7e08999b61c336441237f3e",
+      "size": 5604,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/702ec56dee10fafbf7e08999b61c336441237f3e"
+    },
+    {
+      "path": "mysekaiPhotoDecorations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5d64b9a4277c4f0280c0c81fe29893c18f68645",
+      "size": 1900,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b5d64b9a4277c4f0280c0c81fe29893c18f68645"
+    },
+    {
+      "path": "mysekaiPhotoEffects.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "548fad652c485631ba5e97c57dca3a46888a1993",
+      "size": 286,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/548fad652c485631ba5e97c57dca3a46888a1993"
+    },
+    {
+      "path": "mysekaiPhotoGameCharacterUnitCalls.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "294895794a3eec45f313618618117377681138cf",
+      "size": 16302,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/294895794a3eec45f313618618117377681138cf"
+    },
+    {
+      "path": "mysekaiRankObtainedExps.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e35eb7b0cbd6fd975184935c69cbe23c754fc0e",
+      "size": 116,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6e35eb7b0cbd6fd975184935c69cbe23c754fc0e"
+    },
+    {
+      "path": "mysekaiRankReleases.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca3423a09f47a5a5a26aed2bf91bd096446d102b",
+      "size": 3241,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ca3423a09f47a5a5a26aed2bf91bd096446d102b"
+    },
+    {
+      "path": "mysekaiRanks.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "479f5d913594d213aa62b5f1e1a3581b01a74748",
+      "size": 668,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/479f5d913594d213aa62b5f1e1a3581b01a74748"
+    },
+    {
+      "path": "mysekaiRecycleResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "301c1c5f43795395a42a1d28c402b00c375176aa",
+      "size": 9217,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/301c1c5f43795395a42a1d28c402b00c375176aa"
+    },
+    {
+      "path": "mysekaiRefreshTimePeriods.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "16d11e527a1d2b7885968fcbb90e00796337c30c",
+      "size": 123,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/16d11e527a1d2b7885968fcbb90e00796337c30c"
+    },
+    {
+      "path": "mysekaiReleaseConditionIcons.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "276f426217d595b0d69137997de726d6d66f0bcc",
+      "size": 982,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/276f426217d595b0d69137997de726d6d66f0bcc"
+    },
+    {
+      "path": "mysekaiReleaseElements.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "332332cb6067786d06d454d096a0bdf22e8fa010",
+      "size": 80,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/332332cb6067786d06d454d096a0bdf22e8fa010"
+    },
+    {
+      "path": "mysekaiSiteBgms.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa3caf1804e149c0d36951bfca37e30eb578767e",
+      "size": 4793,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/aa3caf1804e149c0d36951bfca37e30eb578767e"
+    },
+    {
+      "path": "mysekaiSiteFootsteps.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c142e39dcb933d5da23be206853700a105a59b83",
+      "size": 930,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c142e39dcb933d5da23be206853700a105a59b83"
+    },
+    {
+      "path": "mysekaiSiteGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "462f9366a56efbb7c39da97cb7da2eb96e220e54",
+      "size": 761,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/462f9366a56efbb7c39da97cb7da2eb96e220e54"
+    },
+    {
+      "path": "mysekaiSiteHarvestFixtures.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dce0b5dbcbfe57049d236c70ab0e34e68a8c3c5d",
+      "size": 12633,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/dce0b5dbcbfe57049d236c70ab0e34e68a8c3c5d"
+    },
+    {
+      "path": "mysekaiSiteHarvestUnavailableSpots.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b887fab0dfbc92d9ddce467c9f797b0c9eaef41f",
+      "size": 30370,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b887fab0dfbc92d9ddce467c9f797b0c9eaef41f"
+    },
+    {
+      "path": "mysekaiSiteHousingLayoutUnavailableZones.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ac24ab39f75e3c2460c988389289c1668865d00",
+      "size": 1540,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2ac24ab39f75e3c2460c988389289c1668865d00"
+    },
+    {
+      "path": "mysekaiSiteHousingPreset.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "148c2e7c9c53391e6395e779b0616b6f40df4fe1",
+      "size": 111,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/148c2e7c9c53391e6395e779b0616b6f40df4fe1"
+    },
+    {
+      "path": "mysekaiSiteHousingPresetGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be60b09f33b66409b93085986d794c9d8285a52d",
+      "size": 136,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/be60b09f33b66409b93085986d794c9d8285a52d"
+    },
+    {
+      "path": "mysekaiSiteLayouts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b12fb04f6f35aee305a9adbc2db7a248934cdb97",
+      "size": 8573,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b12fb04f6f35aee305a9adbc2db7a248934cdb97"
+    },
+    {
+      "path": "mysekaiSiteLevels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "484e30f27dca38f0f5057c1f5b3352e477ff0289",
+      "size": 1419,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/484e30f27dca38f0f5057c1f5b3352e477ff0289"
+    },
+    {
+      "path": "mysekaiSiteMysekaiPhenomenaSounds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a1b5223285a20aaf050ac70eb5c46d651df92f3",
+      "size": 2410,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6a1b5223285a20aaf050ac70eb5c46d651df92f3"
+    },
+    {
+      "path": "mysekaiSites.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d04ebb1baa2ba80fd2e22f79f76b376fe52cfc04",
+      "size": 2595,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d04ebb1baa2ba80fd2e22f79f76b376fe52cfc04"
+    },
+    {
+      "path": "mysekaiStaminaRecovery.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ac9a8e3c7accc2eb38206d3b7be07663a1e5ed4",
+      "size": 66,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6ac9a8e3c7accc2eb38206d3b7be07663a1e5ed4"
+    },
+    {
+      "path": "mysekaiStaminas.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52eac785a2166f648582bae344cc1b91c648bcae",
+      "size": 246,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/52eac785a2166f648582bae344cc1b91c648bcae"
+    },
+    {
+      "path": "mysekaiSystemFixtureTypeIcons.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e71e424d4bc7c2b94858bc81dd0371ecaded1c21",
+      "size": 999,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e71e424d4bc7c2b94858bc81dd0371ecaded1c21"
+    },
+    {
+      "path": "mysekaiSystemFixtures.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ef89a57d87b2f047da9ece048fd41b4c6625c9b",
+      "size": 7585,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0ef89a57d87b2f047da9ece048fd41b4c6625c9b"
+    },
+    {
+      "path": "mysekaiToolTabs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31ed714a6bb15b6c5d363d36f1fa8cce6c2f6a24",
+      "size": 344,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/31ed714a6bb15b6c5d363d36f1fa8cce6c2f6a24"
+    },
+    {
+      "path": "mysekaiTools.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bf72251c2c5f1f1f428546f1a31b18e45f1f9c4",
+      "size": 3558,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/1bf72251c2c5f1f1f428546f1a31b18e45f1f9c4"
+    },
+    {
+      "path": "mysekaiTutorialCutScenes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0d252de7fc7255dc6d4dfbb0952a5e106e64db6",
+      "size": 1793,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e0d252de7fc7255dc6d4dfbb0952a5e106e64db6"
+    },
+    {
+      "path": "mysekaiTutorialMysekaiCharacterTalkFixtureUniques.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b6a0d096e557cf6a3dca868ac5f69ce419bc64f",
+      "size": 13420,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6b6a0d096e557cf6a3dca868ac5f69ce419bc64f"
+    },
+    {
+      "path": "mysekaiTutorialMysekaiSiteHarvestFixtureGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54068bf0b4239244fc5dd2167262eb14abeb8f87",
+      "size": 1855,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/54068bf0b4239244fc5dd2167262eb14abeb8f87"
+    },
+    {
+      "path": "mysekaiTutorialMysekaiStaminaLimits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c0ee7fb972c797fcd27f046cb703d18739df7fd",
+      "size": 4368,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/1c0ee7fb972c797fcd27f046cb703d18739df7fd"
+    },
+    {
+      "path": "mysekaiTutorialTalks.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "668eaa2eff9956e9110a5dc4fbf985f68b9c6cbf",
+      "size": 15008,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/668eaa2eff9956e9110a5dc4fbf985f68b9c6cbf"
+    },
+    {
+      "path": "mysekaiTutorialUseResources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96b2896b1957af4517c01be23518cf7c16d581d8",
+      "size": 6357,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/96b2896b1957af4517c01be23518cf7c16d581d8"
+    },
+    {
+      "path": "ngWords.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58d729a1634746a5e860987710aa92da7afa003b",
+      "size": 550570,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/58d729a1634746a5e860987710aa92da7afa003b"
+    },
+    {
+      "path": "normalMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8d2129943b5f01361b976263c33bd15bbeb3785",
+      "size": 14043,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a8d2129943b5f01361b976263c33bd15bbeb3785"
+    },
+    {
+      "path": "omikujiCosts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5afae0ead2dc7b01fc3512010e3484a2c658230",
+      "size": 1218,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b5afae0ead2dc7b01fc3512010e3484a2c658230"
+    },
+    {
+      "path": "omikujiGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7c88ba9379faae8c1539e5a37a669d3d0402b28",
+      "size": 9918,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c7c88ba9379faae8c1539e5a37a669d3d0402b28"
+    },
+    {
+      "path": "omikujiRates.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fe3580b4a6aa6f52833a98a4b75b7dab1404e05",
+      "size": 3473,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/6fe3580b4a6aa6f52833a98a4b75b7dab1404e05"
+    },
+    {
+      "path": "omikujiRewards.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "928fd1dcdcfcaf4996c834f6bf46a88a8afc8866",
+      "size": 1552,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/928fd1dcdcfcaf4996c834f6bf46a88a8afc8866"
+    },
+    {
+      "path": "omikujis.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d934f394906d68c9b63feb8d47cc13ddda0dc07",
+      "size": 165911,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0d934f394906d68c9b63feb8d47cc13ddda0dc07"
+    },
+    {
+      "path": "oneTimeBehaviors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b59c27608af261ac81e37b733870567495b4a6d",
+      "size": 1186,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9b59c27608af261ac81e37b733870567495b4a6d"
+    },
+    {
+      "path": "ongoingMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e58bcd7591ecced93374982348262065dee91948",
+      "size": 13117,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e58bcd7591ecced93374982348262065dee91948"
+    },
+    {
+      "path": "outsideCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74947fe54cb086faf3330510ce6c145189821357",
+      "size": 2249,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/74947fe54cb086faf3330510ce6c145189821357"
+    },
+    {
+      "path": "paidVirtualLiveShopItemGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "paidVirtualLiveShopItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d32d2ec9512bf0ec546e469aa3a2fd3e9f93164",
+      "size": 118478,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7d32d2ec9512bf0ec546e469aa3a2fd3e9f93164"
+    },
+    {
+      "path": "paidVirtualLives.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55861ac23b3c468d444eed6b60b402bae1093959",
+      "size": 59374,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/55861ac23b3c468d444eed6b60b402bae1093959"
+    },
+    {
+      "path": "panelMissionCampaigns.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60a2c6d728876e14ca4669f9b11600e22c831c24",
+      "size": 535504,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/60a2c6d728876e14ca4669f9b11600e22c831c24"
+    },
+    {
+      "path": "penlightColors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "973a8b8d41e97fd7da4cf1798caf07bb4ae738d2",
+      "size": 4578,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/973a8b8d41e97fd7da4cf1798caf07bb4ae738d2"
+    },
+    {
+      "path": "penlightUnits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc58a98700c2af9ae99f75ac7e1c55d0db6a502a",
+      "size": 6612,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/cc58a98700c2af9ae99f75ac7e1c55d0db6a502a"
+    },
+    {
+      "path": "penlights.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5526972066abdd7e872e855d646e5d22d9d5469",
+      "size": 21089,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b5526972066abdd7e872e855d646e5d22d9d5469"
+    },
+    {
+      "path": "playLevelScores.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86799e7dc40c8af7c56329e32dd8b9d518cf6ce6",
+      "size": 36939,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/86799e7dc40c8af7c56329e32dd8b9d518cf6ce6"
+    },
+    {
+      "path": "playerFrameGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92396853c543c208e2fe913b57a30185d832ace5",
+      "size": 128,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/92396853c543c208e2fe913b57a30185d832ace5"
+    },
+    {
+      "path": "playerFrames.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9342b94bb2e69ca0de67dc7c19243a7fe9cb1538",
+      "size": 12533,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9342b94bb2e69ca0de67dc7c19243a7fe9cb1538"
+    },
+    {
+      "path": "practiceTickets.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3f12b8b71ae68df5abc0e4a86f81c865c1eef57",
+      "size": 13868,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b3f12b8b71ae68df5abc0e4a86f81c865c1eef57"
+    },
+    {
+      "path": "preliminaryTournaments.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "583a4c13d1d73994b43fdc2d9c3e27b7576b2543",
+      "size": 2342,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/583a4c13d1d73994b43fdc2d9c3e27b7576b2543"
+    },
+    {
+      "path": "rankMatchBonusPointConditions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87369d36fd02594c9bef29a2d4a60983aaae50a2",
+      "size": 638,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/87369d36fd02594c9bef29a2d4a60983aaae50a2"
+    },
+    {
+      "path": "rankMatchClasses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18ca01b364ec35243f5b6624e89794f2987a65b1",
+      "size": 1118,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/18ca01b364ec35243f5b6624e89794f2987a65b1"
+    },
+    {
+      "path": "rankMatchGrades.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b474cb4a2105b59cea4af126b75214e7f93a75a",
+      "size": 303,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5b474cb4a2105b59cea4af126b75214e7f93a75a"
+    },
+    {
+      "path": "rankMatchPenalties.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0a870e4a2455f34a38b3e0432dd827211c353f7",
+      "size": 1320,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f0a870e4a2455f34a38b3e0432dd827211c353f7"
+    },
+    {
+      "path": "rankMatchPlacements.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7091d1a2f1fb930ee4decb37fbbeb6b30bc20a8",
+      "size": 660,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e7091d1a2f1fb930ee4decb37fbbeb6b30bc20a8"
+    },
+    {
+      "path": "rankMatchSeasons.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29d5642411fd54e01c23107a8a9b85a6498003cd",
+      "size": 135063,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/29d5642411fd54e01c23107a8a9b85a6498003cd"
+    },
+    {
+      "path": "rankMatchTierBonusPoints.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a9e2762108f19be867d3100377948e994de5651",
+      "size": 2409,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4a9e2762108f19be867d3100377948e994de5651"
+    },
+    {
+      "path": "rankMatchTiers.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cab9c7bcbcd946c6c5a8f21daf8a117df354844a",
+      "size": 5292,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/cab9c7bcbcd946c6c5a8f21daf8a117df354844a"
+    },
+    {
+      "path": "rateChoiceGachaWishes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "releaseConditionLogicalExpressions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7942b300d2957b98fd35c4c9f323a965218a0dda",
+      "size": 146,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7942b300d2957b98fd35c4c9f323a965218a0dda"
+    },
+    {
+      "path": "releaseConditions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8df794770d18ec1c2888291d04e8365c4f4bba3",
+      "size": 1593676,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b8df794770d18ec1c2888291d04e8365c4f4bba3"
+    },
+    {
+      "path": "resourceBoxDetails.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b8fe9a69ee1017bcb9ee83cd747b1ab6994789c",
+      "size": 25820036,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9b8fe9a69ee1017bcb9ee83cd747b1ab6994789c"
+    },
+    {
+      "path": "resourceBoxes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93bfbc33e9b3ef23a74b6ef2cd123b6921211b2d",
+      "size": 6035134,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/93bfbc33e9b3ef23a74b6ef2cd123b6921211b2d"
+    },
+    {
+      "path": "returnLoginBonusSummaries.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b14208af1c4c863f23a6e41222c3317574eda98",
+      "size": 9452,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/7b14208af1c4c863f23a6e41222c3317574eda98"
+    },
+    {
+      "path": "returnLoginBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c041e2be0979814fa43e6374a783084484e92bdd",
+      "size": 72652,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c041e2be0979814fa43e6374a783084484e92bdd"
+    },
+    {
+      "path": "returnMissionGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9892e4a41ed25a4426f60c010a5e61cb73546b6",
+      "size": 20184,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e9892e4a41ed25a4426f60c010a5e61cb73546b6"
+    },
+    {
+      "path": "returnMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05681769ba1cfad97145820b368ba121df5645c3",
+      "size": 275383,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/05681769ba1cfad97145820b368ba121df5645c3"
+    },
+    {
+      "path": "ruleSlides.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3705df57b6b713219fa561ac09c60eb7bc32608",
+      "size": 12499,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a3705df57b6b713219fa561ac09c60eb7bc32608"
+    },
+    {
+      "path": "sekaiEchoCardMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5aa624764d44bfd5fa17b4056d2851faaa52bf34",
+      "size": 2297,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5aa624764d44bfd5fa17b4056d2851faaa52bf34"
+    },
+    {
+      "path": "sekaiEchoHonorMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2331e6cabf0a3cd53aaa27525ff84043859f32bc",
+      "size": 1867,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2331e6cabf0a3cd53aaa27525ff84043859f32bc"
+    },
+    {
+      "path": "sekaiEchoHonors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "901571a3c3928d0c5eb4aefbc3cce18e186214ab",
+      "size": 25406,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/901571a3c3928d0c5eb4aefbc3cce18e186214ab"
+    },
+    {
+      "path": "sekaiEchoMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f447302f7d246147bf2f630cf1ba5ed31e37f830",
+      "size": 1827,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f447302f7d246147bf2f630cf1ba5ed31e37f830"
+    },
+    {
+      "path": "sekaiEchoPointExchanges.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07c2fa020bbb235d5395497929a08a6ceec792c5",
+      "size": 1876,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/07c2fa020bbb235d5395497929a08a6ceec792c5"
+    },
+    {
+      "path": "sekaiEchoStories.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2a2c54464e99aa3ddfadfe704fc82b25aee0ee5",
+      "size": 33623,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/b2a2c54464e99aa3ddfadfe704fc82b25aee0ee5"
+    },
+    {
+      "path": "sekaiEchoStoryGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a40f2b94070b1e95e8b59768e28cf7f9df80d8e9",
+      "size": 120,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a40f2b94070b1e95e8b59768e28cf7f9df80d8e9"
+    },
+    {
+      "path": "sekaiEchoUnitAbs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db2be950f3d3b2235fbaeddede7726747ed60534",
+      "size": 1073,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/db2be950f3d3b2235fbaeddede7726747ed60534"
+    },
+    {
+      "path": "sekaiEchoUnitCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd627db878c7f9f729ee0c457ca452aafcb556a2",
+      "size": 2101,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/dd627db878c7f9f729ee0c457ca452aafcb556a2"
+    },
+    {
+      "path": "shiningExchanges.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa62a5f1dfd3747f4ebc9f71ba359cb1151d382d",
+      "size": 5872,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/aa62a5f1dfd3747f4ebc9f71ba359cb1151d382d"
+    },
+    {
+      "path": "shopItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76d29674c4688546646b331509a786334304a243",
+      "size": 955432,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/76d29674c4688546646b331509a786334304a243"
+    },
+    {
+      "path": "shops.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3168438aba324cd72f783990a37342ad4da761da",
+      "size": 1223,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3168438aba324cd72f783990a37342ad4da761da"
+    },
+    {
+      "path": "skillPracticeTickets.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41029a833650338271ecd05465c058581528f28a",
+      "size": 14604,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/41029a833650338271ecd05465c058581528f28a"
+    },
+    {
+      "path": "skills.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2ea919138e5b4df41e6715dfe5bcb094f3fb349",
+      "size": 112974,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/c2ea919138e5b4df41e6715dfe5bcb094f3fb349"
+    },
+    {
+      "path": "specialSeasonAreas.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4334d9cb87b37046b2049e708669fdf3103a85cd",
+      "size": 14665,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/4334d9cb87b37046b2049e708669fdf3103a85cd"
+    },
+    {
+      "path": "specialSeasons.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e844184b506a3ae4b09d3ab8bbb489f9f0f5bd23",
+      "size": 712,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e844184b506a3ae4b09d3ab8bbb489f9f0f5bd23"
+    },
+    {
+      "path": "specialStories.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a91d0edb84af80eef85026a223b12ddd4985e8b7",
+      "size": 31721,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a91d0edb84af80eef85026a223b12ddd4985e8b7"
+    },
+    {
+      "path": "stamps.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04f673a7f404173a61aa0ea89750fb8338c8aadc",
+      "size": 484079,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/04f673a7f404173a61aa0ea89750fb8338c8aadc"
+    },
+    {
+      "path": "storyMissions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d4d59ce9593c2131561eca9794e487885f448f6",
+      "size": 14186,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/2d4d59ce9593c2131561eca9794e487885f448f6"
+    },
+    {
+      "path": "streamingLiveArchives.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "streamingLiveBgms.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "streamingLiveCategory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "subGameCharacterPenlightColors.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98fad32b40d337d9d1d0f64f02f0e38a9d9c367f",
+      "size": 17632,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/98fad32b40d337d9d1d0f64f02f0e38a9d9c367f"
+    },
+    {
+      "path": "subGameCharacters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec90ddd4b30da0644cf8f16fb9dab6ca9bbed622",
+      "size": 6156,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ec90ddd4b30da0644cf8f16fb9dab6ca9bbed622"
+    },
+    {
+      "path": "sudokuMissionGroupLabels.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfeb3bc145da4cd7ad55927f002b42b6fdd38b46",
+      "size": 271,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/dfeb3bc145da4cd7ad55927f002b42b6fdd38b46"
+    },
+    {
+      "path": "sudokuMissionGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19204f5a8ba9348dd7a892f9f85d6fe747155df1",
+      "size": 35850,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/19204f5a8ba9348dd7a892f9f85d6fe747155df1"
+    },
+    {
+      "path": "sudokuMissionLive2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86fab97523f97e3dbc05023135f0b1ad9d5ab3ca",
+      "size": 23852,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/86fab97523f97e3dbc05023135f0b1ad9d5ab3ca"
+    },
+    {
+      "path": "sudokuMissionNextTurnLive2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92f6b27b74a65976601afaa446d40d8e26d292ae",
+      "size": 3665,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/92f6b27b74a65976601afaa446d40d8e26d292ae"
+    },
+    {
+      "path": "supportEventV2GiftTileRewardBoxes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cba386cf4b6ba6d4ba871b7ad0e771adb4e8188a",
+      "size": 6664,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/cba386cf4b6ba6d4ba871b7ad0e771adb4e8188a"
+    },
+    {
+      "path": "supportEventV2GiftTiles.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2b7c78f7d6c385f28fa4a9f606a0cf3270d9525",
+      "size": 2181,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/e2b7c78f7d6c385f28fa4a9f606a0cf3270d9525"
+    },
+    {
+      "path": "supportEventV2StageTileRewardBoxes.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6dc259fb978703eda8ef4bfc4a4ba13519698a8",
+      "size": 852,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d6dc259fb978703eda8ef4bfc4a4ba13519698a8"
+    },
+    {
+      "path": "supportEvents.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8a58a5a4fbfd872164f10d6d94ee502043caa56",
+      "size": 59092,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a8a58a5a4fbfd872164f10d6d94ee502043caa56"
+    },
+    {
+      "path": "supportHonorGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15a4b29ae3c9ee91cdde3195e9067ab3def9a1ef",
+      "size": 3343,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/15a4b29ae3c9ee91cdde3195e9067ab3def9a1ef"
+    },
+    {
+      "path": "supportHonorLevelUpCosts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56fd8e6890faa7ed93ea092e1875648954ffcf93",
+      "size": 2140,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/56fd8e6890faa7ed93ea092e1875648954ffcf93"
+    },
+    {
+      "path": "systemLive2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5156dd5d477f2d6dc6e392cc975f84fede42a2fe",
+      "size": 2984320,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/5156dd5d477f2d6dc6e392cc975f84fede42a2fe"
+    },
+    {
+      "path": "tips.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58db0e9b6de3605a12424bb438f3da75e405d1e8",
+      "size": 26066,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/58db0e9b6de3605a12424bb438f3da75e405d1e8"
+    },
+    {
+      "path": "topics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65b2bcb6063151a238c04a48b8ed1694388fbc87",
+      "size": 465199,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/65b2bcb6063151a238c04a48b8ed1694388fbc87"
+    },
+    {
+      "path": "trailingParticles.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0adbba4d4986b78f3abe556713ad26e134f0211",
+      "size": 785,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f0adbba4d4986b78f3abe556713ad26e134f0211"
+    },
+    {
+      "path": "unitAssets.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "904d7a5c7c1e7b97f9d5061e8ceb2ac94283ed73",
+      "size": 316,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/904d7a5c7c1e7b97f9d5061e8ceb2ac94283ed73"
+    },
+    {
+      "path": "unitCharacter3ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1fc6929652831075d3070e2b4d018d373fa997c",
+      "size": 1483,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f1fc6929652831075d3070e2b4d018d373fa997c"
+    },
+    {
+      "path": "unitProfiles.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ab09bfa79679e9c01f68d967a97137f2d888925",
+      "size": 2461,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/3ab09bfa79679e9c01f68d967a97137f2d888925"
+    },
+    {
+      "path": "unitStories.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "572e04528b3ad2b650e807b3db30ffeaf0d0f8ca",
+      "size": 55176,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/572e04528b3ad2b650e807b3db30ffeaf0d0f8ca"
+    },
+    {
+      "path": "unitStoryEpisodeGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "512565ebb573df7ca7651608e639da765c9316d4",
+      "size": 3547,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/512565ebb573df7ca7651608e639da765c9316d4"
+    },
+    {
+      "path": "versions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17cc77f76f097e3fb4f997c2dd36cd7abcbb3bb5",
+      "size": 275,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/17cc77f76f097e3fb4f997c2dd36cd7abcbb3bb5"
+    },
+    {
+      "path": "virtualBoothShops.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4665956bae1fe67cc8f9f6cbe424ce89809af3e",
+      "size": 5088,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/d4665956bae1fe67cc8f9f6cbe424ce89809af3e"
+    },
+    {
+      "path": "virtualItemRelations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "726c7c54f20f8f8010c733ba2916379ce59ee9bc",
+      "size": 599,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/726c7c54f20f8f8010c733ba2916379ce59ee9bc"
+    },
+    {
+      "path": "virtualItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73a484a37c3557e98caf4e4017b78a1c93c9607e",
+      "size": 37329,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/73a484a37c3557e98caf4e4017b78a1c93c9607e"
+    },
+    {
+      "path": "virtualLiveCheerMessageDisplayLimits.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f97c28f4ae47961419ef6d0f40e1214f3454b2d9",
+      "size": 223,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/f97c28f4ae47961419ef6d0f40e1214f3454b2d9"
+    },
+    {
+      "path": "virtualLiveCheerMessageRelations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "277134c335ef3c23a52731944265a73d8791c79b",
+      "size": 779,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/277134c335ef3c23a52731944265a73d8791c79b"
+    },
+    {
+      "path": "virtualLiveCheerMessages.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50117af15f9fe6a0882a90e4ef6280a932054329",
+      "size": 16193,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/50117af15f9fe6a0882a90e4ef6280a932054329"
+    },
+    {
+      "path": "virtualLiveGroups.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a9f823e8068683042a813fbf2f3945d77f56440",
+      "size": 180,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/9a9f823e8068683042a813fbf2f3945d77f56440"
+    },
+    {
+      "path": "virtualLivePamphlets.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "size": 2,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "virtualLiveTickets.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad85f67abaeed0e5ce4660de6e287c955608a590",
+      "size": 255,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/ad85f67abaeed0e5ce4660de6e287c955608a590"
+    },
+    {
+      "path": "virtualLiveTransitionItems.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a70aa01b00e5f0591f4a17ad24ac44bb44846c00",
+      "size": 6859,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/a70aa01b00e5f0591f4a17ad24ac44bb44846c00"
+    },
+    {
+      "path": "virtualLives.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01a5c81ead2f456b0168c38ecc91734df4051a5a",
+      "size": 3198663,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/01a5c81ead2f456b0168c38ecc91734df4051a5a"
+    },
+    {
+      "path": "virtualShopItemFirstPurchaseBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0be0f8ac0569f30efb97408da0570d2d69908b0f",
+      "size": 76,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/0be0f8ac0569f30efb97408da0570d2d69908b0f"
+    },
+    {
+      "path": "virtualShops.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "173ccdfba2a943a91029b6f96be97caeb34cd47d",
+      "size": 157392,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/173ccdfba2a943a91029b6f96be97caeb34cd47d"
+    },
+    {
+      "path": "wordings.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70a9feac84351e21d85ae2665a44ba2f95fc1d65",
+      "size": 553464,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/70a9feac84351e21d85ae2665a44ba2f95fc1d65"
+    },
+    {
+      "path": "worldBloomChapterRankingRewardRanges.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11053792e616c1a9c3b235650c1576e99d78a16c",
+      "size": 144274,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/11053792e616c1a9c3b235650c1576e99d78a16c"
+    },
+    {
+      "path": "worldBloomCostume2ds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf464b033a674970c18da7545e8ede194f1be987",
+      "size": 7463,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/cf464b033a674970c18da7545e8ede194f1be987"
+    },
+    {
+      "path": "worldBloomDifferentAttributeBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98d7f695aee08aabd423c2991ab2ae60b22713fd",
+      "size": 282,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/98d7f695aee08aabd423c2991ab2ae60b22713fd"
+    },
+    {
+      "path": "worldBloomSupportDeckBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47856fb71c6bec3b23ec30e0370b60f451a1b69a",
+      "size": 7029,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/47856fb71c6bec3b23ec30e0370b60f451a1b69a"
+    },
+    {
+      "path": "worldBloomSupportDeckUnitEventLimitedBonuses.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32f6999618fc9e1401260d875e0c957c5e0ba9e4",
+      "size": 5747,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/32f6999618fc9e1401260d875e0c957c5e0ba9e4"
+    },
+    {
+      "path": "worldBlooms.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa263d4042159bf87dbca0d1182acea4784c0600",
+      "size": 14471,
+      "url": "https://api.github.com/repos/Sekai-World/sekai-master-db-cn-diff/git/blobs/fa263d4042159bf87dbca0d1182acea4784c0600"
+    }
+  ],
+  "truncated": false
+}
