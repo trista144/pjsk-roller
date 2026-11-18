@@ -2005,6 +2005,130 @@ dialog::backdrop {
   }
 }
 
+
+/* ---------- 颜色定位 ---------- */
+.pick-readout {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 13px;
+  border: 1px solid #e2efec;
+  border-radius: 12px;
+  background: #fbfefd;
+}
+
+.pick-readout i {
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+}
+
+.pick-readout strong {
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 900;
+}
+
+.pick-readout span {
+  color: var(--faint);
+  font-size: 10.5px;
+}
+
+.pick-readout em {
+  margin-left: auto;
+  color: #b3c4c6;
+  font-size: 10px;
+  font-style: normal;
+}
+
+.palette-legend {
+  border: 1px solid #e6f0ee;
+  border-radius: 12px;
+  background: #fbfefd;
+}
+
+.palette-legend summary {
+  padding: 9px 12px;
+  color: var(--teal-deep);
+  font-size: 10.5px;
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.palette-legend summary::-webkit-details-marker {
+  display: none;
+}
+
+.palette-legend summary::before {
+  content: "▸ ";
+  color: var(--faint);
+}
+
+.palette-legend[open] summary::before {
+  content: "▾ ";
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 0 10px 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 7px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #55707a;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.14s ease;
+}
+
+.legend-item:hover {
+  border-color: #bfe6df;
+  background: #fff;
+}
+
+.legend-item i {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+}
+
+.legend-item span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.palette-row {
+  cursor: pointer;
+  border-radius: 7px;
+  transition: 0.14s ease;
+}
+
+.palette-row:hover {
+  background: #f1faf8;
+}
+
+.palette-row.is-focus {
+  background: #e6f7f3;
+  box-shadow: inset 0 0 0 1px #9adfd4;
+}
+
   </style>
 </head>
 <body>
@@ -2056,6 +2180,8 @@ dialog::backdrop {
           <canvas id="preview" aria-label="名片预览"></canvas>
         </div>
 
+        <div class="pick-readout" id="pickReadout" hidden></div>
+
         <div class="profile-actions" id="actions" hidden>
           <button type="button" class="draw-btn" id="exportBtn"><span>导出参考图 PNG</span></button>
           <button type="button" class="ghost-btn" id="resetBtn">换一张图</button>
@@ -2092,6 +2218,12 @@ dialog::backdrop {
         </label>
         <p class="field-note">游戏里打开「操作辅助」后能边缘吸附、中轴对齐，把元素放在这些线附近最省事。</p>
 
+        <h3>全部 33 色</h3>
+        <details class="palette-legend" id="paletteLegend">
+          <summary>点开看色值与名称对照</summary>
+          <div class="legend-grid" id="legendGrid"></div>
+        </details>
+
         <h3>调色板用量</h3>
         <div class="palette-usage" id="paletteUsage">
           <p class="field-note">上传图片后，这里会列出需要用到哪些颜色、各占多少面积。</p>
@@ -2109,6 +2241,7 @@ dialog::backdrop {
     </footer>
   </div>
 
+  <script type="application/json" id="paletteNames">{"source":"sekai-master-db-cn-diff: gameCharacters / gameCharacterUnits / unitProfiles","note":"33 色 = 20 位原创角色代表色 + 6 位虚拟歌手代表色 + 5 个组合代表色 + 纯白 + 近黑","colors":[{"idx":0,"hex":"#FFFFFF","label":"白","sub":"White","source":"neutral","note":"纯白，同时也是「虚拟歌手」组合色"},{"idx":1,"hex":"#33CCBB","label":"初音未来","sub":"Miku","source":"virtual_singer","characterId":21},{"idx":2,"hex":"#FFCC11","label":"镜音铃","sub":"Rin","source":"virtual_singer","characterId":22},{"idx":3,"hex":"#4455DD","label":"Leo/need","sub":"Leo/need","source":"unit","unit":"light_sound"},{"idx":4,"hex":"#BBDD22","label":"日野森志步","sub":"Shiho","source":"character","characterId":4,"unit":"light_sound","unitShort":"Leo/need"},{"idx":5,"hex":"#FFAACC","label":"桃井爱莉","sub":"Airi","source":"character","characterId":7,"unit":"idol","unitShort":"MMJ！"},{"idx":6,"hex":"#00BBDD","label":"白石杏","sub":"An","source":"character","characterId":10,"unit":"street","unitShort":"VBS"},{"idx":7,"hex":"#FFBB00","label":"天马司","sub":"Tsukasa","source":"character","characterId":13,"unit":"theme_park","unitShort":"W×S"},{"idx":8,"hex":"#884499","label":"25点，Nightcord见。","sub":"25时","source":"unit","unit":"school_refusal"},{"idx":9,"hex":"#DDAACC","label":"晓山瑞希","sub":"Mizuki","source":"character","characterId":20,"unit":"school_refusal","unitShort":"25时"},{"idx":10,"hex":"#444466","label":"近黑","sub":"Dark navy","source":"neutral","note":"唯一的深色，接近黑但不是纯黑"},{"idx":11,"hex":"#FFEE11","label":"镜音连","sub":"Len","source":"virtual_singer","characterId":23},{"idx":12,"hex":"#33AAEE","label":"星乃一歌","sub":"Ichika","source":"character","characterId":1,"unit":"light_sound","unitShort":"Leo/need"},{"idx":13,"hex":"#88DD44","label":"MORE MORE JUMP！","sub":"MMJ！","source":"unit","unit":"idol"},{"idx":14,"hex":"#99EEDD","label":"日野森雫","sub":"Shizuku","source":"character","characterId":8,"unit":"idol","unitShort":"MMJ！"},{"idx":15,"hex":"#FF7722","label":"东云彰人","sub":"Akito","source":"character","characterId":11,"unit":"street","unitShort":"VBS"},{"idx":16,"hex":"#FF66BB","label":"凤笑梦","sub":"Emu","source":"character","characterId":14,"unit":"theme_park","unitShort":"W×S"},{"idx":17,"hex":"#BB6688","label":"宵崎奏","sub":"Kanade","source":"character","characterId":17,"unit":"school_refusal","unitShort":"25时"},{"idx":18,"hex":"#FFBBCC","label":"巡音流歌","sub":"Luka","source":"virtual_singer","characterId":24},{"idx":19,"hex":"#FFDD44","label":"天马咲希","sub":"Saki","source":"character","characterId":2,"unit":"light_sound","unitShort":"Leo/need"},{"idx":20,"hex":"#FFCCAA","label":"花里实乃理","sub":"Minori","source":"character","characterId":5,"unit":"idol","unitShort":"MMJ！"},{"idx":21,"hex":"#EE1166","label":"Vivid BAD SQUAD","sub":"VBS","source":"unit","unit":"street"},{"idx":22,"hex":"#0077DD","label":"青柳冬弥","sub":"Toya","source":"character","characterId":12,"unit":"street","unitShort":"VBS"},{"idx":23,"hex":"#33DD99","label":"草薙宁宁","sub":"Nene","source":"character","characterId":15,"unit":"theme_park","unitShort":"W×S"},{"idx":24,"hex":"#8888CC","label":"朝比奈真冬","sub":"Mafuyu","source":"character","characterId":18,"unit":"school_refusal","unitShort":"25时"},{"idx":25,"hex":"#3366CC","label":"KAITO","sub":"Kaito","source":"virtual_singer","characterId":26},{"idx":26,"hex":"#DD4444","label":"MEIKO","sub":"Meiko","source":"virtual_singer","characterId":25},{"idx":27,"hex":"#EE6666","label":"望月穗波","sub":"Honami","source":"character","characterId":3,"unit":"light_sound","unitShort":"Leo/need"},{"idx":28,"hex":"#99CCFF","label":"桐谷遥","sub":"Haruka","source":"character","characterId":6,"unit":"idol","unitShort":"MMJ！"},{"idx":29,"hex":"#FF6699","label":"小豆泽心羽","sub":"Kohane","source":"character","characterId":9,"unit":"street","unitShort":"VBS"},{"idx":30,"hex":"#FF9900","label":"Wonderlands×Showtime","sub":"W×S","source":"unit","unit":"theme_park"},{"idx":31,"hex":"#BB88EE","label":"神代类","sub":"Rui","source":"character","characterId":16,"unit":"theme_park","unitShort":"W×S"},{"idx":32,"hex":"#CCAA88","label":"东云绘名","sub":"Ena","source":"character","characterId":19,"unit":"school_refusal","unitShort":"25时"}]}</script>
   <script>
 (() => {
   "use strict";
@@ -2128,6 +2261,20 @@ dialog::backdrop {
     "#3366CC", "#DD4444", "#EE6666", "#99CCFF", "#FF6699", "#FF9900", "#BB88EE", "#CCAA88",
   ];
 
+  // 颜色名称：33 格 = 20 角色 + 6 虚拟歌手 + 5 组合 + 白 + 近黑（数据见 data/palette-names.json）
+  const PALETTE_NAMES = (() => {
+    try {
+      const raw = document.getElementById("paletteNames");
+      const data = raw ? JSON.parse(raw.textContent) : null;
+      if (data && Array.isArray(data.colors) && data.colors.length === PALETTE.length) {
+        return data.colors;
+      }
+    } catch {
+      /* 忽略，回退到纯色值显示 */
+    }
+    return PALETTE.map((hex) => ({ hex, label: hex, sub: "", source: "none" }));
+  })();
+
   const PALETTE_RGB = PALETTE.map((hex) => [
     parseInt(hex.slice(1, 3), 16),
     parseInt(hex.slice(3, 5), 16),
@@ -2141,6 +2288,8 @@ dialog::backdrop {
     grid: 6,
     guides: true,
     view: "mapped",
+    focus: null,
+    lastUsage: null,
   };
 
   const els = {
@@ -2159,6 +2308,8 @@ dialog::backdrop {
     gridMode: $("gridMode"),
     guidesToggle: $("guidesToggle"),
     canvasSize: $("canvasSize"),
+    pickReadout: $("pickReadout"),
+    legendGrid: $("legendGrid"),
   };
 
   const ctx = els.canvas.getContext("2d", { willReadFrequently: true });
@@ -2355,6 +2506,8 @@ dialog::backdrop {
       ctx.moveTo(CANVAS_W / 2, 0);
       ctx.lineTo(CANVAS_W / 2, CANVAS_H);
       ctx.stroke();
+    } else if (state.focus !== null) {
+      ctx.drawImage(focusOverlay(mapped), 0, 0);
     } else {
       ctx.drawImage(drawMapped(mapped), 0, 0);
     }
@@ -2362,7 +2515,35 @@ dialog::backdrop {
     if (state.grid) drawGrid(ctx);
     ctx.restore();
 
+    state.lastUsage = mapped.usage;
     renderPaletteUsage(mapped.usage);
+  }
+
+  // 只显示选中的颜色，其余压成浅灰，方便定位「这块到底是哪个色」
+  let focusCache = { key: null, canvas: null };
+  function focusOverlay(mapped) {
+    const key = `${state.focus}|${state.fit}`;
+    if (focusCache.key === key) return focusCache.canvas;
+    const canvas = document.createElement("canvas");
+    canvas.width = CANVAS_W;
+    canvas.height = CANVAS_H;
+    const context = canvas.getContext("2d");
+    const img = context.createImageData(CANVAS_W, CANVAS_H);
+    const src = mapped.data.data;
+    const dst = img.data;
+    const [fr, fg, fb] = PALETTE_RGB[state.focus];
+    for (let i = 0; i < src.length; i += 4) {
+      const match = src[i] === fr && src[i + 1] === fg && src[i + 2] === fb;
+      if (match) {
+        dst[i] = src[i]; dst[i + 1] = src[i + 1]; dst[i + 2] = src[i + 2];
+      } else {
+        dst[i] = 235; dst[i + 1] = 240; dst[i + 2] = 240;
+      }
+      dst[i + 3] = 255;
+    }
+    context.putImageData(img, 0, 0);
+    focusCache = { key, canvas };
+    return canvas;
   }
 
   let mappedCache = null;
@@ -2389,11 +2570,19 @@ dialog::backdrop {
     for (const row of rows) {
       const line = document.createElement("div");
       line.className = "palette-row";
+      const info = PALETTE_NAMES[row.index] || { label: PALETTE[row.index], sub: "" };
+      line.dataset.index = String(row.index);
+      line.title = `${info.label}${info.sub ? ` / ${info.sub}` : ""}　${PALETTE[row.index]}`;
+      line.classList.toggle("is-focus", state.focus === row.index);
+      line.addEventListener("click", () => {
+        state.focus = state.focus === row.index ? null : row.index;
+        render();
+      });
       const swatch = document.createElement("i");
       swatch.className = "palette-dot";
       swatch.style.background = PALETTE[row.index];
       const name = document.createElement("code");
-      name.textContent = PALETTE[row.index];
+      name.textContent = info.label || PALETTE[row.index];
       const bar = document.createElement("span");
       bar.className = "palette-bar";
       const fill = document.createElement("b");
@@ -2409,6 +2598,73 @@ dialog::backdrop {
     note.className = "field-note";
     note.textContent = `共用到 ${usage.filter((c) => c > 0).length} 种颜色。占比越高越适合用大图形铺，占比低的零碎色块建议用文字拼。`;
     els.paletteUsage.append(note);
+  }
+
+  /* ---------- 颜色定位 ---------- */
+  function showPick(index, pct) {
+    const info = PALETTE_NAMES[index] || { label: PALETTE[index], sub: "" };
+    els.pickReadout.hidden = false;
+    els.pickReadout.replaceChildren();
+    const dot = document.createElement("i");
+    dot.style.background = PALETTE[index];
+    const main = document.createElement("strong");
+    main.textContent = info.label || PALETTE[index];
+    const meta = document.createElement("span");
+    meta.textContent = `${info.sub ? info.sub + " · " : ""}${PALETTE[index]}${pct != null ? `　占 ${pct.toFixed(1)}%` : ""}`;
+    const hint = document.createElement("em");
+    hint.textContent = "再点一次画布取消高亮";
+    els.pickReadout.append(dot, main, meta, hint);
+  }
+
+  function buildLegend() {
+    if (!els.legendGrid) return;
+    els.legendGrid.replaceChildren();
+    PALETTE_NAMES.forEach((info, index) => {
+      const item = document.createElement("button");
+      item.type = "button";
+      item.className = "legend-item";
+      item.title = `${info.label}　${PALETTE[index]}`;
+      const dot = document.createElement("i");
+      dot.style.background = PALETTE[index];
+      const label = document.createElement("span");
+      label.textContent = info.label || PALETTE[index];
+      item.append(dot, label);
+      item.addEventListener("click", () => {
+        state.focus = state.focus === index ? null : index;
+        if (state.focus !== null) showPick(index, usagePct(index));
+        else els.pickReadout.hidden = true;
+        if (state.image) render();
+      });
+      els.legendGrid.append(item);
+    });
+  }
+
+  function usagePct(index) {
+    const usage = state.lastUsage;
+    if (!usage) return null;
+    const total = usage.reduce((a, b) => a + b, 0) || 1;
+    return (usage[index] / total) * 100;
+  }
+
+  function pickAt(event) {
+    if (!state.image) return;
+    const rect = els.canvas.getBoundingClientRect();
+    const x = Math.floor(((event.clientX - rect.left) / rect.width) * CANVAS_W);
+    const y = Math.floor(((event.clientY - rect.top) / rect.height) * CANVAS_H);
+    if (x < 0 || y < 0 || x >= CANVAS_W || y >= CANVAS_H) return;
+    const mapped = mappedImageData();
+    const offset = (y * CANVAS_W + x) * 4;
+    const data = mapped.data.data;
+    const target = [data[offset], data[offset + 1], data[offset + 2]];
+    const index = PALETTE_RGB.findIndex(([r, g, b]) => r === target[0] && g === target[1] && b === target[2]);
+    if (index < 0) return;
+    state.focus = state.focus === index ? null : index;
+    if (state.focus === null) {
+      els.pickReadout.hidden = true;
+    } else {
+      showPick(index, usagePct(index));
+    }
+    render();
   }
 
   /* ---------- 文件读取 ---------- */
@@ -2504,6 +2760,8 @@ dialog::backdrop {
       if (state.image) render();
     });
 
+    els.canvas.addEventListener("click", pickAt);
+
     els.exportBtn.addEventListener("click", () => {
       if (!state.image) return;
       els.canvas.toBlob((blob) => {
@@ -2547,6 +2805,7 @@ dialog::backdrop {
   function main() {
     els.canvasSize.textContent = `${CANVAS_W}×${CANVAS_H}`;
     bindEvents();
+    buildLegend();
   }
 
   if (document.readyState === "loading") {

@@ -85,11 +85,33 @@
 | 透明度 | 图形支持；**文字不支持** |
 | 坐标 | **不显示**，只有边缘吸附 / 中轴对齐 / 90° 旋转 |
 
+### 颜色定位与命名
+
+33 格调色板并不是随手取的颜色，而是**官方代表色**：
+
+| 来源 | 数量 |
+| --- | --- |
+| 20 位原创角色代表色 | 20 |
+| 6 位虚拟歌手代表色（Miku / Rin / Len / Luka / MEIKO / KAITO） | 6 |
+| 5 个组合代表色（Leo/need / MMJ！ / VBS / W×S / 25时） | 5 |
+| 纯白 + 近黑（`#444466`） | 2 |
+
+**33 格与官方色值一一对应，无误差**。因此工具里不再显示 `#BB88EE` 这类编码，而是直接显示角色名，例如 `#BB88EE` = 神代类。
+
+- 完整对照表：[`assets/palette-names.md`](assets/palette-names.md)
+- 数据文件：`data/palette-names.json`
+- 生成脚本：`python -X utf8 tools/build_palette_names.py`（读 master DB 的 `gameCharacters` / `gameCharacterUnits` / `unitProfiles`）
+
+定位颜色的两种方式：
+
+1. **点画布取色**：点任意位置，读出该处的颜色名、色值和占比，同时把它高亮（其余压成灰色）
+2. **点用色行或图例**：同一颜色再点一次取消高亮
+
 ### 已知限制与路线
 
 受「150 层 + 6 种图形 + 33 色 + 文字无透明度」限制，照片无法精确还原，目标是**主体可辨、构图与配色神似**。
 
-- ✅ 阶段 1（当前）：参考图 + 网格 + 配色用量
+- ✅ 阶段 1（当前）：参考图 + 网格 + 配色用量 + 颜色命名与取色定位
 - ⏳ 阶段 2：自动分层求解（图形骨架）+ 施工单导出
 - ⏳ 阶段 3：文字当笔刷 + 图层预算优化
 
@@ -323,6 +345,11 @@ python tools/build_site.py
 | `data/music_aliases.json` | 别名原始快照（来源 pjsk.moe / Team-Haruki）|
 | `data/profile-spec.json` | 名片编辑器规格（画布 / 调色板 / 图形 / 图层实测值）|
 | `assets/profile/` | 名片规格原始截图与说明 |
+| `assets/palette-names.md` | 33 色 ↔ 角色 / 组合名称对照表 |
+| `data/palette-names.json` | 对照表数据（页面内嵌用）|
+| `data/gameCharacters.json` 等 | 官方代表色原始数据 |
+| `tools/build_palette_names.py` | 生成对照表的脚本 |
+| `assets/profile/color-tag-test.md` | 游戏内富文本颜色标签测试方案 |
 | `pjsk-draw.zip` | 打包文件：两个成品 + `_worker.js` + 说明 + 可选构建源码 |
 
 两个页面都只需要各自的 HTML 就能运行；`src/`、`tools/`、`data/` 是维护用的源文件，不影响部署。
