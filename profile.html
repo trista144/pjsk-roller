@@ -2229,6 +2229,50 @@ dialog::backdrop {
   background: #f1eafd;
 }
 
+
+/* ---------- 分段复制 ---------- */
+.pixel-chunks {
+  display: grid;
+  gap: 4px;
+  margin: 6px 0 8px;
+}
+
+.chunk-head {
+  margin: 0 0 4px;
+  color: #7d9599;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.chunk-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 9px;
+  border: 1px solid #e8f2f0;
+  border-radius: 8px;
+  background: #fbfefd;
+  color: #55707a;
+  font-size: 10px;
+}
+
+.chunk-copy {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border: 1px solid #bfe6df;
+  border-radius: 7px;
+  color: #0f8f84;
+  background: #f0fbf8;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.chunk-copy:hover {
+  background: #e4f7f3;
+}
+
   </style>
 </head>
 <body>
@@ -2378,11 +2422,21 @@ dialog::backdrop {
             <option value="■">■ 小方块</option>
           </select>
         </label>
+        <label class="select-row">
+          <span>单段</span>
+          <select id="pixelBudget">
+            <option value="2000">2000 字符 / 段</option>
+            <option value="4000" selected>4000 字符 / 段</option>
+            <option value="8000">8000 字符 / 段</option>
+            <option value="0">不限制（可能粘不进去）</option>
+          </select>
+        </label>
         <div class="chip-row">
           <button type="button" id="pixelBuild">生成像素画</button>
-          <button type="button" id="pixelCopy">复制富文本</button>
+          <button type="button" id="pixelCopy">复制全文</button>
         </div>
         <p class="pixel-meta" id="pixelMeta">还没有生成。</p>
+        <div class="pixel-chunks" id="pixelChunks"></div>
         <textarea id="pixelOutput" class="pixel-output" readonly rows="6" spellcheck="false" placeholder="生成后这里会出现可粘贴的富文本"></textarea>
         <p class="field-note">粘贴进游戏文本框后，把字号设成建议值、行距调到「刚好不覆盖」，就能得到无缝色块。整幅画只占 <strong>1 个图层</strong>。</p>
 
@@ -2470,6 +2524,8 @@ dialog::backdrop {
     pixelColors: 0,
     pixelChar: "█",
     pixelText: "",
+    pixelBudget: 4000,
+    pixelChunks: [],
   };
 
   const els = {
@@ -2974,6 +3030,27 @@ dialog::backdrop {
       }
       lines.push(line);
     }
+    // 按「整行」切段：绝不在行中间断开，否则后续行会整体错位
+    const budget = state.pixelBudget > 0 ? state.pixelBudget : Infinity;
+    const chunks = [];
+    let current = [];
+    let currentLen = 0;
+    let chunkStart = 0;
+    for (let i = 0; i < lines.length; i += 1) {
+      const piece = lines[i].length + (current.length ? 1 : 0);
+      if (current.length && currentLen + piece > budget) {
+        chunks.push({ text: current.join("\n"), from: chunkStart + 1, to: i, chars: currentLen });
+        current = [];
+        currentLen = 0;
+        chunkStart = i;
+      }
+      currentLen += current.length ? piece : lines[i].length;
+      current.push(lines[i]);
+    }
+    if (current.length) {
+      chunks.push({ text: current.join("\n"), from: chunkStart + 1, to: lines.length, chars: currentLen });
+    }
+
     const text = lines.join("\n");
 
     // 建议的游戏内参数：字号 ≈ 单格高度，行距用「刚好不覆盖」
@@ -2986,11 +3063,75 @@ dialog::backdrop {
       fontSize: Math.round(cellH),
       sizePct,
       colors: palette ? palette.length : new Set(hexes).size,
+      chunks,
+      truncated: chunks.length > 1,
     };
     state.pixelText = text;
+    state.pixelChunks = chunks;
     state.pixelInfo = info;
     state.pixelGridCache = { hexes, cols, rows };
     return info;
+  }
+
+  function copyText(text, button, label) {
+    const done = () => {
+      const old = button.textContent;
+      button.textContent = "已复制 ✓";
+      window.setTimeout(() => { button.textContent = old || label || "复制"; }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+    } else {
+      fallbackCopy(text, done);
+    }
+  }
+
+  function fallbackCopy(text, done) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.append(ta);
+    ta.select();
+    try {
+      document.execCommand("copy");
+      done();
+    } catch {
+      /* 忽略 */
+    }
+    ta.remove();
+  }
+
+  function renderChunks(chunks) {
+    const box = $("pixelChunks");
+    if (!box) return;
+    box.replaceChildren();
+    if (!chunks || chunks.length <= 1) {
+      const p = document.createElement("p");
+      p.className = "field-note";
+      p.textContent = chunks && chunks.length === 1
+        ? "整幅画可以一次粘贴，不用分段。"
+        : "生成后这里会按行切段。";
+      box.append(p);
+      return;
+    }
+    const head = document.createElement("p");
+    head.className = "chunk-head";
+    head.textContent = `共 ${chunks.length} 段：每段粘到一个独立文本框，字号与行距保持一致，左边缘对齐后依次往下排。`;
+    box.append(head);
+    chunks.forEach((chunk, index) => {
+      const row = document.createElement("div");
+      row.className = "chunk-row";
+      const label = document.createElement("span");
+      label.textContent = `第 ${index + 1} 段 · 行 ${chunk.from}–${chunk.to} · ${chunk.chars} 字符`;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "chunk-copy";
+      btn.textContent = "复制";
+      btn.addEventListener("click", () => copyText(chunk.text, btn, "复制"));
+      row.append(label, btn);
+      box.append(row);
+    });
   }
 
   function renderPixelPreview(context) {
@@ -3222,11 +3363,19 @@ dialog::backdrop {
       if (!state.image) return;
       if (rebuild) {
         const info = buildPixelArt();
-        if (pixelOutput) pixelOutput.value = state.pixelText;
+            if (pixelOutput) pixelOutput.value = state.pixelText;
+        renderChunks(info.chunks);
         if (pixelMeta) {
+          const tips = [];
+          if (info.colors > 150) tips.push("颜色偏多，降到 16–24 色能把字符数砍掉一大半");
+          if (info.chunks.length > 12) tips.push("分段较多，建议降低列数");
+          if (tips.length) pixelMeta.dataset.tip = tips.join("；");
+          else delete pixelMeta.dataset.tip;
           pixelMeta.textContent =
             `${info.cols}×${info.rows} 格 · ${info.colors} 色 · ${info.runs} 个颜色段 · ${info.chars} 字符　` +
-            `建议字号 ≈ ${info.fontSize}px（<size=${info.sizePct}%>）· 行距调到「刚好不覆盖」`;
+            `建议字号 ≈ ${info.fontSize}px（<size=${info.sizePct}%>）· 行距调到「刚好不覆盖」` +
+            (info.chunks.length > 1 ? ` · 需分 ${info.chunks.length} 段粘贴` : "") +
+            (tips.length ? `　⚠ ${tips.join("；")}` : "");
         }
       }
       if (state.view === "pixel") render();
@@ -3265,23 +3414,27 @@ dialog::backdrop {
         refreshPixel(true);
       });
     }
+    const pixelBudget = $("pixelBudget");
+    if (pixelBudget) {
+      pixelBudget.addEventListener("change", () => {
+        state.pixelBudget = Number(pixelBudget.value);
+        refreshPixel(true);
+      });
+    }
+
     if (pixelCopy) {
       pixelCopy.addEventListener("click", async () => {
         if (!state.pixelText) {
           els.statusHint.textContent = "先点「生成像素画」。";
           return;
         }
-        try {
-          await navigator.clipboard.writeText(state.pixelText);
-          pixelCopy.textContent = "已复制 ✓";
-        } catch {
-          if (pixelOutput) {
-            pixelOutput.select();
-            document.execCommand("copy");
-            pixelCopy.textContent = "已复制 ✓";
-          }
+        const chunks = state.pixelChunks || [];
+        if (chunks.length > 1) {
+          els.statusHint.textContent =
+            `全文 ${state.pixelText.length} 字符，超过单段上限，请用下面的分段按钮逐段复制。`;
+          return;
         }
-        window.setTimeout(() => { pixelCopy.textContent = "复制富文本"; }, 1800);
+        copyText(state.pixelText, pixelCopy, "复制富文本");
       });
     }
 
