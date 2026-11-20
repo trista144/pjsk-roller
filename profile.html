@@ -2185,6 +2185,50 @@ dialog::backdrop {
   cursor: grabbing;
 }
 
+
+/* ---------- 字符像素画 ---------- */
+.pixel-meta {
+  margin: 8px 0;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: #f2faf8;
+  color: #4f807c;
+  font-size: 10px;
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+.pixel-output {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #e2efec;
+  border-radius: 10px;
+  background: #fbfefd;
+  color: #4c6669;
+  font: 10px/1.5 ui-monospace, Consolas, monospace;
+  resize: vertical;
+}
+
+#pixelBuild {
+  border-color: #bfe6df;
+  color: #0f8f84;
+  background: #f0fbf8;
+}
+
+#pixelBuild:hover {
+  background: #e4f7f3;
+}
+
+#pixelCopy {
+  border-color: #e3d3f2;
+  color: #6f57a8;
+  background: #f9f5fe;
+}
+
+#pixelCopy:hover {
+  background: #f1eafd;
+}
+
   </style>
 </head>
 <body>
@@ -2220,6 +2264,7 @@ dialog::backdrop {
             <button type="button" data-view="mapped" class="is-on">33 色</button>
             <button type="button" data-view="original">原图</button>
             <button type="button" data-view="split">对比</button>
+            <button type="button" data-view="pixel">像素画</button>
           </div>
         </div>
 
@@ -2269,6 +2314,11 @@ dialog::backdrop {
           <input type="range" id="zoomRange" min="1" max="4" step="0.05" value="1">
           <em id="zoomValue">1.0×</em>
         </label>
+        <label class="slider-row">
+          <span>角度</span>
+          <input type="range" id="rotateRange" min="-180" max="180" step="1" value="0">
+          <em id="rotateValue">0°</em>
+        </label>
         <p class="field-note">在预览图上<strong>按住拖动可以平移</strong>，用来把想表现的主体挪到画布中间；单击仍是取色。</p>
 
         <h3>背景简化</h3>
@@ -2304,6 +2354,37 @@ dialog::backdrop {
           <span>显示边缘 / 中轴吸附区</span>
         </label>
         <p class="field-note">游戏里打开「操作辅助」后能边缘吸附、中轴对齐，把元素放在这些线附近最省事。</p>
+
+        <h3>字符像素画</h3>
+        <label class="slider-row">
+          <span>列数</span>
+          <input type="range" id="pixelCols" min="36" max="117" step="9" value="54">
+          <em id="pixelColsValue">54×24</em>
+        </label>
+        <label class="select-row">
+          <span>颜色</span>
+          <select id="pixelColors">
+            <option value="0">原色（最准，标签最多）</option>
+            <option value="16">16 色</option>
+            <option value="24">24 色</option>
+            <option value="33">33 色（对齐游戏调色板）</option>
+          </select>
+        </label>
+        <label class="select-row">
+          <span>字符</span>
+          <select id="pixelChar">
+            <option value="█">█ 全块（标准）</option>
+            <option value="▓">▓ 密纹（次级纹理）</option>
+            <option value="■">■ 小方块</option>
+          </select>
+        </label>
+        <div class="chip-row">
+          <button type="button" id="pixelBuild">生成像素画</button>
+          <button type="button" id="pixelCopy">复制富文本</button>
+        </div>
+        <p class="pixel-meta" id="pixelMeta">还没有生成。</p>
+        <textarea id="pixelOutput" class="pixel-output" readonly rows="6" spellcheck="false" placeholder="生成后这里会出现可粘贴的富文本"></textarea>
+        <p class="field-note">粘贴进游戏文本框后，把字号设成建议值、行距调到「刚好不覆盖」，就能得到无缝色块。整幅画只占 <strong>1 个图层</strong>。</p>
 
         <h3>全部 33 色</h3>
         <details class="palette-legend" id="paletteLegend">
@@ -2385,6 +2466,10 @@ dialog::backdrop {
     bgSimplify: false,
     bgTolerance: 26,
     bgColor: "#FFFFFF",
+    pixelCols: 54,
+    pixelColors: 0,
+    pixelChar: "█",
+    pixelText: "",
   };
 
   const els = {
@@ -2665,7 +2750,10 @@ dialog::backdrop {
     ctx.save();
     drawRoundedRect(ctx, 0, 0, CANVAS_W, CANVAS_H, CANVAS_RADIUS);
     ctx.clip();
-    if (state.view === "original") {
+    if (state.view === "pixel") {
+      if (!state.pixelGridCache) buildPixelArt();
+      renderPixelPreview(ctx);
+    } else if (state.view === "original") {
       ctx.drawImage(original, 0, 0);
     } else if (state.view === "split") {
       ctx.drawImage(mapped.canvas || drawMapped(mapped), 0, 0);
@@ -2768,6 +2856,155 @@ dialog::backdrop {
     note.className = "field-note";
     note.textContent = `共用到 ${usage.filter((c) => c > 0).length} 种颜色。占比越高越适合用大图形铺，占比低的零碎色块建议用文字拼。`;
     els.paletteUsage.append(note);
+  }
+
+  /* ---------- 字符像素画 ---------- */
+  // 画布 1800×800 = 9:4，方块字符是 1:1，
+  // 所以列数取 9 的倍数时，行数 = 列数 × 4/9，格子正好是正方形、且铺满画布。
+  const PIXEL_STEP = 9;
+
+  function pixelGrid(cols) {
+    const c = Math.max(PIXEL_STEP, Math.round(cols / PIXEL_STEP) * PIXEL_STEP);
+    return { cols: c, rows: Math.round((c * 4) / 9) };
+  }
+
+  function sampleGrid(cols, rows) {
+    const base = buildBase();
+    const context = base.getContext("2d", { willReadFrequently: true });
+    const data = context.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
+    const cellW = CANVAS_W / cols;
+    const cellH = CANVAS_H / rows;
+    const out = [];
+    for (let ry = 0; ry < rows; ry += 1) {
+      for (let rx = 0; rx < cols; rx += 1) {
+        // 只取格子中心 60% 的区域，避免相邻格互相污染
+        const x0 = Math.floor(rx * cellW + cellW * 0.2);
+        const x1 = Math.max(x0 + 1, Math.floor(rx * cellW + cellW * 0.8));
+        const y0 = Math.floor(ry * cellH + cellH * 0.2);
+        const y1 = Math.max(y0 + 1, Math.floor(ry * cellH + cellH * 0.8));
+        let r = 0, g = 0, b = 0, n = 0;
+        const stepX = Math.max(1, Math.floor((x1 - x0) / 6));
+        const stepY = Math.max(1, Math.floor((y1 - y0) / 6));
+        for (let y = y0; y < y1; y += stepY) {
+          for (let x = x0; x < x1; x += stepX) {
+            const i = (y * CANVAS_W + x) * 4;
+            r += data[i]; g += data[i + 1]; b += data[i + 2]; n += 1;
+          }
+        }
+        out.push([Math.round(r / n), Math.round(g / n), Math.round(b / n)]);
+      }
+    }
+    return out;
+  }
+
+  // k-means 减色：颜色越少，同色连续段越长，标签也越省
+  function kmeansColors(points, k, iterations = 8) {
+    if (k >= points.length) return points.slice();
+    // 均匀取初始中心
+    const centers = [];
+    for (let i = 0; i < k; i += 1) {
+      centers.push(points[Math.floor((i + 0.5) * points.length / k)].slice());
+    }
+    const assign = new Array(points.length).fill(0);
+    for (let it = 0; it < iterations; it += 1) {
+      for (let i = 0; i < points.length; i += 1) {
+        const [r, g, b] = points[i];
+        let best = 0, bestD = Infinity;
+        for (let c = 0; c < centers.length; c += 1) {
+          const [cr, cg, cb] = centers[c];
+          const d = (r - cr) ** 2 + (g - cg) ** 2 + (b - cb) ** 2;
+          if (d < bestD) { bestD = d; best = c; }
+        }
+        assign[i] = best;
+      }
+      const sums = centers.map(() => [0, 0, 0, 0]);
+      for (let i = 0; i < points.length; i += 1) {
+        const a = assign[i];
+        sums[a][0] += points[i][0];
+        sums[a][1] += points[i][1];
+        sums[a][2] += points[i][2];
+        sums[a][3] += 1;
+      }
+      for (let c = 0; c < centers.length; c += 1) {
+        if (sums[c][3]) {
+          centers[c] = [
+            Math.round(sums[c][0] / sums[c][3]),
+            Math.round(sums[c][1] / sums[c][3]),
+            Math.round(sums[c][2] / sums[c][3]),
+          ];
+        }
+      }
+    }
+    return centers;
+  }
+
+  function toHex(rgb) {
+    return "#" + rgb.map((v) => Math.max(0, Math.min(255, v)).toString(16).padStart(2, "0")).join("");
+  }
+
+  // 生成富文本：每行做游程压缩，同色连续格只写一个颜色标签
+  function buildPixelArt() {
+    const { cols, rows } = pixelGrid(state.pixelCols);
+    const cells = sampleGrid(cols, rows);
+    let palette = null;
+    if (state.pixelColors > 0) palette = kmeansColors(cells, state.pixelColors);
+    const hexes = cells.map((rgb) => {
+      if (!palette) return toHex(rgb);
+      let best = palette[0], bestD = Infinity;
+      for (const c of palette) {
+        const d = (rgb[0] - c[0]) ** 2 + (rgb[1] - c[1]) ** 2 + (rgb[2] - c[2]) ** 2;
+        if (d < bestD) { bestD = d; best = c; }
+      }
+      return toHex(best);
+    });
+
+    const char = state.pixelChar || "█";
+    const lines = [];
+    let runs = 0;
+    for (let ry = 0; ry < rows; ry += 1) {
+      let line = "";
+      let start = ry * cols;
+      while (start < (ry + 1) * cols) {
+        const hex = hexes[start];
+        let end = start;
+        while (end < (ry + 1) * cols && hexes[end] === hex) end += 1;
+        line += `<${hex}>` + char.repeat(end - start);
+        runs += 1;
+        start = end;
+      }
+      lines.push(line);
+    }
+    const text = lines.join("\n");
+
+    // 建议的游戏内参数：字号 ≈ 单格高度，行距用「刚好不覆盖」
+    const cellH = CANVAS_H / rows;
+    const sizePct = Math.round((cellH / 174) * 100);
+    const info = {
+      cols, rows, cells: cols * rows, runs,
+      chars: text.length,
+      cellPx: Math.round(cellH * 10) / 10,
+      fontSize: Math.round(cellH),
+      sizePct,
+      colors: palette ? palette.length : new Set(hexes).size,
+    };
+    state.pixelText = text;
+    state.pixelInfo = info;
+    state.pixelGridCache = { hexes, cols, rows };
+    return info;
+  }
+
+  function renderPixelPreview(context) {
+    const cache = state.pixelGridCache;
+    if (!cache) return;
+    const { hexes, cols, rows } = cache;
+    const cellW = CANVAS_W / cols;
+    const cellH = CANVAS_H / rows;
+    for (let ry = 0; ry < rows; ry += 1) {
+      for (let rx = 0; rx < cols; rx += 1) {
+        context.fillStyle = hexes[ry * cols + rx];
+        context.fillRect(rx * cellW, ry * cellH, Math.ceil(cellW), Math.ceil(cellH));
+      }
+    }
   }
 
   /* ---------- 颜色定位 ---------- */
@@ -2971,6 +3208,83 @@ dialog::backdrop {
 
     els.canvas.addEventListener("pointerdown", onPointerDown);
 
+    // 像素画控件
+    const pixelCols = $("pixelCols");
+    const pixelColsValue = $("pixelColsValue");
+    const pixelColors = $("pixelColors");
+    const pixelChar = $("pixelChar");
+    const pixelBuild = $("pixelBuild");
+    const pixelCopy = $("pixelCopy");
+    const pixelOutput = $("pixelOutput");
+    const pixelMeta = $("pixelMeta");
+
+    function refreshPixel(rebuild) {
+      if (!state.image) return;
+      if (rebuild) {
+        const info = buildPixelArt();
+        if (pixelOutput) pixelOutput.value = state.pixelText;
+        if (pixelMeta) {
+          pixelMeta.textContent =
+            `${info.cols}×${info.rows} 格 · ${info.colors} 色 · ${info.runs} 个颜色段 · ${info.chars} 字符　` +
+            `建议字号 ≈ ${info.fontSize}px（<size=${info.sizePct}%>）· 行距调到「刚好不覆盖」`;
+        }
+      }
+      if (state.view === "pixel") render();
+    }
+
+    if (pixelCols) {
+      pixelCols.addEventListener("input", () => {
+        state.pixelCols = Number(pixelCols.value);
+        const g = pixelGrid(state.pixelCols);
+        if (pixelColsValue) pixelColsValue.textContent = `${g.cols}×${g.rows}`;
+        state.pixelGridCache = null;
+        refreshPixel(true);
+      });
+    }
+    if (pixelColors) {
+      pixelColors.addEventListener("change", () => {
+        state.pixelColors = Number(pixelColors.value);
+        refreshPixel(true);
+      });
+    }
+    if (pixelChar) {
+      pixelChar.addEventListener("change", () => {
+        state.pixelChar = pixelChar.value;
+        refreshPixel(true);
+      });
+    }
+    if (pixelBuild) {
+      pixelBuild.addEventListener("click", () => {
+        if (!state.image) {
+          els.statusHint.textContent = "先上传一张图片。";
+          return;
+        }
+        state.view = "pixel";
+        els.viewMode.querySelectorAll("button").forEach((b) => b.classList.toggle("is-on", b.dataset.view === "pixel"));
+        state.pixelGridCache = null;
+        refreshPixel(true);
+      });
+    }
+    if (pixelCopy) {
+      pixelCopy.addEventListener("click", async () => {
+        if (!state.pixelText) {
+          els.statusHint.textContent = "先点「生成像素画」。";
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(state.pixelText);
+          pixelCopy.textContent = "已复制 ✓";
+        } catch {
+          if (pixelOutput) {
+            pixelOutput.select();
+            document.execCommand("copy");
+            pixelCopy.textContent = "已复制 ✓";
+          }
+        }
+        window.setTimeout(() => { pixelCopy.textContent = "复制富文本"; }, 1800);
+      });
+    }
+
     // 变换控件
     const rotateBtn = $("rotateBtn");
     const flipBtn = $("flipBtn");
@@ -2983,10 +3297,22 @@ dialog::backdrop {
     const bgColorRow = $("bgColorRow");
 
     if (rotateBtn) {
+      const rotateRange = $("rotateRange");
+      const rotateValue = $("rotateValue");
       rotateBtn.addEventListener("click", () => {
         state.rotate = (state.rotate + 90) % 360;
+        if (rotateRange) rotateRange.value = String(state.rotate);
+        if (rotateValue) rotateValue.textContent = `${Math.round(state.rotate)}°`;
         if (state.image) render();
       });
+      if (rotateRange) {
+        rotateRange.addEventListener("input", () => {
+          state.rotate = Number(rotateRange.value);
+          if (rotateValue) rotateValue.textContent = `${state.rotate}°`;
+          state.pixelGridCache = null;
+          if (state.image) render();
+        });
+      }
     }
     if (flipBtn) {
       flipBtn.addEventListener("click", () => {
