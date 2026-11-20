@@ -2415,6 +2415,13 @@ dialog::backdrop {
           </select>
         </label>
         <label class="select-row">
+          <span>精度</span>
+          <select id="pixelMode">
+            <option value="block">标准（1 层，1 格 = 1 色块）</option>
+            <option value="half">半块（2 层，纵向精度 ×2）</option>
+          </select>
+        </label>
+        <label class="select-row">
           <span>字符</span>
           <select id="pixelChar">
             <option value="█">█ 全块（标准）</option>
@@ -2526,6 +2533,7 @@ dialog::backdrop {
     pixelText: "",
     pixelBudget: 4000,
     pixelChunks: [],
+    pixelMode: "block",
   };
 
   const els = {
@@ -2998,10 +3006,16 @@ dialog::backdrop {
     return "#" + rgb.map((v) => Math.max(0, Math.min(255, v)).toString(16).padStart(2, "0")).join("");
   }
 
-  // 生成富文本：每行做游程压缩，同色连续格只写一个颜色标签
+  // 生成富文本。
+  // 标准模式：1 个文本框，1 个字符 = 1 个色块。
+  // 半块模式：2 个文本框叠合 —— 上层用 ▀（上半实心、下半透明），下层用 ▄（下半实心），
+  //           每个文本行因此能表现上下两个色块，纵向精度翻倍。
   function buildPixelArt() {
     const { cols, rows } = pixelGrid(state.pixelCols);
-    const cells = sampleGrid(cols, rows);
+    const half = state.pixelMode === "half";
+    const gridRows = half ? rows * 2 : rows;
+    const cells = sampleGrid(cols, gridRows);
+
     let palette = null;
     if (state.pixelColors > 0) palette = kmeansColors(cells, state.pixelColors);
     const hexes = cells.map((rgb) => {
@@ -3014,124 +3028,164 @@ dialog::backdrop {
       return toHex(best);
     });
 
-    const char = state.pixelChar || "█";
-    const lines = [];
-    let runs = 0;
-    for (let ry = 0; ry < rows; ry += 1) {
-      let line = "";
-      let start = ry * cols;
-      while (start < (ry + 1) * cols) {
-        const hex = hexes[start];
-        let end = start;
-        while (end < (ry + 1) * cols && hexes[end] === hex) end += 1;
-        line += `<${hex}>` + char.repeat(end - start);
-        runs += 1;
-        start = end;
-      }
-      lines.push(line);
-    }
-    // 按「整行」切段：绝不在行中间断开，否则后续行会整体错位
     const budget = state.pixelBudget > 0 ? state.pixelBudget : Infinity;
-    const chunks = [];
-    let current = [];
-    let currentLen = 0;
-    let chunkStart = 0;
-    for (let i = 0; i < lines.length; i += 1) {
-      const piece = lines[i].length + (current.length ? 1 : 0);
-      if (current.length && currentLen + piece > budget) {
-        chunks.push({ text: current.join("\n"), from: chunkStart + 1, to: i, chars: currentLen });
-        current = [];
-        currentLen = 0;
-        chunkStart = i;
+    const char = state.pixelChar || "█";
+
+    // 把「若干条颜色行 + 每条用什么字符」编码成富文本，并按整行切段
+    function encode(rowSpecs) {
+      const lines = [];
+      for (const spec of rowSpecs) {
+        let line = "";
+        let i = 0;
+        while (i < cols) {
+          const hex = spec.hexes[i];
+          let j = i;
+          while (j < cols && spec.hexes[j] === hex) j += 1;
+          line += `<${hex}>` + spec.char.repeat(j - i);
+          i = j;
+        }
+        lines.push(line);
       }
-      currentLen += current.length ? piece : lines[i].length;
-      current.push(lines[i]);
-    }
-    if (current.length) {
-      chunks.push({ text: current.join("\n"), from: chunkStart + 1, to: lines.length, chars: currentLen });
+      const chunks = [];
+      let current = [];
+      let currentLen = 0;
+      let chunkStart = 0;
+      for (let k = 0; k < lines.length; k += 1) {
+        const piece = lines[k].length + (current.length ? 1 : 0);
+        if (current.length && currentLen + piece > budget) {
+          chunks.push({ text: current.join("\n"), from: chunkStart + 1, to: k, chars: currentLen });
+          current = [];
+          currentLen = 0;
+          chunkStart = k;
+        }
+        currentLen += current.length ? piece : lines[k].length;
+        current.push(lines[k]);
+      }
+      if (current.length) {
+        chunks.push({ text: current.join("\n"), from: chunkStart + 1, to: lines.length, chars: currentLen });
+      }
+      return { text: lines.join("\n"), lines, chunks };
     }
 
-    const text = lines.join("\n");
+    const rowOf = (r) => hexes.slice(r * cols, (r + 1) * cols);
 
-    // 建议的游戏内参数：字号 ≈ 单格高度，行距用「刚好不覆盖」
-    const cellH = CANVAS_H / rows;
-    const sizePct = Math.round((cellH / 174) * 100);
+    let layers;
+    if (half) {
+      const topSpecs = [];
+      const bottomSpecs = [];
+      for (let k = 0; k < rows; k += 1) {
+        topSpecs.push({ hexes: rowOf(k * 2), char: "▀" });
+        bottomSpecs.push({ hexes: rowOf(k * 2 + 1), char: "▄" });
+      }
+      layers = [
+        { name: "下层（▄ 下半实心）", ...encode(bottomSpecs), order: 1 },
+        { name: "上层（▀ 上半实心）", ...encode(topSpecs), order: 2 },
+      ];
+    } else {
+      const specs = [];
+      for (let k = 0; k < rows; k += 1) specs.push({ hexes: rowOf(k), char });
+      layers = [{ name: "单层", ...encode(specs), order: 1 }];
+    }
+
+    const totalChunks = layers.reduce((sum, l) => sum + l.chunks.length, 0);
+    const totalChars = layers.reduce((sum, l) => sum + l.text.length, 0);
+    const runs = layers.reduce((sum, l) => sum + l.lines.reduce((n, line) => n + (line.match(/<#/g) || []).length, 0), 0);
+
+    const cellH = CANVAS_H / gridRows;
     const info = {
-      cols, rows, cells: cols * rows, runs,
-      chars: text.length,
+      cols,
+      rows,
+      gridRows,
+      half,
+      layers,
+      cells: cols * gridRows,
+      runs,
+      chars: totalChars,
+      chunks: layers[0].chunks.length,
+      totalChunks,
       cellPx: Math.round(cellH * 10) / 10,
       fontSize: Math.round(cellH),
-      sizePct,
+      sizePct: Math.round((cellH / 174) * 100),
       colors: palette ? palette.length : new Set(hexes).size,
-      chunks,
-      truncated: chunks.length > 1,
     };
-    state.pixelText = text;
-    state.pixelChunks = chunks;
+    state.pixelText = layers.map((l) => l.text).join("\n\n");
+    state.pixelChunks = layers.flatMap((l) => l.chunks.map((c) => ({ ...c, layer: l.name })));
     state.pixelInfo = info;
-    state.pixelGridCache = { hexes, cols, rows };
+    state.pixelGridCache = { hexes, cols, rows: gridRows };
     return info;
   }
 
-  function copyText(text, button, label) {
+  function copyText(text, button) {
     const done = () => {
       const old = button.textContent;
       button.textContent = "已复制 ✓";
-      window.setTimeout(() => { button.textContent = old || label || "复制"; }, 1600);
+      window.setTimeout(() => { button.textContent = old || "复制"; }, 1600);
+    };
+    const fallback = () => {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.append(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+        done();
+      } catch {
+        /* 忽略 */
+      }
+      ta.remove();
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
     } else {
-      fallbackCopy(text, done);
+      fallback();
     }
   }
 
-  function fallbackCopy(text, done) {
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.append(ta);
-    ta.select();
-    try {
-      document.execCommand("copy");
-      done();
-    } catch {
-      /* 忽略 */
-    }
-    ta.remove();
-  }
-
-  function renderChunks(chunks) {
+  function renderChunks(info) {
     const box = $("pixelChunks");
     if (!box) return;
     box.replaceChildren();
-    if (!chunks || chunks.length <= 1) {
+    const layers = info && info.layers ? info.layers : [];
+    if (!layers.length) {
       const p = document.createElement("p");
       p.className = "field-note";
-      p.textContent = chunks && chunks.length === 1
-        ? "整幅画可以一次粘贴，不用分段。"
-        : "生成后这里会按行切段。";
+      p.textContent = "生成后这里会列出每层、每段的复制按钮。";
       box.append(p);
       return;
     }
-    const head = document.createElement("p");
-    head.className = "chunk-head";
-    head.textContent = `共 ${chunks.length} 段：每段粘到一个独立文本框，字号与行距保持一致，左边缘对齐后依次往下排。`;
-    box.append(head);
-    chunks.forEach((chunk, index) => {
-      const row = document.createElement("div");
-      row.className = "chunk-row";
-      const label = document.createElement("span");
-      label.textContent = `第 ${index + 1} 段 · 行 ${chunk.from}–${chunk.to} · ${chunk.chars} 字符`;
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "chunk-copy";
-      btn.textContent = "复制";
-      btn.addEventListener("click", () => copyText(chunk.text, btn, "复制"));
-      row.append(label, btn);
-      box.append(row);
-    });
+    if (info.half) {
+      const tip = document.createElement("p");
+      tip.className = "chunk-head";
+      tip.textContent =
+        "半块模式：先把「下层」放好，再把「上层」叠在同一位置（上层下半透明，会透出下层）。两层的字号、行距、位置必须完全一致。";
+      box.append(tip);
+    }
+    for (const layer of layers) {
+      const title = document.createElement("p");
+      title.className = "chunk-head";
+      const multi = layer.chunks.length > 1;
+      title.textContent =
+        `${layer.name} · 共 ${layer.chunks.length} 段` +
+        (multi ? "：每段一个文本框，字号与行距一致，左边缘对齐后依次下排。" : "：可一次粘贴。");
+      box.append(title);
+      layer.chunks.forEach((chunk, index) => {
+        const row = document.createElement("div");
+        row.className = "chunk-row";
+        const label = document.createElement("span");
+        label.textContent = multi
+          ? `第 ${index + 1} 段 · 行 ${chunk.from}–${chunk.to} · ${chunk.chars} 字符`
+          : `行 ${chunk.from}–${chunk.to} · ${chunk.chars} 字符`;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "chunk-copy";
+        btn.textContent = "复制";
+        btn.addEventListener("click", () => copyText(chunk.text, btn));
+        row.append(label, btn);
+        box.append(row);
+      });
+    }
   }
 
   function renderPixelPreview(context) {
@@ -3364,17 +3418,20 @@ dialog::backdrop {
       if (rebuild) {
         const info = buildPixelArt();
             if (pixelOutput) pixelOutput.value = state.pixelText;
-        renderChunks(info.chunks);
+        renderChunks(info);
         if (pixelMeta) {
           const tips = [];
           if (info.colors > 150) tips.push("颜色偏多，降到 16–24 色能把字符数砍掉一大半");
-          if (info.chunks.length > 12) tips.push("分段较多，建议降低列数");
+          if (info.totalChunks > 12) tips.push("分段较多，建议降低列数");
           if (tips.length) pixelMeta.dataset.tip = tips.join("；");
           else delete pixelMeta.dataset.tip;
+          const gridText = info.half
+            ? `${info.cols}×${info.gridRows} 像素（半块 2 层）`
+            : `${info.cols}×${info.rows} 格`;
           pixelMeta.textContent =
-            `${info.cols}×${info.rows} 格 · ${info.colors} 色 · ${info.runs} 个颜色段 · ${info.chars} 字符　` +
+            `${gridText} · ${info.colors} 色 · ${info.runs} 个颜色段 · ${info.chars} 字符　` +
             `建议字号 ≈ ${info.fontSize}px（<size=${info.sizePct}%>）· 行距调到「刚好不覆盖」` +
-            (info.chunks.length > 1 ? ` · 需分 ${info.chunks.length} 段粘贴` : "") +
+            (info.totalChunks > 2 ? ` · 共 ${info.totalChunks} 段` : "") +
             (tips.length ? `　⚠ ${tips.join("；")}` : "");
         }
       }
@@ -3414,6 +3471,15 @@ dialog::backdrop {
         refreshPixel(true);
       });
     }
+    const pixelMode = $("pixelMode");
+    if (pixelMode) {
+      pixelMode.addEventListener("change", () => {
+        state.pixelMode = pixelMode.value;
+        state.pixelGridCache = null;
+        refreshPixel(true);
+      });
+    }
+
     const pixelBudget = $("pixelBudget");
     if (pixelBudget) {
       pixelBudget.addEventListener("change", () => {
@@ -3429,7 +3495,7 @@ dialog::backdrop {
           return;
         }
         const chunks = state.pixelChunks || [];
-        if (chunks.length > 1) {
+        if (chunks.length > 1 || (state.pixelInfo && state.pixelInfo.half)) {
           els.statusHint.textContent =
             `全文 ${state.pixelText.length} 字符，超过单段上限，请用下面的分段按钮逐段复制。`;
           return;
