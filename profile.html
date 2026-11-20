@@ -2129,6 +2129,62 @@ dialog::backdrop {
   box-shadow: inset 0 0 0 1px #9adfd4;
 }
 
+
+/* ---------- 聚焦与背景简化 ---------- */
+.slider-row,
+.select-row {
+  display: grid;
+  grid-template-columns: 34px 1fr 40px;
+  align-items: center;
+  gap: 8px;
+  margin: 7px 0;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.select-row {
+  grid-template-columns: 34px 1fr;
+}
+
+.slider-row input[type="range"] {
+  width: 100%;
+  accent-color: #14a89b;
+}
+
+.slider-row em {
+  color: #8fa5a8;
+  font-style: normal;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.select-row select {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid #e2efec;
+  border-radius: 9px;
+  background: #fbfefd;
+  color: var(--ink);
+  font-size: 11px;
+}
+
+#bgColorRow {
+  padding: 4px 10px 8px;
+  border: 1px solid #eaf3f1;
+  border-radius: 10px;
+  background: #fbfefd;
+}
+
+.profile-canvas-wrap canvas {
+  cursor: grab;
+  touch-action: none;
+}
+
+.profile-canvas-wrap canvas.is-panning {
+  cursor: grabbing;
+}
+
   </style>
 </head>
 <body>
@@ -2201,6 +2257,37 @@ dialog::backdrop {
           <button type="button" data-fit="cover" class="is-on">填满裁切</button>
           <button type="button" data-fit="contain">完整放入</button>
         </div>
+
+        <h3>聚焦与调整</h3>
+        <div class="chip-row">
+          <button type="button" id="rotateBtn">旋转 90°</button>
+          <button type="button" id="flipBtn">水平翻转</button>
+          <button type="button" id="resetTransform">重置</button>
+        </div>
+        <label class="slider-row">
+          <span>缩放</span>
+          <input type="range" id="zoomRange" min="1" max="4" step="0.05" value="1">
+          <em id="zoomValue">1.0×</em>
+        </label>
+        <p class="field-note">在预览图上<strong>按住拖动可以平移</strong>，用来把想表现的主体挪到画布中间；单击仍是取色。</p>
+
+        <h3>背景简化</h3>
+        <label class="switch-row">
+          <input type="checkbox" id="bgSimplify">
+          <span>去掉与边缘相近的背景色</span>
+        </label>
+        <div id="bgColorRow" hidden>
+          <label class="slider-row">
+            <span>容差</span>
+            <input type="range" id="bgTolerance" min="4" max="80" step="1" value="26">
+            <em id="bgToleranceValue">26</em>
+          </label>
+          <label class="select-row">
+            <span>替换为</span>
+            <select id="bgColorSelect"></select>
+          </label>
+        </div>
+        <p class="field-note">从画面四边向内泛洪，把接近边缘颜色的区域换成选定色。适合纯色或简单渐变的背景；复杂背景请先自行处理。</p>
 
         <h3>网格</h3>
         <div class="chip-row" id="gridMode" role="group" aria-label="网格密度">
@@ -2290,6 +2377,14 @@ dialog::backdrop {
     view: "mapped",
     focus: null,
     lastUsage: null,
+    zoom: 1,
+    panX: 0,
+    panY: 0,
+    rotate: 0,
+    flip: false,
+    bgSimplify: false,
+    bgTolerance: 26,
+    bgColor: "#FFFFFF",
   };
 
   const els = {
@@ -2350,44 +2445,125 @@ dialog::backdrop {
     context.closePath();
   }
 
+  // 按「缩放方式 × 用户缩放 × 平移 × 旋转 × 翻转」把图画进画布
   function drawImageCover(context) {
     const img = state.image;
     if (!img) return;
-    const scale =
-      state.fit === "cover"
-        ? Math.max(CANVAS_W / img.width, CANVAS_H / img.height)
-        : Math.min(CANVAS_W / img.width, CANVAS_H / img.height);
-    const w = img.width * scale;
-    const h = img.height * scale;
-    const x = (CANVAS_W - w) / 2;
-    const y = (CANVAS_H - h) / 2;
+    const cover = Math.max(CANVAS_W / img.width, CANVAS_H / img.height);
+    const contain = Math.min(CANVAS_W / img.width, CANVAS_H / img.height);
+    const scale = (state.fit === "cover" ? cover : contain) * state.zoom;
+    context.save();
+    context.translate(CANVAS_W / 2 + state.panX, CANVAS_H / 2 + state.panY);
+    context.rotate((state.rotate * Math.PI) / 180);
+    context.scale(state.flip ? -scale : scale, scale);
     context.imageSmoothingEnabled = true;
     context.imageSmoothingQuality = "high";
-    context.drawImage(img, x, y, w, h);
+    context.drawImage(img, -img.width / 2, -img.height / 2);
+    context.restore();
+  }
+
+  /* ---------- 背景简化：从四边泛洪，去掉与画面边缘相近的颜色 ---------- */
+  function simplifyBackground(canvas) {
+    if (!state.bgSimplify) return canvas;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    const image = context.getImageData(0, 0, CANVAS_W, CANVAS_H);
+    const px = image.data;
+    const W = CANVAS_W;
+    const H = CANVAS_H;
+
+    // 四角与四边中点作为「背景种子色」
+    const seeds = [];
+    const sample = (x, y) => {
+      const i = (y * W + x) * 4;
+      seeds.push([px[i], px[i + 1], px[i + 2]]);
+    };
+    sample(2, 2); sample(W - 3, 2); sample(2, H - 3); sample(W - 3, H - 3);
+    sample(W >> 1, 2); sample(W >> 1, H - 3); sample(2, H >> 1); sample(W - 3, H >> 1);
+
+    const target = [
+      parseInt(state.bgColor.slice(1, 3), 16),
+      parseInt(state.bgColor.slice(3, 5), 16),
+      parseInt(state.bgColor.slice(5, 7), 16),
+    ];
+    const tol = state.bgTolerance;
+
+    const isBg = (i) => {
+      const r = px[i], g = px[i + 1], b = px[i + 2];
+      for (const [sr, sg, sb] of seeds) {
+        if (Math.abs(r - sr) <= tol && Math.abs(g - sg) <= tol && Math.abs(b - sb) <= tol) return true;
+      }
+      return false;
+    };
+
+    const visited = new Uint8Array(W * H);
+    const queue = new Int32Array(W * H);
+    let head = 0;
+    let tail = 0;
+    const push = (x, y) => {
+      const idx = y * W + x;
+      if (visited[idx]) return;
+      visited[idx] = 1;
+      if (!isBg(idx * 4)) return;
+      queue[tail++] = idx;
+    };
+    for (let x = 0; x < W; x += 1) { push(x, 0); push(x, H - 1); }
+    for (let y = 0; y < H; y += 1) { push(0, y); push(W - 1, y); }
+
+    while (head < tail) {
+      const idx = queue[head++];
+      const x = idx % W;
+      const y = (idx - x) / W;
+      const i = idx * 4;
+      px[i] = target[0]; px[i + 1] = target[1]; px[i + 2] = target[2]; px[i + 3] = 255;
+      if (x > 0) push(x - 1, y);
+      if (x < W - 1) push(x + 1, y);
+      if (y > 0) push(x, y - 1);
+      if (y < H - 1) push(x, y + 1);
+    }
+    context.putImageData(image, 0, 0);
+    return canvas;
+  }
+
+  // 基础图层（原图 + 变换 + 背景简化），按参数缓存
+  let baseCache = { key: null, canvas: null };
+
+  function baseKey() {
+    return [
+      state.imageName, state.fit, state.zoom.toFixed(3), state.panX, state.panY,
+      state.rotate, state.flip, state.bgSimplify, state.bgTolerance, state.bgColor,
+    ].join("|");
+  }
+
+  function buildBase() {
+    const key = baseKey();
+    if (baseCache.key === key && baseCache.canvas) return baseCache.canvas;
+    const canvas = document.createElement("canvas");
+    canvas.width = CANVAS_W;
+    canvas.height = CANVAS_H;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0, 0, CANVAS_W, CANVAS_H);
+    drawImageCover(context);
+    simplifyBackground(canvas);
+    baseCache = { key, canvas };
+    return canvas;
   }
 
   let mappedByFit = new Map();
 
   function mappedImageData() {
-    const cached = mappedByFit.get(state.fit);
+    const key = baseKey();
+    const cached = mappedByFit.get(key);
     if (cached) return cached;
     const fresh = computeMapped();
-    mappedByFit.set(state.fit, fresh);
+    mappedByFit.set(key, fresh);
     return fresh;
   }
 
   function computeMapped() {
     // 先离屏渲染原图，再逐像素映射到 33 色
-    const off = document.createElement("canvas");
-    off.width = CANVAS_W;
-    off.height = CANVAS_H;
-    const octx = off.getContext("2d", { willReadFrequently: true });
-    octx.fillStyle = "#FFFFFF";
-    octx.fillRect(0, 0, CANVAS_W, CANVAS_H);
-    if (state.fit === "contain") drawImageCover(octx);
-    else drawImageCover(octx);
-
-    const data = octx.getImageData(0, 0, CANVAS_W, CANVAS_H);
+    const base = buildBase();
+    const data = base.getContext("2d", { willReadFrequently: true }).getImageData(0, 0, CANVAS_W, CANVAS_H);
     const px = data.data;
     const usage = new Array(PALETTE.length).fill(0);
 
@@ -2484,13 +2660,7 @@ dialog::backdrop {
     els.canvas.height = CANVAS_H;
 
     const mapped = mappedImageData();
-    const original = document.createElement("canvas");
-    original.width = CANVAS_W;
-    original.height = CANVAS_H;
-    const octx = original.getContext("2d");
-    octx.fillStyle = "#FFFFFF";
-    octx.fillRect(0, 0, CANVAS_W, CANVAS_H);
-    drawImageCover(octx);
+    const original = buildBase();
 
     ctx.save();
     drawRoundedRect(ctx, 0, 0, CANVAS_W, CANVAS_H, CANVAS_RADIUS);
@@ -2522,7 +2692,7 @@ dialog::backdrop {
   // 只显示选中的颜色，其余压成浅灰，方便定位「这块到底是哪个色」
   let focusCache = { key: null, canvas: null };
   function focusOverlay(mapped) {
-    const key = `${state.focus}|${state.fit}`;
+    const key = `${state.focus}|${baseKey()}`;
     if (focusCache.key === key) return focusCache.canvas;
     const canvas = document.createElement("canvas");
     canvas.width = CANVAS_W;
@@ -2646,6 +2816,41 @@ dialog::backdrop {
     return (usage[index] / total) * 100;
   }
 
+  // 拖拽 = 平移，单击 = 取色；用位移阈值区分
+  let drag = null;
+  function onPointerDown(event) {
+    if (!state.image) return;
+    drag = { x: event.clientX, y: event.clientY, panX: state.panX, panY: state.panY, moved: false };
+    els.canvas.setPointerCapture(event.pointerId);
+    els.canvas.addEventListener("pointermove", onPointerMove);
+    els.canvas.addEventListener("pointerup", onPointerUp);
+    els.canvas.addEventListener("pointercancel", onPointerUp);
+  }
+
+  function onPointerMove(event) {
+    if (!drag) return;
+    const dx = event.clientX - drag.x;
+    const dy = event.clientY - drag.y;
+    if (!drag.moved && Math.hypot(dx, dy) < 5) return;
+    drag.moved = true;
+    els.canvas.classList.add("is-panning");
+    const rect = els.canvas.getBoundingClientRect();
+    const k = CANVAS_W / rect.width;
+    state.panX = drag.panX + dx * k;
+    state.panY = drag.panY + dy * k;
+    if (state.image) render();
+  }
+
+  function onPointerUp(event) {
+    els.canvas.classList.remove("is-panning");
+    els.canvas.removeEventListener("pointermove", onPointerMove);
+    els.canvas.removeEventListener("pointerup", onPointerUp);
+    els.canvas.removeEventListener("pointercancel", onPointerUp);
+    const wasDrag = drag && drag.moved;
+    drag = null;
+    if (!wasDrag) pickAt(event);
+  }
+
   function pickAt(event) {
     if (!state.image) return;
     const rect = els.canvas.getBoundingClientRect();
@@ -2681,6 +2886,10 @@ dialog::backdrop {
         state.imageName = file.name || "image";
         mappedCache = null;
         mappedByFit = new Map();
+        baseCache = { key: null, canvas: null };
+        state.zoom = 1; state.panX = 0; state.panY = 0; state.rotate = 0; state.flip = false;
+        const zr0 = $("zoomRange"); if (zr0) zr0.value = "1";
+        const zv0 = $("zoomValue"); if (zv0) zv0.textContent = "1.0×";
         els.dropZone.hidden = true;
         els.statusHint.textContent =
           `已载入 ${file.name}（${img.width}×${img.height}）。网格数字是占画布宽高的百分比，摆元素时对着网格估位置即可。`;
@@ -2760,7 +2969,73 @@ dialog::backdrop {
       if (state.image) render();
     });
 
-    els.canvas.addEventListener("click", pickAt);
+    els.canvas.addEventListener("pointerdown", onPointerDown);
+
+    // 变换控件
+    const rotateBtn = $("rotateBtn");
+    const flipBtn = $("flipBtn");
+    const resetTransform = $("resetTransform");
+    const zoomRange = $("zoomRange");
+    const zoomValue = $("zoomValue");
+    const bgSimplify = $("bgSimplify");
+    const bgTolerance = $("bgTolerance");
+    const bgToleranceValue = $("bgToleranceValue");
+    const bgColorRow = $("bgColorRow");
+
+    if (rotateBtn) {
+      rotateBtn.addEventListener("click", () => {
+        state.rotate = (state.rotate + 90) % 360;
+        if (state.image) render();
+      });
+    }
+    if (flipBtn) {
+      flipBtn.addEventListener("click", () => {
+        state.flip = !state.flip;
+        if (state.image) render();
+      });
+    }
+    if (resetTransform) {
+      resetTransform.addEventListener("click", () => {
+        state.zoom = 1; state.panX = 0; state.panY = 0; state.rotate = 0; state.flip = false;
+        if (zoomRange) zoomRange.value = "1";
+        if (zoomValue) zoomValue.textContent = "1.0×";
+        if (state.image) render();
+      });
+    }
+    if (zoomRange) {
+      zoomRange.addEventListener("input", () => {
+        state.zoom = Number(zoomRange.value);
+        if (zoomValue) zoomValue.textContent = `${state.zoom.toFixed(1)}×`;
+        if (state.image) render();
+      });
+    }
+    if (bgSimplify) {
+      bgSimplify.addEventListener("change", () => {
+        state.bgSimplify = bgSimplify.checked;
+        if (bgColorRow) bgColorRow.hidden = !state.bgSimplify;
+        if (state.image) render();
+      });
+    }
+    if (bgTolerance) {
+      bgTolerance.addEventListener("input", () => {
+        state.bgTolerance = Number(bgTolerance.value);
+        if (bgToleranceValue) bgToleranceValue.textContent = String(state.bgTolerance);
+        if (state.image) render();
+      });
+    }
+    const bgColorSelect = $("bgColorSelect");
+    if (bgColorSelect) {
+      PALETTE.forEach((hex, index) => {
+        const opt = document.createElement("option");
+        opt.value = hex;
+        opt.textContent = `${PALETTE_NAMES[index].label} ${hex}`;
+        bgColorSelect.append(opt);
+      });
+      bgColorSelect.addEventListener("change", () => {
+        state.bgColor = bgColorSelect.value;
+        if (state.image) render();
+      });
+    }
 
     els.exportBtn.addEventListener("click", () => {
       if (!state.image) return;
@@ -2796,6 +3071,12 @@ dialog::backdrop {
       els.gridMode.querySelectorAll("button").forEach((b) => b.classList.toggle("is-on", b.dataset.grid === "6"));
       els.viewMode.querySelectorAll("button").forEach((b) => b.classList.toggle("is-on", b.dataset.view === "mapped"));
       els.guidesToggle.checked = true;
+      state.zoom = 1; state.panX = 0; state.panY = 0; state.rotate = 0; state.flip = false;
+      state.bgSimplify = false;
+      const zr = $("zoomRange"); if (zr) zr.value = "1";
+      const zv = $("zoomValue"); if (zv) zv.textContent = "1.0×";
+      const bs = $("bgSimplify"); if (bs) bs.checked = false;
+      const bcr = $("bgColorRow"); if (bcr) bcr.hidden = true;
       mappedCache = null;
       mappedByFit = new Map();
       if (state.image) render();
